@@ -1,0 +1,28 @@
+<main>
+    <h1>Get in Touch</h1>
+    <p style="text-align: center;">Have a question or want to work together?</p>
+
+    <div style="max-width: 500px; margin: 0 auto;">
+        <div style="display: flex; justify-content: space-around; margin-bottom: 40px;">
+            <a href="https://www.linkedin.com/in/kevin-struna/" style="color: var(--ios-blue);">LinkedIn</a>
+            <a href="https://github.com/MWM1107" style="color: var(--ios-blue);">GitHub</a>
+            <a href="mailto:kev.struna@gmail.com" style="color: var(--ios-blue);">Email</a>
+        </div>
+
+        <form action="mailto:kev.struna@gmail.com" method="post" enctype="text/plain" style="background: white; padding: 30px; border-radius: 16px;">
+            <div style="margin-bottom: 15px;">
+                <label for="name" style="display: block; margin-bottom: 5px; font-weight: 500;">Name</label>
+                <input type="text" id="name" name="name" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="email" style="display: block; margin-bottom: 5px; font-weight: 500;">Email</label>
+                <input type="email" id="email" name="email" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="message" style="display: block; margin-bottom: 5px; font-weight: 500;">Message</label>
+                <textarea id="message" name="message" rows="5" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;"></textarea>
+            </div>
+            <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+        </form>
+    </div>
+</main>
