@@ -1,18 +1,105 @@
-<main>
-    <h1>About Me</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Kevin Struna</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific tweaks for text readability */
+        .prose {
+            color: #444;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.5rem; 
+            border-left: 4px solid var(--ios-blue); 
+            padding-left: 15px; 
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html" class="active">About</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main>
+        <h1>About Me</h1>
+        <p class="tagline">CS Student. iOS Developer. Product Shipper.</p>
+        
+        <article class="glass-card" style="max-width: 800px; margin: 0 auto;">
+            
+            <h2 style="margin-top: 0;">The Developer</h2>
+            <p class="prose">
+                I am a Junior <strong>Computer Science major</strong> at Colorado State University (Dean's List), set to graduate in Spring 2027.
+            </p>
+            <p class="prose">
+                My approach to development is <strong>hybrid</strong>: I possess the fundamental engineering knowledge to architect complex systems from scratch (like my open-source work on <em>KanaCard</em>), but I also embrace modern AI tools to accelerate the product lifecycle. This allows me to not just write code, but to <strong>ship complete products</strong> to the App Store efficiently.
+            </p>
     
-    <div style="background: white; padding: 30px; border-radius: 16px;">
-        <h2>The Developer</h2>
-        <p>I am a Junior Computer Science major at Colorado State University, set to graduate in Spring 2027...</p>
+            <h2>Technical Skills</h2>
+            <div style="margin-bottom: 15px;">
+                <strong style="display: block; margin-bottom: 10px; color: #1d1d1f;">Languages</strong>
+                <div>
+                    <span class="tech-badge">Swift</span>
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">C++</span>
+                    <span class="tech-badge">Java</span>
+                    <span class="tech-badge">SQL</span>
+                    <span class="tech-badge">HTML/CSS</span>
+                </div>
+            </div>
 
-        <h2>Technical Skills</h2>
-        <ul>
-            <li><strong>Languages:</strong> Swift, Python, Java, C++</li>
-            <li><strong>Tools:</strong> Xcode, Git, VS Code</li>
-            <li><strong>Design:</strong> SwiftUI, UIKit, Procreate</li>
-        </ul>
+            <div style="margin-bottom: 15px;">
+                <strong style="display: block; margin-bottom: 10px; color: #1d1d1f;">Frameworks & Design</strong>
+                <div>
+                    <span class="tech-badge">SwiftUI</span>
+                    <span class="tech-badge">UIKit</span>
+                    <span class="tech-badge">CoreData</span>
+                    <span class="tech-badge">Procreate</span>
+                </div>
+            </div>
 
-        <h2>The Person</h2>
-        <p>When I'm not coding, I'm likely training for my next 10k run, hunting for vintage clothes, or listening to Frank Sinatra.</p>
-    </div>
-</main>
+            <div>
+                <strong style="display: block; margin-bottom: 10px; color: #1d1d1f;">Tools</strong>
+                <div>
+                    <span class="tech-badge">Xcode</span>
+                    <span class="tech-badge">Git / GitHub</span>
+                    <span class="tech-badge">VS Code</span>
+                    <span class="tech-badge">App Store Connect</span>
+                </div>
+            </div>
+    
+            <h2>The Person</h2>
+            <p class="prose">
+                Beyond the code, I am driven by a balance of <strong>discipline and creativity</strong>. I’m an avid runner, currently training for my next 10k, where I find the mental endurance required for distance running directly translates to debugging complex software problems.
+            </p>
+            <p class="prose">
+                I also have a deep appreciation for language and the arts. I am actively <strong>learning Japanese</strong> (aiming for a trip post-grad!) and unwinding by playing the piano. If you catch me with headphones on, I’m likely listening to the classics, like Frank Sinatra or rocking out to some U2. Maybe a little J-Pop.
+            </p>
+
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Kevin Struna. All rights reserved.</p>
+        <div style="margin-top: 10px;">
+            <a href="index.html">Home</a> |
+            <a href="projects.html">Projects</a> |
+            <a href="about.html">About</a> |
+            <a href="resume.html">Resume</a> |
+            <a href="contact.html">Contact</a>
+        </div>
+    </footer>
+
+</body>
+</html>

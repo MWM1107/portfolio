@@ -11,34 +11,131 @@
     <nav>
         <a href="index.html" class="active">Home</a>
         <a href="projects.html">Projects</a>
-        <a href="about.html">About</a> <a href="resume.html">Resume</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
         <a href="contact.html">Contact</a>
     </nav>
 
     <main>
-        <section style="text-align: center; padding: 60px 0;">
-            <div style="width: 150px; height: 150px; background-color: #ddd; border-radius: 50%; margin: 0 auto 20px;"></div>
+        <section style="text-align: center; padding: 80px 0 60px;">
             
-            <h1>Kevin Struna</h1>
+            <div style="width: 160px; height: 160px; background-color: #f0f0f5; border-radius: 50%; margin: 0 auto 25px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                <img src="img/profile.webp" alt="Kevin Struna" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#ddd';">
+            </div>
+            
+            <h1 style="margin-bottom: 10px;">Kevin Struna</h1>
             <p class="tagline">iOS Developer & CS Student.<br>Crafting intuitive mobile experiences with Swift & SwiftUI.</p>
         </section>
 
-        <section>
-            <h2 style="text-align: center;">Featured Work</h2>
-            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
-                <div style="background: white; padding: 20px; border-radius: 12px; width: 250px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                    <h3>Rogue Roll</h3>
-                    <p>Interactive dice game with custom UIKit animations.</p>
-                    <a href="projects.html" style="color: var(--ios-blue); text-decoration: none;">View Project &rarr;</a>
-                </div>
-                <div style="background: white; padding: 20px; border-radius: 12px; width: 250px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                    <h3>KanaCard</h3>
-                    <p>Japanese language learning tool built with SwiftUI.</p>
-                    <a href="projects.html" style="color: var(--ios-blue); text-decoration: none;">View Project &rarr;</a>
+        <section style="padding-bottom: 40px;">
+            <h2 style="text-align: center; margin-bottom: 30px;">Featured Work</h2>
+            
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    
+                    <div class="carousel-card">
+                        <img src="img/KanaCard.webp" alt="KanaCard" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">KanaCard</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Handcrafted Japanese learning tool with custom physics.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+
+                    <div class="carousel-card">
+                        <img src="img/RogueRoll.webp" alt="Rogue Roll" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">Rogue Roll</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Roguelike dice deckbuilder. Hit massive multipliers.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+
+                    <div class="carousel-card">
+                        <img src="img/Kodou.webp" alt="Kodou" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">Kodou</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Rhythm & Memory game. Climb the leaderboards.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+
+                    <div class="carousel-card">
+                        <img src="img/TypeKana.webp" alt="Type Kana" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">Type Kana</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Master Hiragana & Katakana with writing practice.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+
+                    <div class="carousel-card">
+                        <img src="img/Wordly.webp" alt="Wordly" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">Wordly</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Daily word puzzles and solver utility.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+
+                    <div class="carousel-card">
+                        <img src="img/StockMarketSim.webp" alt="Stock Market Sim" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">Stock Sim</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Real-time market simulator. Build a virtual empire.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+
+                    <div class="carousel-card">
+                        <img src="img/IdeaVault.webp" alt="Idea Vault" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">Idea Vault</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Capture thoughts instantly. Simple, clean notes.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+
+
+                    <div class="carousel-card">
+                        <img src="img/KanaCard.webp" alt="KanaCard" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">KanaCard</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Handcrafted Japanese learning tool with custom physics.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+                    <div class="carousel-card">
+                        <img src="img/RogueRoll.webp" alt="Rogue Roll" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">Rogue Roll</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Roguelike dice deckbuilder. Hit massive multipliers.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+                    <div class="carousel-card">
+                        <img src="img/Kodou.webp" alt="Kodou" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">Kodou</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Rhythm & Memory game. Climb the leaderboards.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+                    <div class="carousel-card">
+                        <img src="img/TypeKana.webp" alt="Type Kana" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">Type Kana</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Master Hiragana & Katakana with writing practice.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+                    <div class="carousel-card">
+                        <img src="img/Wordly.webp" alt="Wordly" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">Wordly</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Daily word puzzles and solver utility.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+                    <div class="carousel-card">
+                        <img src="img/StockMarketSim.webp" alt="Stock Market Sim" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">Stock Sim</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Real-time market simulator. Build a virtual empire.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+                    <div class="carousel-card">
+                        <img src="img/IdeaVault.webp" alt="Idea Vault" class="app-icon">
+                        <h3 style="margin-top: 0; font-size: 1.2rem;">Idea Vault</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Capture thoughts instantly. Simple, clean notes.</p>
+                        <a href="projects.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Project &rarr;</a>
+                    </div>
+
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="projects.html" class="btn">View All Projects</a>
+
+            <div style="text-align: center; margin-top: 30px; margin-bottom: 40px;">
+                <a href="projects.html" class="btn">
+                    View All Projects
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-left: 5px;">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                    </svg>
+                </a>
             </div>
         </section>
     </main>
