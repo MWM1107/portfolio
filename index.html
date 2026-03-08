@@ -6,6 +6,93 @@
     <title>Kevin Struna | iOS Developer</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
+<script>
+        // 1. The Logic Engine (UI Updater)
+        function updateHardwareWidget(data) {
+            // -- DOM Elements --
+            const statusDot = document.getElementById('status-dot');
+            const timestampText = document.getElementById('last-updated-text');
+            const co2Element = document.getElementById('live-co2');
+            const tvocElement = document.getElementById('live-tvoc');
+            const tvocStatus = document.getElementById('tvoc-status');
+
+            // -- Populate Raw Data --
+            // Convert Celsius to Fahrenheit on the fly!
+            const tempF = (data.temperature_c * 9/5) + 32;
+            document.getElementById('live-temp').textContent = tempF.toFixed(1) + '°F';
+            
+            document.getElementById('live-hum').textContent = data.humidity.toFixed(1) + '%';
+            document.getElementById('live-pressure').textContent = data.pressure_hpa.toFixed(1); 
+            co2Element.textContent = data.eco2_ppm;
+            tvocElement.textContent = data.tvoc_ppb;
+
+            // -- Smart Status: Timestamp & Offline Check --
+            const lastUpdate = new Date(data.timestamp);
+            const now = new Date();
+            const diffInMinutes = Math.floor((now - lastUpdate) / 60000);
+
+            if (diffInMinutes < 1) {
+                timestampText.textContent = "Last updated: Just now";
+                statusDot.className = "status-dot online";
+            } else if (diffInMinutes < 5) {
+                timestampText.textContent = `Last updated: ${diffInMinutes} min ago`;
+                statusDot.className = "status-dot online";
+            } else {
+                const timeString = lastUpdate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                timestampText.textContent = `Offline. Last seen at ${timeString}`;
+                statusDot.className = "status-dot offline";
+            }
+
+            // -- Smart Status: eCO2 Apple Color Coding --
+            if (data.eco2_ppm < 800) {
+                co2Element.style.color = '#34c759'; // Green
+            } else if (data.eco2_ppm < 1500) {
+                co2Element.style.color = '#ff9500'; // Orange
+            } else {
+                co2Element.style.color = '#ff3b30'; // Red
+            }
+
+            // -- Smart Status: TVOC Synthesis --
+            if (data.tvoc_ppb < 50) {
+                tvocElement.style.color = '#34c759'; // Green
+                tvocStatus.textContent = "ppb (Pristine)";
+            } else if (data.tvoc_ppb < 250) {
+                tvocElement.style.color = '#ff9500'; // Orange
+                tvocStatus.textContent = "ppb (Moderate)";
+            } else {
+                tvocElement.style.color = '#ff3b30'; // Red
+                tvocStatus.textContent = "ppb (Ventilate)";
+            }
+        }
+
+        // 2. The Live Network Fetcher
+        function fetchFirebaseData() {
+            const databaseURL = 'https://smart-aq-monitor-default-rtdb.firebaseio.com/aq_monitor/current_readings.json';
+            
+            fetch(databaseURL, { cache: "no-store" }) 
+                .then(response => {
+                    if (!response.ok) throw new Error("Network response was not OK");
+                    return response.json();
+                })
+                .then(data => {
+                    if (data) {
+                        updateHardwareWidget(data);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching live hardware data:", error);
+                    document.getElementById('last-updated-text').textContent = "Failed to connect to sensors.";
+                    document.getElementById('status-dot').className = "status-dot offline";
+                });
+        }
+
+        // 3. Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchFirebaseData(); // Grab it immediately on page load
+            setInterval(fetchFirebaseData, 30000); // Silently update every 30 seconds
+        });
+    </script>
 <body>
 
     <nav>
@@ -25,6 +112,52 @@
             
             <h1 style="margin-bottom: 15px;">Kevin Struna</h1>
             <p class="tagline">iOS Developer & CS Student.<br>Crafting intuitive mobile experiences with Swift & SwiftUI.</p>
+        </section>
+
+    <section style="margin-top: 80px;">
+            <div class="section-header" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; border-bottom: none; margin-bottom: 25px;">
+                <h2 style="margin: 0 0 5px 0;">Live AQ Monitor</h2>
+                <p style="font-size: 1rem; color: var(--text-color); opacity: 0.8; margin: 0 0 12px 0; font-weight: 500;">Location: Kevin's Bedroom</p>
+                
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span id="status-dot" class="status-dot offline"></span>
+                    <p id="last-updated-text" style="font-size: 0.85rem; color: #86868b; margin: 0; font-weight: 500;">Checking sensor status...</p>
+                </div>
+            </div>
+            
+            <div class="glass-card" style="max-width: 1000px; margin: 0 auto;">
+                <div class="card-content" style="display: flex; justify-content: space-between; text-align: center; flex-wrap: wrap; gap: 20px;">
+                    
+                    <div style="flex: 1;">
+                        <p style="font-size: 0.85rem; color: #86868b; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Temperature</p>
+                        <h3 id="live-temp" style="font-size: 2.5rem; margin: 0; font-variant-numeric: tabular-nums;">--.-°F</h3>
+                    </div>
+                    
+                    <div style="flex: 1; border-left: 1px solid rgba(0,0,0,0.1);">
+                        <p style="font-size: 0.85rem; color: #86868b; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Humidity</p>
+                        <h3 id="live-hum" style="font-size: 2.5rem; margin: 0; font-variant-numeric: tabular-nums;">--.-%</h3>
+                    </div>
+
+                    <div style="flex: 1; border-left: 1px solid rgba(0,0,0,0.1);">
+                        <p style="font-size: 0.85rem; color: #86868b; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Pressure</p>
+                        <h3 id="live-pressure" style="font-size: 2.5rem; margin: 0; font-variant-numeric: tabular-nums;">----</h3>
+                        <p style="font-size: 0.75rem; color: #86868b; margin: 5px 0 0 0;">hPa</p>
+                    </div>
+                    
+                    <div style="flex: 1; border-left: 1px solid rgba(0,0,0,0.1);">
+                        <p style="font-size: 0.85rem; color: #86868b; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">eCO2</p>
+                        <h3 id="live-co2" style="font-size: 2.5rem; margin: 0; font-variant-numeric: tabular-nums;">---</h3>
+                        <p style="font-size: 0.75rem; color: #86868b; margin: 5px 0 0 0;">ppm</p>
+                    </div>
+
+                    <div style="flex: 1; border-left: 1px solid rgba(0,0,0,0.1);">
+                        <p style="font-size: 0.85rem; color: #86868b; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">TVOC</p>
+                        <h3 id="live-tvoc" style="font-size: 2.5rem; margin: 0; font-variant-numeric: tabular-nums;">---</h3>
+                        <p id="tvoc-status" style="font-size: 0.75rem; color: #86868b; margin: 5px 0 0 0;">ppb</p>
+                    </div>
+
+                </div>
+            </div>
         </section>
 
         <section>
