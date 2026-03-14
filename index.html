@@ -5,20 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kevin Struna | iOS Developer</title>
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(52, 199, 89, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0); }
+        }
+        .status-dot.online {
+            background-color: #34c759;
+            animation: pulse-green 2s infinite;
+            border-radius: 50%;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+        }
+        .status-dot.offline {
+            background-color: #ff3b30;
+            border-radius: 50%;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+        }
+        .metric-icon {
+            margin-bottom: 12px;
+            opacity: 0.8;
+            transition: stroke 0.3s ease;
+        }
+    </style>
 </head>
 
-<script>
+<body>
+
+    <script>
         // 1. The Logic Engine (UI Updater)
         function updateHardwareWidget(data) {
-            // -- DOM Elements --
             const statusDot = document.getElementById('status-dot');
             const timestampText = document.getElementById('last-updated-text');
             const co2Element = document.getElementById('live-co2');
             const tvocElement = document.getElementById('live-tvoc');
             const tvocStatus = document.getElementById('tvoc-status');
+            
+            // Grab the SVG icons to change their colors dynamically
+            const co2Icon = document.getElementById('icon-co2');
+            const tvocIcon = document.getElementById('icon-tvoc');
 
-            // -- Populate Raw Data --
-            // Convert Celsius to Fahrenheit on the fly!
             const tempF = (data.temperature_c * 9/5) + 32;
             document.getElementById('live-temp').textContent = tempF.toFixed(1) + '°F';
             
@@ -27,8 +58,6 @@
             co2Element.textContent = data.eco2_ppm;
             tvocElement.textContent = data.tvoc_ppb;
 
-            // -- Smart Status: Timestamp & Offline Check --
-            // Multiply the C++ UNIX timestamp (seconds) by 1000 for JS (milliseconds)
             const lastUpdate = new Date(data.timestamp * 1000); 
             const now = new Date();
             const diffInMinutes = Math.floor((now - lastUpdate) / 60000);
@@ -40,32 +69,33 @@
                 timestampText.textContent = `Last updated: ${diffInMinutes} min ago`;
                 statusDot.className = "status-dot online";
             } else {
-                // This will now format perfectly into your local timezone!
                 const timeString = lastUpdate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 timestampText.textContent = `Offline. Last seen at ${timeString}`;
                 statusDot.className = "status-dot offline";
             }
 
             // -- Smart Status: eCO2 Apple Color Coding --
-            if (data.eco2_ppm < 800) {
-                co2Element.style.color = '#34c759'; // Green
-            } else if (data.eco2_ppm < 1500) {
-                co2Element.style.color = '#ff9500'; // Orange
-            } else {
-                co2Element.style.color = '#ff3b30'; // Red
-            }
+            let eco2Color = '#34c759'; // Default Green
+            if (data.eco2_ppm >= 800 && data.eco2_ppm < 1500) eco2Color = '#ff9500';
+            else if (data.eco2_ppm >= 1500) eco2Color = '#ff3b30';
+            
+            co2Element.style.color = eco2Color;
+            co2Icon.style.stroke = eco2Color;
 
             // -- Smart Status: TVOC Synthesis --
+            let tvocColor = '#34c759'; // Default Green
             if (data.tvoc_ppb < 50) {
-                tvocElement.style.color = '#34c759'; // Green
                 tvocStatus.textContent = "ppb (Pristine)";
             } else if (data.tvoc_ppb < 250) {
-                tvocElement.style.color = '#ff9500'; // Orange
+                tvocColor = '#ff9500';
                 tvocStatus.textContent = "ppb (Moderate)";
             } else {
-                tvocElement.style.color = '#ff3b30'; // Red
+                tvocColor = '#ff3b30';
                 tvocStatus.textContent = "ppb (Ventilate)";
             }
+            
+            tvocElement.style.color = tvocColor;
+            tvocIcon.style.stroke = tvocColor;
         }
 
         // 2. The Live Network Fetcher
@@ -91,23 +121,22 @@
 
         // 3. Initialization
         document.addEventListener('DOMContentLoaded', () => {
-            fetchFirebaseData(); // Grab it immediately on page load
-            setInterval(fetchFirebaseData, 30000); // Silently update every 30 seconds
+            fetchFirebaseData(); 
+            setInterval(fetchFirebaseData, 30000); 
         });
 
         function toggleInfoPane() {
             const pane = document.getElementById('aq-info-pane');
-            if (pane.style.display === "none") {
+            if (pane.style.display === "none" || pane.style.display === "") {
                 pane.style.display = "block";
-                // A tiny delay to allow the browser to render the block before applying opacity for a smooth fade
                 setTimeout(() => { pane.style.opacity = "1"; pane.style.transform = "translateY(0)"; }, 10);
             } else {
-                pane.style.display = "none";
+                pane.style.opacity = "0"; 
+                pane.style.transform = "translateY(-10px)";
+                setTimeout(() => { pane.style.display = "none"; }, 300);
             }
         }
     </script>
-
-<body>
 
     <nav>
         <a href="index.html" class="active">Home</a>
@@ -119,7 +148,6 @@
 
     <main>
         <section style="text-align: center;">
-            
             <div style="width: 256px; height: 256px; background-color: #f0f0f5; border-radius: 50%; margin: 0 auto 30px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);">
                 <img src="img/profile.png" alt="Kevin Struna" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#e5e5ea';">
             </div>
@@ -128,83 +156,89 @@
             <p class="tagline">iOS Developer & CS Student.<br>Crafting intuitive mobile experiences with Swift & SwiftUI.</p>
         </section>
 
-<section style="margin-top: 80px; padding: 0 20px; max-width: 900px; margin-left: auto; margin-right: auto;">
-    
-    <div class="glass-card" style="padding: 40px; position: relative;">
-        
-        <div style="text-align: center; margin-bottom: 35px;">
-            <h2 style="margin: 0 0 15px 0; font-size: 2.4rem; letter-spacing: -0.03em;">Air Quality Monitor</h2>
-            
-            <div style="display: inline-flex; align-items: center; padding: 10px 20px; border-radius: 100px; background: var(--card-bg); border: 1px solid var(--card-border); box-shadow: 0 4px 12px var(--shadow-light);">
+        <section style="margin-top: 80px; padding: 0 20px; max-width: 900px; margin-left: auto; margin-right: auto;">
+            <div class="glass-card" style="padding: 40px; position: relative;">
                 
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; opacity: 0.9;">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                
-                <span style="font-size: 0.95rem; color: var(--text-color); font-weight: 600; margin-right: 16px; border-right: 1px solid rgba(0,0,0,0.15); padding-right: 16px;">
-                    Kevin's Bedroom
-                </span>
+                <div style="text-align: center; margin-bottom: 35px;">
+                    <h2 style="margin: 0 0 15px 0; font-size: 2.4rem; letter-spacing: -0.03em;">Air Quality Monitor</h2>
+                    
+                    <div style="display: inline-flex; align-items: center; padding: 10px 20px; border-radius: 100px; background: var(--card-bg); border: 1px solid var(--card-border); box-shadow: 0 4px 12px var(--shadow-light);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; opacity: 0.9;">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        
+                        <span style="font-size: 0.95rem; color: var(--text-color); font-weight: 600; margin-right: 16px; border-right: 1px solid rgba(0,0,0,0.15); padding-right: 16px;">
+                            Kevin's Bedroom
+                        </span>
 
-                <div style="display: flex; align-items: center;">
-                    <span id="status-dot" class="status-dot offline" style="margin-right: 8px;"></span>
-                    <span id="last-updated-text" style="font-size: 0.85rem; color: #86868b; font-weight: 500; font-variant-numeric: tabular-nums;">
-                        Checking sensor...
-                    </span>
+                        <div style="display: flex; align-items: center;">
+                            <span id="status-dot" class="status-dot offline" style="margin-right: 8px;"></span>
+                            <span id="last-updated-text" style="font-size: 0.85rem; color: #86868b; font-weight: 500; font-variant-numeric: tabular-nums;">
+                                Checking sensor...
+                            </span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-            
-            <div style="flex: 1 1 200px; background: var(--card-bg); border-radius: 24px; padding: 25px 15px; text-align: center; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-                <p style="font-size: 0.85rem; color: #86868b; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Temperature</p>
-                <h3 id="live-temp" style="font-size: 2.2rem; margin: 0; font-variant-numeric: tabular-nums;">--.-°F</h3>
-            </div>
-            
-            <div style="flex: 1 1 200px; background: var(--card-bg); border-radius: 24px; padding: 25px 15px; text-align: center; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-                <p style="font-size: 0.85rem; color: #86868b; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Humidity</p>
-                <h3 id="live-hum" style="font-size: 2.2rem; margin: 0; font-variant-numeric: tabular-nums;">--.-%</h3>
-            </div>
+                <div class="bento-metrics">
+                    
+                    <div class="metric-card">
+                        <svg class="metric-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff9500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>
+                        <p class="metric-label">Temperature</p>
+                        <h3 id="live-temp" class="metric-value">--.-°F</h3>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <svg class="metric-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#007aff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></svg>
+                        <p class="metric-label">Humidity</p>
+                        <h3 id="live-hum" class="metric-value">--.-%</h3>
+                    </div>
 
-            <div style="flex: 1 1 200px; background: var(--card-bg); border-radius: 24px; padding: 25px 15px; text-align: center; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-                <p style="font-size: 0.85rem; color: #86868b; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Pressure</p>
-                <h3 id="live-pressure" style="font-size: 2.2rem; margin: 0; font-variant-numeric: tabular-nums;">----</h3>
-                <p style="font-size: 0.75rem; color: #86868b; margin: 5px 0 0 0;">hPa</p>
-            </div>
-            
-            <div style="flex: 1 1 300px; background: var(--card-bg); border-radius: 24px; padding: 25px 15px; text-align: center; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-                <p style="font-size: 0.85rem; color: #86868b; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">eCO2</p>
-                <h3 id="live-co2" style="font-size: 2.2rem; margin: 0; font-variant-numeric: tabular-nums;">---</h3>
-                <p style="font-size: 0.75rem; color: #86868b; margin: 5px 0 0 0;">ppm</p>
-            </div>
+                    <div class="metric-card">
+                        <svg class="metric-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5ac8fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m12 14 4-4"/>
+                            <path d="M3.34 16a10 10 0 1 1 17.32 0"/>
+                        </svg>
+                        <p class="metric-label">Pressure</p>
+                        <h3 id="live-pressure" class="metric-value">----</h3>
+                        <p class="metric-unit">hPa</p>
+                    </div>
+                    
+                    <div class="metric-card metric-wide">
+                        <svg id="icon-co2" class="metric-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#86868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19C19.9853 19 22 16.9853 22 14.5C22 12.1332 20.1802 10.2033 17.854 10.0245C17.4338 6.61904 14.5298 4 11 4C7.13401 4 4 7.13401 4 11C4 11.2307 4.01116 11.4587 4.03282 11.683C2.29054 12.1643 1 13.7381 1 15.6C1 17.9234 2.86874 19.8 5.17647 19.8L17.5 19Z"></path></svg>
+                        <p class="metric-label">eCO2</p>
+                        <h3 id="live-co2" class="metric-value">---</h3>
+                        <p class="metric-unit">ppm</p>
+                    </div>
 
-            <div style="flex: 1 1 300px; background: var(--card-bg); border-radius: 24px; padding: 25px 15px; text-align: center; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-                <p style="font-size: 0.85rem; color: #86868b; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">TVOC</p>
-                <h3 id="live-tvoc" style="font-size: 2.2rem; margin: 0; font-variant-numeric: tabular-nums;">---</h3>
-                <p id="tvoc-status" style="font-size: 0.75rem; color: #86868b; margin: 5px 0 0 0;">ppb</p>
-            </div>
-            
-        </div>
+                    <div class="metric-card metric-wide">
+                        <svg id="icon-tvoc" class="metric-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#86868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"></path><path d="M8.5 2h7"></path><path d="M7 16h10"></path></svg>
+                        <p class="metric-label">TVOC</p>
+                        <h3 id="live-tvoc" class="metric-value">---</h3>
+                        <p id="tvoc-status" class="metric-unit">ppb</p>
+                    </div>
+                    
+                </div>
 
-        <div style="text-align: center; margin-top: 30px;">
-            <button onclick="toggleInfoPane()" style="background: var(--card-bg); border: 1px solid rgba(0,0,0,0.08); padding: 8px 16px; border-radius: 99px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: var(--text-color); box-shadow: 0 4px 12px var(--shadow-light); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                How it's built
-            </button>
-            
-            <div id="aq-info-pane" style="display: none; max-width: 650px; margin: 20px auto 0; padding: 20px; text-align: left; background: rgba(0,0,0,0.03); border-radius: 16px; opacity: 0; transform: translateY(-10px); transition: all 0.3s ease;">
-                <p style="margin-top: 0; font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;">Custom IoT Pipeline</p>
-                <ul style="margin-bottom: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.6; color: var(--text-color); opacity: 0.85;">
-                    <li style="margin-bottom: 8px;"><strong>Hardware:</strong> An ESP32 microcontroller wired to BME680 (Climate) and CCS811 (Gas) sensors, running custom C++ firmware.</li>
-                    <li style="margin-bottom: 8px;"><strong>Backend:</strong> The ESP32 syncs with an NTP time server and pushes UNIX-timestamped JSON payloads directly to a Firebase Realtime Database via REST API.</li>
-                    <li><strong>Frontend:</strong> This web client uses vanilla JavaScript to asynchronously fetch and parse the live Firebase data every 30 seconds.</li>
-                </ul>
-            </div>
-        </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button onclick="toggleInfoPane()" style="background: var(--card-bg); border: 1px solid rgba(0,0,0,0.08); padding: 8px 16px; border-radius: 99px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: var(--text-color); box-shadow: 0 4px 12px var(--shadow-light); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        How it's built
+                    </button>
+                    
+                    <div id="aq-info-pane" class="info-pane" style="display: none;">
+                        <p style="margin-top: 0; font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;">Custom IoT Pipeline</p>
+                        <ul style="margin-bottom: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.6; color: var(--text-color); opacity: 0.85;">
+                            <li style="margin-bottom: 8px;"><strong>Hardware:</strong> An ESP32 microcontroller wired to BME680 (Climate) and CCS811 (Gas) sensors, running custom C++ firmware.</li>
+                            <li style="margin-bottom: 8px;"><strong>Backend:</strong> The ESP32 syncs with an NTP time server and pushes UNIX-timestamped JSON payloads directly to a Firebase Realtime Database via REST API.</li>
+                            <li><strong>Frontend:</strong> This web client uses vanilla JavaScript to asynchronously fetch and parse the live Firebase data every 30 seconds.</li>
+                        </ul>
+                    </div>
+                </div>
 
-    </div>
-</section>
+            </div>
+        </section>
 
         <section>
             <div class="section-header" style="text-align: center">
@@ -212,7 +246,6 @@
             </div>
             
             <div class="bento-grid">
-                
                 <a href="projects.html" class="glass-card product-card">
                     <div class="card-content">
                         <img src="img/KanaCard.png" alt="KanaCard Icon" class="app-icon">
@@ -230,7 +263,6 @@
                         <span style="color: var(--ios-blue); font-weight: 600; font-size: 0.9rem;">Learn More &rarr;</span>
                     </div>
                 </a>
-
             </div>
 
             <div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
