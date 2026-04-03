@@ -17,16 +17,16 @@
             gap: 5px;
         }
         .role-title { font-weight: 700; font-size: 1.15rem; color: var(--text-color); }
-        .company-name { font-weight: 500; color: #666; font-size: 1rem; }
+        .company-name { font-weight: 500; color: var(--text-muted); font-size: 1rem; }
         .date-range { font-size: 0.9rem; color: #86868b; font-variant-numeric: tabular-nums; }
         
         .resume-list { list-style-type: none; padding: 0; margin: 0; }
-        .resume-list li { 
-            position: relative; 
-            padding-left: 18px; 
-            margin-bottom: 8px; 
-            color: #b7b7b7; 
-            font-size: 0.95rem; 
+        .resume-list li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
             line-height: 1.6;
         }
         .resume-list li::before { 
@@ -49,7 +49,7 @@
     </nav>
 
     <main>
-        <div style="text-align: center; padding: 40px 0 30px;">
+        <div style="text-align: center; padding: 40px 0 60px;">
             <h1>Resume</h1>
             <p class="tagline">Computer Science Student & iOS Developer</p>
             
@@ -60,8 +60,8 @@
                 </a>
                 
                 <a href="https://apps.apple.com/tr/developer/kevin-struna/id1700293634" target="_blank" rel="noopener noreferrer" class="btn" style="background-color: #1c1c1e;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.1-44.6-35.9-2.8-74.3 22.7-93.1 22.7-18.9 0-46.5-20.9-82.8-20.9-42.5 0-82.3 22.6-103.9 54.6-43.6 64.9-20 165.9 21.5 225.7 20 28.5 42.5 56.1 71.2 56.1 27.1 0 38.1-16.5 71.6-16.5 32.8 0 42.5 16.5 72.2 16.5 28.6 0 51.4-28.8 71.2-56.1 14.5-19.6 23-38.3 30.1-57.6-22.9-9.1-38.5-31.4-38.5-56zM211.9 83.7c15-18.3 26.5-41.7 22.7-64.7-20 1-46.3 11.5-62.9 29.8-14.5 15.9-27.1 40-23.3 62.4 22.4 1.5 45.4-8.8 63.5-27.5z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                     </svg>
                  App Store
                 </a>
@@ -128,9 +128,9 @@
                     <div class="date-range">2022 - 2025</div>
                 </div>
                 <ul class="resume-list">
-                    <li>Successfully published multiple functional applications to the iOS App Store, reaching a global audience.</li>
-                    <li>Navigated the Apple Developer program requirements and App Store Connect submission and review processes.</li>
-                    <li>Iteratively improved application features based on deployment feedback and performance monitoring.</li>
+                    <li>Published multiple apps to the iOS App Store, managing the full submission and review process.</li>
+                    <li>Handled App Store Connect listings, screenshots, release notes, and version updates independently.</li>
+                    <li>Shipped iterative updates based on user feedback and crash reports.</li>
                 </ul>
             </div>
         </div>
@@ -194,7 +194,7 @@
             <div class="glass-card" style="padding: 10px; height: 800px;">
                 <object data="Resume.pdf" type="application/pdf" width="100%" height="100%" style="border-radius: 12px; border: none;">
                     <div class="pdf-fallback" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-                        <p style="margin-bottom: 15px; color: #555; font-size: 1.1rem;">Unable to display PDF directly.</p>
+                        <p style="margin-bottom: 15px; color: var(--text-color); font-size: 1.1rem;">Unable to display PDF directly?</p>
                         <a href="Resume.pdf" class="btn" download>Download PDF</a>
                     </div>
                 </object>

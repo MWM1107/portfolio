@@ -12,6 +12,7 @@
     --card-border: rgba(255, 255, 255, 0.6);
     --shadow-light: rgba(0, 0, 0, 0.05);
     --shadow-medium: rgba(0, 0, 0, 0.1);
+    --text-muted: #6e6e73;
 }
 
 body {
@@ -413,9 +414,11 @@ footer a:hover { color: var(--ios-blue); text-decoration: none; }
     .tech-badge { background: #2c2c2e; color: #e5e5e5; }
     .section-header, footer { border-color: rgba(255,255,255,0.15); }
     
+    --text-muted: #aeaeb2;
+
     .btn-light { background: #1c1c1e; color: white; border: 1px solid rgba(255,255,255,0.2); }
     .btn-light svg { fill: white; }
-    
+
     input, textarea { background-color: #1c1c1e !important; border-color: #3a3a3c !important; color: white !important; }
     label { color: #d1d1d6 !important; }
 
