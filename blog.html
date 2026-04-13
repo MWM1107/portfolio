@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Kevin Struna</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
+    <style>
+        .post-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .post-card .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+
+        .post-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .post-excerpt {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .coming-soon-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 122, 255, 0.1);
+            color: var(--ios-blue);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 100px;
+            border: 1px solid rgba(0, 122, 255, 0.2);
+            width: fit-content;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .coming-soon-badge::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--ios-blue);
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+        <a href="blog.html" class="active">Blog</a>
+        <span style="opacity:0.3;margin:0 4px;">|</span>
+        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
+    </nav>
+
+    <main>
+        <div style="text-align: center; padding: 40px 0 60px;">
+            <h1>Blog</h1>
+            <p class="tagline">Thoughts on development, design, and the Apple ecosystem.</p>
+        </div>
+
+        <div style="max-width: 720px; margin: 0 auto;">
+
+            <article class="glass-card post-card">
+                <div class="card-content">
+                    <span class="coming-soon-badge">Coming Soon</span>
+                    <h2 class="post-title">The $99 Wall &amp; Comission Fees: Why Apple Should Open the Door for Students and Indie Developers</h2>
+                    <p class="post-meta">CO300: Writing Arguments &nbsp;·&nbsp; Spring 2026 Semester</p>
+                    <p class="post-excerpt">Apple's $99/year developer fee and high comission fees is the only thing standing between a student with a great idea and a real app on the App Store. This post makes the case that removing that barrier for students and indie developers would benefit Apple, developers, and users alike.</p>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Kevin Struna. All rights reserved.</p>
+        <div style="margin-top: 15px;">
+            <a href="index.html">Home</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="projects.html">Projects</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="about.html">About</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="resume.html">Resume</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="contact.html">Contact</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="blog.html">Blog</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="acknowledgments.html">Acknowledgments</a>
+        </div>
+    </footer>
+
+</body>
+</html>

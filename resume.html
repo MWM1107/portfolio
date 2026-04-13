@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume | Kevin Struna</title>
     <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
     <style>
         .resume-header {
             display: flex;
@@ -18,7 +19,7 @@
         }
         .role-title { font-weight: 700; font-size: 1.15rem; color: var(--text-color); }
         .company-name { font-weight: 500; color: var(--text-muted); font-size: 1rem; }
-        .date-range { font-size: 0.9rem; color: #86868b; font-variant-numeric: tabular-nums; }
+        .date-range { font-size: 0.9rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
         
         .resume-list { list-style-type: none; padding: 0; margin: 0; }
         .resume-list li {
@@ -46,6 +47,9 @@
         <a href="about.html">About</a>
         <a href="resume.html" class="active">Resume</a>
         <a href="contact.html">Contact</a>
+        <a href="blog.html">Blog</a>
+        <span style="opacity:0.3;margin:0 4px;">|</span>
+        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
     </nav>
 
     <main>
@@ -190,7 +194,7 @@
         </div>
 
         <div style="text-align: center;">
-            <p style="color: #86868b; margin-bottom: 20px; font-weight: 500;">Document Preview</p>
+            <p style="color: var(--text-muted); margin-bottom: 20px; font-weight: 500;">Document Preview</p>
             <div class="glass-card" style="padding: 10px; height: 800px;">
                 <object data="Resume.pdf" type="application/pdf" width="100%" height="100%" style="border-radius: 12px; border: none;">
                     <div class="pdf-fallback" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
@@ -215,6 +219,8 @@
             <a href="resume.html">Resume</a>
             <span style="opacity: 0.3; margin: 0 5px;">|</span>
             <a href="contact.html">Contact</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="blog.html">Blog</a>
             <span style="opacity: 0.3; margin: 0 5px;">|</span>
             <a href="acknowledgments.html">Acknowledgments</a>
         </div>

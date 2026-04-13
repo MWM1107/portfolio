@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kevin Struna | iOS Developer</title>
     <link rel="stylesheet" href="style.css">
-    
+    <script src="theme.js"></script>
+
     <style>
         @keyframes pulse-green {
             0% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7); }
@@ -144,6 +145,9 @@
         <a href="about.html">About</a>
         <a href="resume.html">Resume</a>
         <a href="contact.html">Contact</a>
+        <a href="blog.html">Blog</a>
+        <span style="opacity:0.3;margin:0 4px;">|</span>
+        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
     </nav>
 
     <main>
@@ -174,7 +178,7 @@
 
                         <div style="display: flex; align-items: center;">
                             <span id="status-dot" class="status-dot offline" style="margin-right: 8px;"></span>
-                            <span id="last-updated-text" style="font-size: 0.85rem; color: #86868b; font-weight: 500; font-variant-numeric: tabular-nums;">
+                            <span id="last-updated-text" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500; font-variant-numeric: tabular-nums;">
                                 Checking sensor...
                             </span>
                         </div>
@@ -355,6 +359,8 @@
             <a href="resume.html">Resume</a>
             <span style="opacity: 0.3; margin: 0 5px;">|</span>
             <a href="contact.html">Contact</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="blog.html">Blog</a>
             <span style="opacity: 0.3; margin: 0 5px;">|</span>
             <a href="acknowledgments.html">Acknowledgments</a>
         </div>
