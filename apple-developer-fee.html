@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The $99 Wall & Commission Fees | Kevin Struna</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
+    <style>
+        .hero-banner {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .author-block {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(128,128,128,0.2);
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f0f0f5;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .author-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: var(--text-color);
+            font-size: 1.05rem;
+        }
+
+        .publish-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .article-body {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+
+        .article-body p {
+            margin-bottom: 1.8rem;
+        }
+
+        .article-chart {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            margin: 40px 0;
+            background: white; /* Ensure SVG has a clean background */
+            padding: 20px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            border: 1px solid var(--card-border);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+        <a href="blog.html" class="active">Blog</a>
+        <span style="opacity:0.3;margin:0 4px;">|</span>
+        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
+    </nav>
+
+    <main>
+        <div style="max-width: 800px; margin: 40px auto 20px;">
+            <a href="blog.html" style="color: var(--ios-blue); text-decoration: none; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to Blog
+            </a>
+        </div>
+
+        <article style="max-width: 800px; margin: 0 auto 60px;">
+            
+            <img src="img/pexels-brettjordan-5444435.jpg" alt="App Store icon on a smartphone screen" class="hero-banner">
+
+            <div class="glass-card card-content">
+                <h1 style="font-size: 2.4rem; margin-top: 0; margin-bottom: 25px; line-height: 1.2; letter-spacing: -0.02em;">Why Apple Should Open the Door for Students and Indie Developers</h1>
+                
+                <div class="author-block">
+                    <img src="img/profile.png" alt="Kevin Struna" class="author-avatar">
+                    <div class="author-meta">
+                        <span class="author-name">Kevin Struna</span>
+                        <span class="publish-date">April 29, 2026</span>
+                    </div>
+                </div>
+
+                <div class="article-body">
+                    <p>2026 is already shaping up to be another brutal year for tech. Since January alone, <a href="https://tech.yahoo.com/general/article/tech-layoffs-2026-over-96000-employees-have-been-laid-off-this-year-across-oracle-amazon-meta-disney-snap-and-more-144545855.html" target="_blank" rel="noopener noreferrer" style="color: var(--ios-blue); text-decoration: none; border-bottom: 1px solid currentColor;">around 106,000 people have been laid off</a> across some of the biggest tech firms, and this figure doesn’t even factor in smaller startups. By the end of 2025, we saw about 245,000 jobs cut, and 2026 is quickly approaching those figures in just a few months.</p>
+
+                    <p>This is the reality that computer science students are graduating into, and the situation doesn’t look like it’s going to improve soon. In a world with fewer available jobs and a strong demand for work, competition is fierce, and the biggest piece of advice we all hear nowadays is that you have to make yourself stand out.</p>
+
+                    <p>In most cases, that means wowing recruiters with shipped portfolio projects that showcase your skills and put you in the front of the line. This puts tremendous pressure on students, and it’s difficult to compete. Traditionally, their first entry-level position was supposed to be a time for genuine learning and mentorship, but now, they’re expected to forgo that and have something amazing to show on their resume.</p>
+
+                    <p>Additionally, it’s even harder to specialize in mobile development, particularly for Apple platforms. It costs $99 a year just to get started, and once you ship your first project, 30% of your revenue goes to Apple as a commission fee. The Apple ecosystem is wonderful to develop in, and it’s amazing for consumers, but it’s not open and accessible to young, future developers who have a real passion for building things. I worry that these barriers can stem the flow of the developer pipeline, and that would be disastrous for the entire ecosystem.</p>
+
+                    <p>To be clear, I’m not looking for Apple to open the floodgates and remove the developer program or do away entirely with the App Store fee structure. I actually see the immense value in what Apple uses these funds for. Their ‘walled garden’ approach has clear benefits. First, any iOS developer knows firsthand how strict their review process is for apps. It keeps the bad apps out, like malware and low-quality software, which in turn protects users' privacy and security. It has downstream effects, too. Consumers are more likely to download apps from indie developers because they don’t have to worry about the risks. Apple deserves its cut to keep funding the App Store and maintaining it, but that funding shouldn’t come from the smallest developers; rather, it should come from the big developers who earn the most in revenue.</p>
+
+                    <img src="img/The Hidden Cost of Apple's CTF.svg" alt="Line chart illustrating the estimated monthly CTF cost scaling with total annual downloads" class="article-chart">
+
+                    <p>If you want to see how some of these fees scale, just look at the new EU Core Technology Fee (CTF) in action. If a free-to-download app goes viral and hits 10 million downloads, the developer now suddenly owes Apple over $400,000. I imagine this would be financially devastating for small and independent developers, and something they couldn’t afford. This new fee structure is the result of the EU’s Digital Markets Act (DMA). While many would think that governmental intervention would be beneficial to developers and consumers, it’s far more complex and not always the case. A <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5363852" target="_blank" rel="noopener noreferrer" style="color: var(--ios-blue); text-decoration: none; border-bottom: 1px solid currentColor;">recent economic study</a> conducted by Llanes and Leonardo found that developers prefer ‘pricing parity’ for their products across storefronts, even when different fee structures are in place. Regulation might force more competition between storefronts, but the economics play out the same; consumers and developers continue to pay the same price, and the core issue isn’t fixed.</p>
+
+                    <p>That’s why I think the change has to come from Apple itself. I believe a two-part solution with a few key points can make beneficial changes for all parties. First, for students, I think Apple should completely waive the $99 annual developer fee and bundle it with a new educational program built from the ground up that includes new tools and resources for students learning Swift, Xcode, and the entire suite of Apple developer products and frameworks. It’s a lot to learn and intimidating at first, so this would be the perfect entry point for any student just starting out and will encourage and foster a stronger developer community. Access can be granted with valid .edu email addresses, ensuring access to real students.</p>
+
+                    <p>Second, for independent developers, I think Apple should waive all commission fees for the first $1 million in revenue and implement a progressive fee structure instead of using the flat 30% or 15% for members of the Small Business Program. A progressive fee structure would be the most beneficial to all parties because the top 2% of developers generate 98% of the App Store’s revenue. Apple can afford to give smaller developers a fairer environment without hurting its bottom line.</p>
+
+                    <p>Overall, with these changes, I see the Apple developer community flourishing and getting stronger, even in this tightening labor market. It’s an amazing community to be a part of, and I want to encourage all of us to shift our mindsets, challenge the status quo, and advocate for an ecosystem that invests in its next generation of builders.</p>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Kevin Struna. All rights reserved.</p>
+        <div style="margin-top: 15px;">
+            <a href="index.html">Home</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="projects.html">Projects</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="about.html">About</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="resume.html">Resume</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="contact.html">Contact</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="blog.html">Blog</a>
+            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <a href="acknowledgments.html">Acknowledgments</a>
+        </div>
+    </footer>
+
+</body>
+</html>

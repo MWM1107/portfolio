@@ -11,6 +11,7 @@
             display: block;
             text-decoration: none;
             color: inherit;
+            overflow: hidden; /* Keeps the top corners rounded for the image */
         }
 
         .post-card .card-content {
@@ -24,6 +25,7 @@
             font-weight: 600;
             color: var(--text-muted);
             letter-spacing: 0.02em;
+            margin: 0;
         }
 
         .post-title {
@@ -40,30 +42,13 @@
             line-height: 1.7;
             margin: 0;
         }
-
-        .coming-soon-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0, 122, 255, 0.1);
-            color: var(--ios-blue);
-            font-size: 0.78rem;
-            font-weight: 700;
-            padding: 5px 12px;
-            border-radius: 100px;
-            border: 1px solid rgba(0, 122, 255, 0.2);
-            width: fit-content;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-
-        .coming-soon-badge::before {
-            content: "";
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--ios-blue);
-            opacity: 0.7;
+        
+        .blog-thumbnail {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--card-border);
+            display: block;
         }
     </style>
 </head>
@@ -88,14 +73,19 @@
 
         <div style="max-width: 720px; margin: 0 auto;">
 
-            <article class="glass-card post-card">
+            <a href="apple-developer-fee.html" class="glass-card post-card" style="transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                <img src="img/xcc-hero-light_2x.png" alt="Xcode 16 interface on a Mac" class="blog-thumbnail">
                 <div class="card-content">
-                    <span class="coming-soon-badge">Coming Soon</span>
-                    <h2 class="post-title">The $99 Wall &amp; Comission Fees: Why Apple Should Open the Door for Students and Indie Developers</h2>
-                    <p class="post-meta">CO300: Writing Arguments &nbsp;·&nbsp; Spring 2026 Semester</p>
-                    <p class="post-excerpt">Apple's $99/year developer fee and high comission fees is the only thing standing between a student with a great idea and a real app on the App Store. This post makes the case that removing that barrier for students and indie developers would benefit Apple, developers, and users alike.</p>
+                    <h2 class="post-title">Why Apple Should Open the Door for Students and Indie Developers</h2>
+                    <p class="post-meta">April 29, 2026 &nbsp;·&nbsp; CO 300 - Writing Arguments</p>
+                    <p class="post-excerpt">Apple's $99/year developer fee and high commission fees are often the only things standing between a student with a great idea and a real app on the App Store. This post makes the case that removing that barrier would benefit Apple, developers, and users alike.</p>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 10px;">
+                        <span style="color: var(--ios-blue); font-weight: 600; font-size: 0.9rem;">Read Article &rarr;</span>
+                        <span style="font-size: 0.65rem; color: var(--text-muted); opacity: 0.6;">Image © 2026 Apple Inc.</span>
+                    </div>
                 </div>
-            </article>
+            </a>
 
         </div>
     </main>
