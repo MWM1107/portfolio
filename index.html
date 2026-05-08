@@ -23,13 +23,14 @@
     </nav>
 
     <main>
-        <section style="text-align: center;">
-            <div style="width: 256px; height: 256px; background-color: #f0f0f5; border-radius: 50%; margin: 0 auto 30px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);">
+        <section style="display: flex; align-items: center; gap: 50px; padding: 40px 0; flex-wrap: wrap;">
+            <div style="width: 180px; height: 180px; background-color: #f0f0f5; border-radius: 50%; flex-shrink: 0; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);">
                 <img src="img/profile.png" alt="Kevin Struna" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#e5e5ea';">
             </div>
-            
-            <h1 style="margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">KEVIN STRUNA</h1>
-            <p class="tagline">iOS Developer & CS Student<br>Building apps for iOS with Swift & SwiftUI</p>
+            <div style="flex: 1;">
+                <h1 style="margin-bottom: 15px;">Kevin Struna</h1>
+                <p class="tagline" style="margin: 0;" id="hero-tagline"></p>
+            </div>
         </section>
 
         <section style="margin-top: 80px;">
@@ -153,6 +154,38 @@
             <a href="acknowledgments.html">Acknowledgments</a>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            const lines = [
+                "iOS Developer & CS Student",
+                "Building apps for iOS with Swift & SwiftUI"
+            ];
+            const el = document.getElementById('hero-tagline');
+            let lineIndex = 0, charIndex = 0, html = '';
+
+            const cursor = '<span class="typing-cursor"></span>';
+
+            function type() {
+                const line = lines[lineIndex];
+                if (charIndex < line.length) {
+                    html += line[charIndex++];
+                    el.innerHTML = html + cursor;
+                    setTimeout(type, 40);
+                } else {
+                    lineIndex++;
+                    if (lineIndex < lines.length) {
+                        html += '<br>';
+                        setTimeout(type, 300);
+                    } else {
+                        el.innerHTML = html;
+                    }
+                }
+            }
+
+            setTimeout(type, 600);
+        })();
+    </script>
 
 </body>
 </html>
