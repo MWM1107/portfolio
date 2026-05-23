@@ -115,6 +115,7 @@ nav {
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     backdrop-filter: blur(20px) saturate(180%);
     width: fit-content;
+    max-width: calc(100% - 32px);
     margin: 20px auto 10px;
     padding: 0.75rem 1.5rem;
     border-radius: 100px;
@@ -124,7 +125,10 @@ nav {
     top: 20px;
     z-index: 1000;
     text-align: center;
+    overflow-x: auto;
+    scrollbar-width: none;
 }
+nav::-webkit-scrollbar { display: none; }
 
 nav a {
     text-decoration: none;
@@ -477,11 +481,46 @@ footer a:hover { color: var(--ios-blue); text-decoration: none; }
 
 /* Mobile Responsive Adjustments */
 @media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    nav { width: 90%; padding: 1rem 0.5rem; }
-    nav a { margin: 0 8px; font-size: 0.85rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; margin-top: 2rem; }
+
+    /* Nav: smaller links on mobile, no wrapping */
+    nav { padding: 0.6rem 0.75rem; }
+    nav a { margin: 0 6px; font-size: 0.8rem; white-space: nowrap; }
+
+    /* Section & card spacing */
+    main > section { margin-top: 48px !important; }
+    .section-header { margin-top: 40px; }
+    .card-content { padding: 20px; }
+
+    /* Page title headers */
+    .page-hero { padding: 20px 0 24px !important; }
+
+    /* Homepage hero */
+    .hero-section { gap: 20px !important; padding: 24px 0 !important; }
+    .hero-photo { width: 120px !important; height: 120px !important; }
+
+    /* About CTA footer */
+    .cta-section { padding: 36px 0 12px !important; }
+
+    /* Projects hero card */
+    .hero-card { padding: 28px; margin-bottom: 32px; }
+    .hero-title h3 { font-size: 2rem; }
+    .hero-icon-large { width: 80px; height: 80px; border-radius: 18px; }
+    .hero-features { margin: 20px 0; gap: 12px; }
+
+    /* Carousel */
+    .carousel-container { padding: 20px 0; }
+
+    /* Bento grid */
     .bento-grid { grid-template-columns: 1fr; }
     .grid-span-2 { grid-column: span 1; }
+
+    /* Blog */
+    .hero-banner { height: 200px; }
+
+    /* Footer */
+    footer { padding: 36px 20px; }
 }
 
 @media (min-width: 768px) {
