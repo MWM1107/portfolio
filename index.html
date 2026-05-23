@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kevin Struna is an iOS developer and CS student at Colorado State University building apps with Swift and SwiftUI. Explore his App Store portfolio and open-source projects.">
+    <meta property="og:title" content="Kevin Struna | iOS Developer">
+    <meta property="og:description" content="Kevin Struna is an iOS developer and CS student at Colorado State University building apps with Swift and SwiftUI. Explore his App Store portfolio and open-source projects.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://kevinstruna.dev/img/profile.png">
+    <meta property="og:url" content="https://kevinstruna.dev/">
+    <meta property="og:site_name" content="Kevin Struna">
     <title>Kevin Struna | iOS Developer</title>
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" href="style.css">
@@ -29,7 +36,11 @@
             </div>
             <div style="flex: 1;">
                 <h1 style="margin-bottom: 15px;">Kevin Struna</h1>
-                <p class="tagline" style="margin: 0;" id="hero-tagline"></p>
+                <p class="tagline" style="margin: 0 0 30px;" id="hero-tagline"></p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="projects.html" class="btn">View My Work</a>
+                    <a href="contact.html" class="btn" style="background-color: transparent; color: var(--ios-blue); box-shadow: inset 0 0 0 2px var(--ios-blue);">Get in Touch</a>
+                </div>
             </div>
         </section>
 
@@ -39,21 +50,21 @@
             </div>
             
             <div class="bento-grid">
-                <a href="projects.html" class="glass-card product-card">
+                <a href="https://github.com/MWM1107/KanaCard" target="_blank" rel="noopener noreferrer" class="glass-card product-card">
                     <div class="card-content">
                         <img src="img/KanaCard.png" alt="KanaCard Icon" class="app-icon">
                         <h3 style="margin-top: 0; margin-bottom: 6px;">KanaCard</h3>
                         <p style="font-size: 0.95rem; margin-top: 0; color: var(--text-muted); margin-bottom: 20px;">Handcrafted Japanese learning tool built with SwiftUI and custom physics.</p>
-                        <span style="color: var(--ios-blue); font-weight: 600; font-size: 0.9rem;">Learn More &rarr;</span>
+                        <span style="color: var(--ios-blue); font-weight: 600; font-size: 0.9rem;">View Source &rarr;</span>
                     </div>
                 </a>
 
-                <a href="projects.html" class="glass-card product-card">
+                <a href="https://apps.apple.com/us/app/rogue-roll-dice-deck-builder/id6757452802" target="_blank" rel="noopener noreferrer" class="glass-card product-card">
                     <div class="card-content">
                         <img src="img/RogueRoll.webp" alt="Rogue Roll Icon" class="app-icon">
                         <h3 style="margin-top: 0; margin-bottom: 6px;">Rogue Roll</h3>
-                        <p style="font-size: 0.95rem; margin-top: 0; color: var(--text-muted); margin-bottom: 20px;">Roguelike dice deckbuilder. A published App Store hit with complex game logic.</p>
-                        <span style="color: var(--ios-blue); font-weight: 600; font-size: 0.9rem;">Learn More &rarr;</span>
+                        <p style="font-size: 0.95rem; margin-top: 0; color: var(--text-muted); margin-bottom: 20px;">Roguelike dice deckbuilder. Published on the App Store with complex game logic.</p>
+                        <span style="color: var(--ios-blue); font-weight: 600; font-size: 0.9rem;">View on App Store &rarr;</span>
                     </div>
                 </a>
             </div>
@@ -69,8 +80,14 @@
         </section>
         
         <section style="padding-bottom: 40px; margin-top: 80px;">
-            <div class="section-header" style="text-align: center">
-                <h2>Full App Catalog</h2>
+            <div class="section-header" style="display: flex; align-items: center;">
+                <div style="flex: 1;"></div>
+                <h2 style="margin: 0; flex: 0 0 auto;">Full App Catalog</h2>
+                <div style="flex: 1; display: flex; justify-content: flex-end;">
+                    <button id="carousel-pause-btn" onclick="toggleCarousel()" aria-label="Pause auto-scroll" title="Pause auto-scroll" style="background: var(--card-bg); border: 1px solid rgba(0,0,0,0.08); border-radius: 50%; width: 34px; height: 34px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-color); box-shadow: 0 2px 8px var(--shadow-light); transition: box-shadow 0.2s ease;">
+                        <svg id="carousel-btn-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                    </button>
+                </div>
             </div>             
             <div class="carousel-container">
                 <div class="carousel-track">
@@ -150,8 +167,6 @@
             <a href="contact.html">Contact</a>
             <span style="opacity: 0.3; margin: 0 5px;">|</span>
             <a href="blog.html">Blog</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
-            <a href="acknowledgments.html">Acknowledgments</a>
         </div>
     </footer>
 
@@ -164,7 +179,7 @@
             const el = document.getElementById('hero-tagline');
             let lineIndex = 0, charIndex = 0, html = '';
 
-            const cursor = '<span class="typing-cursor"></span>';
+            const cursor = '<span class="typing-cursor" aria-hidden="true"></span>';
 
             function type() {
                 const line = lines[lineIndex];
@@ -185,6 +200,21 @@
 
             setTimeout(type, 600);
         })();
+
+        document.querySelectorAll('.carousel-card img').forEach(img => { img.loading = 'lazy'; });
+
+        let _carouselPaused = false;
+        function toggleCarousel() {
+            const track = document.querySelector('.carousel-track');
+            const btn = document.getElementById('carousel-pause-btn');
+            const icon = document.getElementById('carousel-btn-icon');
+            _carouselPaused = !_carouselPaused;
+            track.style.animationPlayState = _carouselPaused ? 'paused' : 'running';
+            btn.setAttribute('aria-label', _carouselPaused ? 'Resume auto-scroll' : 'Pause auto-scroll');
+            icon.innerHTML = _carouselPaused
+                ? '<polygon points="5 3 19 12 5 21 5 3"/>'
+                : '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+        }
     </script>
 
 </body>

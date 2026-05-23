@@ -453,6 +453,14 @@ footer a:hover { color: var(--ios-blue); text-decoration: none; }
     margin-bottom: 1.8rem;
 }
 
+.article-link {
+    color: var(--ios-blue);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    transition: opacity 0.2s ease;
+}
+.article-link:hover { opacity: 0.7; }
+
 .article-chart {
     width: 100%;
     height: auto;
@@ -491,6 +499,12 @@ footer a:hover { color: var(--ios-blue); text-decoration: none; }
         /* Bottom row items take up 3 slots each (3 + 3 = 6) */
         grid-column: span 3;
     }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .carousel-track { animation-play-state: paused; }
+    main > section, .hero-card, .bento-grid, .glass-card { animation: none; }
 }
 
 /* Dark Mode Overrides (system preference) */

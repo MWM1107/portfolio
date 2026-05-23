@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CS student at Colorado State University and self-taught iOS developer. Learn about Kevin Struna's skills in Swift, SwiftUI, and hardware projects.">
+    <meta property="og:title" content="About Kevin Struna | iOS Developer">
+    <meta property="og:description" content="CS student at Colorado State University and self-taught iOS developer. Learn about Kevin Struna's skills in Swift, SwiftUI, and hardware projects.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://kevinstruna.dev/img/profile.png">
+    <meta property="og:url" content="https://kevinstruna.dev/about.html">
+    <meta property="og:site_name" content="Kevin Struna">
     <title>About | Kevin Struna</title>
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" href="style.css">
@@ -129,7 +136,8 @@
             </article>
 
             <article class="glass-card card-content grid-span-2">
-                <h2 style="margin-top: 0; font-size: 1.8rem; margin-bottom: 10px; letter-spacing: -0.02em;">Smart Air Quality Monitor</h2>
+                <h2 style="margin-top: 0; font-size: 1.8rem; margin-bottom: 6px; letter-spacing: -0.02em;">Smart Air Quality Monitor</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0; margin-bottom: 24px;">Built with the help of Claude Code</p>
                 <div style="text-align: center; margin-bottom: 35px;">
                     <div style="display: inline-flex; align-items: center; padding: 10px 20px; border-radius: 100px; background: var(--card-bg); border: 1px solid var(--card-border); box-shadow: 0 4px 12px var(--shadow-light);">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; opacity: 0.9;">
@@ -189,7 +197,7 @@
                 </div>
 
                 <div style="text-align: center; margin-top: 30px;">
-                    <button onclick="toggleInfoPane()" style="background: var(--card-bg); border: 1px solid rgba(0,0,0,0.08); padding: 8px 16px; border-radius: 99px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: var(--text-color); box-shadow: 0 4px 12px var(--shadow-light); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    <button id="aq-info-toggle" aria-expanded="false" aria-controls="aq-info-pane" onclick="toggleInfoPane()" style="background: var(--card-bg); border: 1px solid rgba(0,0,0,0.08); padding: 8px 16px; border-radius: 99px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: var(--text-color); box-shadow: 0 4px 12px var(--shadow-light); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                         How it's built
                     </button>
@@ -205,6 +213,15 @@
                 </div>
             </article>
 
+        </div>
+
+        <div style="text-align: center; padding: 60px 0 20px;">
+            <h2 style="margin-top: 0; margin-bottom: 10px;">Want to work together?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">I'm currently looking for internship and co-op opportunities.</p>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="contact.html" class="btn">Get in Touch</a>
+                <a href="resume.html" class="btn" style="background-color: transparent; color: var(--ios-blue); box-shadow: inset 0 0 0 2px var(--ios-blue);">View Resume</a>
+            </div>
         </div>
     </main>
 
@@ -222,8 +239,6 @@
             <a href="contact.html">Contact</a>
             <span style="opacity: 0.3; margin: 0 5px;">|</span>
             <a href="blog.html">Blog</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
-            <a href="acknowledgments.html">Acknowledgments</a>
         </div>
     </footer>
 
@@ -311,12 +326,15 @@
 
         function toggleInfoPane() {
             const pane = document.getElementById('aq-info-pane');
+            const btn = document.getElementById('aq-info-toggle');
             if (pane.style.display === "none" || pane.style.display === "") {
                 pane.style.display = "block";
+                btn.setAttribute('aria-expanded', 'true');
                 setTimeout(() => { pane.style.opacity = "1"; pane.style.transform = "translateY(0)"; }, 10);
             } else {
-                pane.style.opacity = "0"; 
+                pane.style.opacity = "0";
                 pane.style.transform = "translateY(-10px)";
+                btn.setAttribute('aria-expanded', 'false');
                 setTimeout(() => { pane.style.display = "none"; }, 300);
             }
         }

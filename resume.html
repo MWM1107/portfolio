@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kevin Struna's resume — CS student at Colorado State University with published iOS apps on the App Store. Seeking internship and co-op opportunities.">
+    <meta property="og:title" content="Resume | Kevin Struna">
+    <meta property="og:description" content="Kevin Struna's resume — CS student at Colorado State University with published iOS apps on the App Store. Seeking internship and co-op opportunities.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://kevinstruna.dev/img/profile.png">
+    <meta property="og:url" content="https://kevinstruna.dev/resume.html">
+    <meta property="og:site_name" content="Kevin Struna">
     <title>Resume | Kevin Struna</title>
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" href="style.css">
@@ -91,7 +98,7 @@
                         <div class="role-title">Colorado State University</div>
                         <div class="company-name">B.S. Computer Science</div>
                     </div>
-                    <div class="date-range">Exp. May 2027</div>
+                    <div class="date-range"><time datetime="2027-05">Exp. May 2027</time></div>
                 </div>
                 <ul class="resume-list">
                     <li><strong>GPA:</strong> 3.4 (Fall '25: 4.0) | Dean's List</li>
@@ -105,20 +112,23 @@
             
             <div style="margin-bottom: 30px;">
                 <div class="resume-header">
-                    <div class="role-title">Real-Time Environmental Monitor</div>
-                    <div class="date-range">2026</div>
+                    <div>
+                        <div class="role-title">UV Environmental Monitor</div>
+                        <div class="company-name">CS 370 — Team Project (3 members)</div>
+                    </div>
+                    <div class="date-range"><time datetime="2026">2026</time></div>
                 </div>
                 <ul class="resume-list">
-                    <li>Architecting a native macOS application using SwiftUI to visualize live and historical environmental data collected by a Raspberry Pi.</li>
-                    <li>Integrating Firebase Realtime Database to establish a low-latency, cloud-based pipeline between hardware sensors and the client interface.</li>
-                    <li>Implementing Swift Charts and modern Swift Concurrency to render dynamic, responsive data visualizations without blocking the main thread.</li>
+                    <li>Built the native macOS SwiftUI client to display real-time UV and environmental data streamed from a Raspberry Pi sensor node.</li>
+                    <li>Owned the team's Firebase Realtime Database setup, establishing the cloud pipeline between hardware and the client interface.</li>
+                    <li>Implemented Swift Charts and Swift Concurrency to render live data visualizations without blocking the main thread.</li>
                 </ul>
             </div>
 
             <div style="margin-bottom: 30px;">
                 <div class="resume-header">
                     <div class="role-title">KanaCard (Japanese Learning App)</div>
-                    <div class="date-range">2025 - 2026</div>
+                    <div class="date-range"><time datetime="2025">2025</time> – <time datetime="2026">2026</time></div>
                 </div>
                 <ul class="resume-list">
                     <li>Independently architected a mobile application to facilitate mastery of Hiragana and Katakana through active recall.</li>
@@ -130,7 +140,7 @@
             <div>
                 <div class="resume-header">
                     <div class="role-title">iOS Application Portfolio</div>
-                    <div class="date-range">2022 - 2025</div>
+                    <div class="date-range"><time datetime="2022">2022</time> – <time datetime="2025">2025</time></div>
                 </div>
                 <ul class="resume-list">
                     <li>Published multiple apps to the iOS App Store, managing the full submission and review process.</li>
@@ -171,7 +181,7 @@
                         <div class="role-title">Ramp Agent</div>
                         <div class="company-name">Montrose Regional Airport (MTJ)</div>
                     </div>
-                    <div class="date-range">Jan 2025 - Feb 2025</div>
+                    <div class="date-range"><time datetime="2025-01">Jan 2025</time> – <time datetime="2025-02">Feb 2025</time></div>
                 </div>
                 <ul class="resume-list">
                     <li>Managed time-critical ground operations and logistics for commercial aircraft arrivals and departures.</li>
@@ -185,7 +195,7 @@
                         <div class="role-title">Junior Service Technician</div>
                         <div class="company-name">Hussmann</div>
                     </div>
-                    <div class="date-range">Aug 2022 - Jun 2023</div>
+                    <div class="date-range"><time datetime="2022-08">Aug 2022</time> – <time datetime="2023-06">Jun 2023</time></div>
                 </div>
                 <ul class="resume-list">
                     <li>Performed maintenance and technical troubleshooting for commercial refrigeration systems.</li>
@@ -222,8 +232,6 @@
             <a href="contact.html">Contact</a>
             <span style="opacity: 0.3; margin: 0 5px;">|</span>
             <a href="blog.html">Blog</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
-            <a href="acknowledgments.html">Acknowledgments</a>
         </div>
     </footer>
 
