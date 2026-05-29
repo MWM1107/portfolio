@@ -11,6 +11,7 @@
     <meta property="og:url" content="https://kevinstruna.dev/resume.html">
     <meta property="og:site_name" content="Kevin Struna">
     <title>Resume | Kevin Struna</title>
+    <link rel="canonical" href="https://kevinstruna.dev/resume.html" />
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script>
@@ -56,12 +57,12 @@
         <a href="resume.html" class="active">Resume</a>
         <a href="contact.html">Contact</a>
         <a href="blog.html">Blog</a>
-        <span style="opacity:0.3;margin:0 4px;">|</span>
+        <span class="sep">|</span>
         <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
     </nav>
 
     <main>
-        <div class="page-hero" style="text-align: center; padding: 40px 0 60px;">
+        <div class="page-hero">
             <h1>Resume</h1>
             <p class="tagline">Computer Science Student & iOS Developer</p>
             
@@ -222,18 +223,32 @@
         <p>&copy; 2026 Kevin Struna. All rights reserved.</p>
         <div style="margin-top: 15px;">
             <a href="index.html">Home</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="projects.html">Projects</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="about.html">About</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="resume.html">Resume</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="contact.html">Contact</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="blog.html">Blog</a>
         </div>
     </footer>
 
+    <button id="back-to-top" aria-label="Back to top" title="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+    <script>
+        (function() {
+            var btn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', function() {
+                btn.classList.toggle('visible', window.scrollY > 300);
+            }, { passive: true });
+            btn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+    </script>
 </body>
 </html>

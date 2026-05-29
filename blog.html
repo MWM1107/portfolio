@@ -11,6 +11,7 @@
     <meta property="og:url" content="https://kevinstruna.dev/blog.html">
     <meta property="og:site_name" content="Kevin Struna">
     <title>Blog | Kevin Struna</title>
+    <link rel="canonical" href="https://kevinstruna.dev/blog.html" />
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script>
@@ -69,12 +70,12 @@
         <a href="resume.html">Resume</a>
         <a href="contact.html">Contact</a>
         <a href="blog.html" class="active">Blog</a>
-        <span style="opacity:0.3;margin:0 4px;">|</span>
+        <span class="sep">|</span>
         <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
     </nav>
 
     <main>
-        <div class="page-hero" style="text-align: center; padding: 40px 0 60px;">
+        <div class="page-hero">
             <h1>Blog</h1>
             <p class="tagline">Thoughts on development, design, and the Apple ecosystem.</p>
         </div>
@@ -95,6 +96,10 @@
                 </div>
             </a>
 
+            <div style="text-align: center; margin-top: 32px; margin-bottom: 8px;">
+                <span style="display: inline-block; padding: 8px 20px; border-radius: 100px; background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-muted); font-size: 0.85rem; font-weight: 500;">More posts coming soon</span>
+            </div>
+
         </div>
     </main>
 
@@ -102,15 +107,15 @@
         <p>&copy; 2026 Kevin Struna. All rights reserved.</p>
         <div style="margin-top: 15px;">
             <a href="index.html">Home</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="projects.html">Projects</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="about.html">About</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="resume.html">Resume</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="contact.html">Contact</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="blog.html">Blog</a>
         </div>
     </footer>

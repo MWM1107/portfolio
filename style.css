@@ -37,6 +37,7 @@ body {
 
 @keyframes scroll {
     0% { transform: translateX(0); }
+    /* (card-width + gap) × card-count — update both here and the duplicate count in HTML if carousel dimensions change */
     100% { transform: translateX(calc(-280px * 7 - 30px * 7)); }
 }
 
@@ -52,21 +53,6 @@ main > section, .hero-card, .bento-grid, .glass-card {
 
 /* --- 3. TYPOGRAPHY & UTILITIES --- */
 
-.typing-cursor {
-    display: inline-block;
-    width: 2px;
-    height: 1.1em;
-    background-color: currentColor;
-    margin-left: 2px;
-    vertical-align: text-bottom;
-    animation: blink 0.8s step-end infinite;
-    opacity: 0.7;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 0.7; }
-    50%       { opacity: 0; }
-}
 
 
 h1 { 
@@ -166,6 +152,69 @@ footer {
 footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; transition: color 0.2s;}
 footer a:hover { color: var(--ios-blue); text-decoration: none; }
 
+.sep { opacity: 0.3; margin: 0 5px; }
+
+.page-hero {
+    text-align: center;
+    padding: 40px 0 60px;
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 48px 40px;
+    max-width: 480px;
+    margin: 20px auto 0;
+    background: var(--card-bg);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border-radius: 24px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 12px 24px -4px rgba(0, 0, 0, 0.06);
+}
+
+.hero-photo {
+    width: 160px;
+    height: 160px;
+    background-color: #f0f0f5;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    margin-bottom: 12px;
+}
+
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-socials {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.cta-section {
+    text-align: center;
+    padding: 60px 0 20px;
+}
+
+.card-icon-wrap {
+    width: 50px;
+    height: 50px;
+    background: rgba(120, 120, 128, 0.12);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
 /* --- 5. UI COMPONENTS --- */
 
 /* Buttons */
@@ -205,6 +254,19 @@ footer a:hover { color: var(--ios-blue); text-decoration: none; }
 
 .btn-light:hover { background-color: #e5e5e5; transform: scale(1.04); }
 .btn-light svg { fill: black; }
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.social-link:hover { color: var(--ios-blue); }
 
 /* Glass Cards */
 .glass-card {
@@ -391,6 +453,12 @@ footer a:hover { color: var(--ios-blue); text-decoration: none; }
     transition: all 0.3s ease;
 }
 
+.metric-icon {
+    margin-bottom: 12px;
+    opacity: 0.8;
+    transition: stroke 0.3s ease;
+}
+
 /* --- 7. BLOG --- */
 
 .back-link {
@@ -497,8 +565,8 @@ footer a:hover { color: var(--ios-blue); text-decoration: none; }
     .page-hero { padding: 20px 0 24px !important; }
 
     /* Homepage hero */
-    .hero-section { gap: 20px !important; padding: 24px 0 !important; }
-    .hero-photo { width: 120px !important; height: 120px !important; }
+    .hero-section { padding: 36px 24px !important; }
+    .hero-photo { width: 120px !important; height: 120px !important; margin-bottom: 10px !important; }
 
     /* About CTA footer */
     .cta-section { padding: 36px 0 12px !important; }
@@ -546,31 +614,7 @@ footer a:hover { color: var(--ios-blue); text-decoration: none; }
     main > section, .hero-card, .bento-grid, .glass-card { animation: none; }
 }
 
-/* Dark Mode Overrides (system preference) */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-color: #000000;
-        --text-color: #f5f5f7;
-        --nav-bg: rgba(28, 28, 30, 0.7);
-        --card-bg: rgba(28, 28, 30, 0.6);
-        --card-border: rgba(255, 255, 255, 0.12);
-        --shadow-light: rgba(0, 0, 0, 0.4);
-        --text-muted: #aeaeb2;
-    }
-
-    body { background-color: #000; }
-    nav { background: rgba(40, 40, 40, 0.7); border: 1px solid rgba(255, 255, 255, 0.15); }
-    .glass-card, .carousel-card { box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    .tech-badge { background: #2c2c2e; color: #e5e5e5; }
-    .section-header, footer { border-color: rgba(255,255,255,0.15); }
-    .btn-light { background: #1c1c1e; color: white; border: 1px solid rgba(255,255,255,0.2); }
-    .btn-light svg { fill: white; }
-    input, textarea { background-color: #1c1c1e !important; border-color: #3a3a3c !important; color: white !important; }
-    label { color: #d1d1d6 !important; }
-    .glass-card .card-content > div { border-color: rgba(255, 255, 255, 0.1) !important; }
-}
-
-/* Manual dark mode (explicit toggle — overrides system preference) */
+/* Dark mode — applied via data-theme="dark", set by toggle or matched to OS preference in theme.js */
 html[data-theme="dark"] {
     --bg-color: #000000;
     --text-color: #f5f5f7;
@@ -636,3 +680,38 @@ html[data-theme="light"] .glass-card .card-content > div { border-color: rgba(0,
 }
 
 .theme-toggle-btn:hover { color: var(--ios-blue); opacity: 1; }
+
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 4px 16px var(--shadow-medium);
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease, box-shadow 0.2s ease;
+    pointer-events: none;
+    z-index: 999;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+#back-to-top:hover {
+    color: var(--ios-blue);
+    box-shadow: 0 8px 24px var(--shadow-medium);
+}

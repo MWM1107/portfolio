@@ -11,36 +11,10 @@
     <meta property="og:url" content="https://kevinstruna.dev/about.html">
     <meta property="og:site_name" content="Kevin Struna">
     <title>About | Kevin Struna</title>
+    <link rel="canonical" href="https://kevinstruna.dev/about.html" />
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script>
-    <style>
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7); }
-            70% { box-shadow: 0 0 0 6px rgba(52, 199, 89, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0); }
-        }
-        .status-dot.online {
-            background-color: #34c759;
-            animation: pulse-green 2s infinite;
-            border-radius: 50%;
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-        }
-        .status-dot.offline {
-            background-color: #ff3b30;
-            border-radius: 50%;
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-        }
-        .metric-icon {
-            margin-bottom: 12px;
-            opacity: 0.8;
-            transition: stroke 0.3s ease;
-        }
-    </style>
 </head>
 <body>
 
@@ -51,12 +25,12 @@
         <a href="resume.html">Resume</a>
         <a href="contact.html">Contact</a>
         <a href="blog.html">Blog</a>
-        <span style="opacity:0.3;margin:0 4px;">|</span>
+        <span class="sep">|</span>
         <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
     </nav>
 
     <main>
-        <div class="page-hero" style="text-align: center; padding: 40px 0 60px;">
+        <div class="page-hero">
             <h1>About Me</h1>
             <p class="tagline">CS Student. iOS/macOS Developer. Product Shipper.</p>
         </div>
@@ -64,7 +38,7 @@
         <div class="bento-grid">
             
             <article class="glass-card card-content">
-                <div style="width: 50px; height: 50px; background: rgba(120,120,128,0.12); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                <div class="card-icon-wrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                 </div>
                 <h2 style="margin-top: 0; font-size: 1.6rem; margin-bottom: 15px; letter-spacing: -0.02em;">The Developer</h2>
@@ -77,7 +51,7 @@
             </article>
 
             <article class="glass-card card-content">
-                <div style="width: 50px; height: 50px; background: rgba(120,120,128,0.12); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                <div class="card-icon-wrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 </div>
                 <h2 style="margin-top: 0; font-size: 1.6rem; margin-bottom: 15px; letter-spacing: -0.02em;">The Person</h2>
@@ -137,7 +111,7 @@
 
             <article class="glass-card card-content grid-span-2">
                 <h2 style="margin-top: 0; font-size: 1.8rem; margin-bottom: 6px; letter-spacing: -0.02em;">Smart Air Quality Monitor</h2>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0; margin-bottom: 24px;">Built with the help of Claude Code</p>
+
                 <div style="text-align: center; margin-bottom: 35px;">
                     <div style="display: inline-flex; align-items: center; padding: 10px 20px; border-radius: 100px; background: var(--card-bg); border: 1px solid var(--card-border); box-shadow: 0 4px 12px var(--shadow-light);">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ios-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; opacity: 0.9;">
@@ -207,7 +181,7 @@
                         <ul style="margin-bottom: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.6; color: var(--text-color); opacity: 0.85;">
                             <li style="margin-bottom: 8px;"><strong>Hardware:</strong> An ESP32 microcontroller wired to BME680 (Climate) and CCS811 (Gas) sensors, running custom C++ firmware.</li>
                             <li style="margin-bottom: 8px;"><strong>Backend:</strong> The ESP32 syncs with an NTP time server and pushes UNIX-timestamped JSON payloads directly to a Firebase Realtime Database via REST API.</li>
-                            <li><strong>Frontend:</strong> This web client uses vanilla JavaScript to asynchronously fetch and parse the live Firebase data every 30 seconds.</li>
+                            <li><strong>Frontend:</strong> This web client uses vanilla JavaScript, developed with Claude Code, to asynchronously fetch and parse the live Firebase data every 30 seconds.</li>
                         </ul>
                     </div>
                 </div>
@@ -215,7 +189,7 @@
 
         </div>
 
-        <div class="cta-section" style="text-align: center; padding: 60px 0 20px;">
+        <div class="cta-section">
             <h2 style="margin-top: 0; margin-bottom: 10px;">Want to work together?</h2>
             <p style="color: var(--text-muted); margin-bottom: 30px;">I'm currently looking for internship and co-op opportunities.</p>
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
@@ -229,15 +203,15 @@
         <p>&copy; 2026 Kevin Struna. All rights reserved.</p>
         <div style="margin-top: 15px;">
             <a href="index.html">Home</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="projects.html">Projects</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="about.html">About</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="resume.html">Resume</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="contact.html">Contact</a>
-            <span style="opacity: 0.3; margin: 0 5px;">|</span>
+            <span class="sep">|</span>
             <a href="blog.html">Blog</a>
         </div>
     </footer>
