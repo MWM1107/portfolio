@@ -35,8 +35,8 @@
             <p class="tagline">Some built from scratch. Some shipped fast. All of them mine.</p>
         </div>
     
-        <div class="section-header">
-            <h2>Engineering Showcase</h2>
+        <div class="section-header" style="margin-top: 0;">
+            <h2 style="margin-top: 0;">Engineering Showcase</h2>
             <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 5px;">Built from scratch. Handcrafted Swift & SwiftUI.</p>
         </div>
 
@@ -86,56 +86,148 @@
         </div>
     
         <div class="bento-grid">
-            
-            <a href="https://apps.apple.com/us/app/stock-market-sim/id6511208338" target="_blank" rel="noopener noreferrer" class="glass-card product-card grid-span-2">
-                <div class="card-content">
-                    <img src="img/StockMarketSim.webp" alt="Stock Market Sim Icon" class="app-icon">
-                    <h3 style="margin-top: 0; margin-bottom: 6px;">Stock Market Sim</h3>
-                    <p style="font-size: 0.95rem; margin-top: 0; color: var(--text-muted); margin-bottom: 12px;">Build a virtual trading empire. Available on macOS and visionOS.</p>
-                    <span class="tech-badge" style="background: rgba(52,199,89,0.12); color: #34c759;">2,000+ Downloads</span>
-                </div>
-            </a>
 
-            <a href="https://apps.apple.com/us/app/rogue-roll-dice-deck-builder/id6757452802" target="_blank" rel="noopener noreferrer" class="glass-card product-card">
+            <div class="glass-card product-card project-card">
                 <div class="card-content">
-                    <img src="img/RogueRoll.webp" alt="Rogue Roll Icon" class="app-icon">
+                    <img src="img/stock-market-sim/400x400bb-75%20(1).webp" alt="Stock Market Sim Icon" class="app-icon">
+                    <h3 style="margin-top: 0; margin-bottom: 6px;">Stock Market Sim</h3>
+                    <p style="font-size: 0.95rem; margin-top: 0; color: var(--text-muted);">Build a virtual trading empire. Available on macOS and visionOS.</p>
+                    <div class="screenshot-carousel">
+                        <div class="screenshot-track" id="track-sms">
+                            <img src="img/stock-market-sim/600x1300bb.webp" alt="Stock Market Sim screenshot 1" loading="lazy">
+                            <img src="img/stock-market-sim/600x1300bb%20(1).webp" alt="Stock Market Sim screenshot 2" loading="lazy">
+                            <img src="img/stock-market-sim/600x1300bb%20(2).webp" alt="Stock Market Sim screenshot 3" loading="lazy">
+                            <img src="img/stock-market-sim/600x1300bb%20(3).webp" alt="Stock Market Sim screenshot 4" loading="lazy">
+                            <img src="img/stock-market-sim/600x1300bb%20(4).webp" alt="Stock Market Sim screenshot 5" loading="lazy">
+                            <img src="img/stock-market-sim/600x1300bb%20(5).webp" alt="Stock Market Sim screenshot 6" loading="lazy">
+                            <img src="img/stock-market-sim/600x1300bb%20(6).webp" alt="Stock Market Sim screenshot 7" loading="lazy">
+                            <img src="img/stock-market-sim/600x1300bb%20(7).webp" alt="Stock Market Sim screenshot 8" loading="lazy">
+                            <img src="img/stock-market-sim/600x1300bb%20(8).webp" alt="Stock Market Sim screenshot 9" loading="lazy">
+                        </div>
+                        <button class="screenshot-arrow screenshot-arrow-prev" onclick="scrollScreenshots('track-sms', -1)" aria-label="Previous screenshot">&#8249;</button>
+                        <button class="screenshot-arrow screenshot-arrow-next" onclick="scrollScreenshots('track-sms', 1)" aria-label="Next screenshot">&#8250;</button>
+                    </div>
+                    <a href="https://apps.apple.com/us/app/stock-market-sim/id6511208338" target="_blank" rel="noopener noreferrer" class="btn" style="align-self: center; font-size: 0.9rem; padding: 10px 22px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        View on App Store
+                    </a>
+                </div>
+            </div>
+
+            <div class="glass-card product-card project-card">
+                <div class="card-content">
+                    <img src="img/rogue-roll-dice-deck-builder/400x400bb-75.webp" alt="Rogue Roll Icon" class="app-icon">
                     <h3 style="margin-top: 0; margin-bottom: 6px;">Rogue Roll</h3>
                     <p style="font-size: 0.95rem; margin-top: 0; color: var(--text-muted);">Roguelike Deckbuilder. Poker meets dungeon crawler with complex scoring.</p>
+                    <div class="screenshot-carousel">
+                        <div class="screenshot-track" id="track-rr">
+                            <img src="img/rogue-roll-dice-deck-builder/600x1300bb.webp" alt="Rogue Roll screenshot 1" loading="lazy">
+                            <img src="img/rogue-roll-dice-deck-builder/600x1300bb%20(1).webp" alt="Rogue Roll screenshot 2" loading="lazy">
+                            <img src="img/rogue-roll-dice-deck-builder/600x1300bb%20(2).webp" alt="Rogue Roll screenshot 3" loading="lazy">
+                            <img src="img/rogue-roll-dice-deck-builder/600x1300bb%20(3).webp" alt="Rogue Roll screenshot 4" loading="lazy">
+                        </div>
+                        <button class="screenshot-arrow screenshot-arrow-prev" onclick="scrollScreenshots('track-rr', -1)" aria-label="Previous screenshot">&#8249;</button>
+                        <button class="screenshot-arrow screenshot-arrow-next" onclick="scrollScreenshots('track-rr', 1)" aria-label="Next screenshot">&#8250;</button>
+                    </div>
+                    <a href="https://apps.apple.com/us/app/rogue-roll-dice-deck-builder/id6757452802" target="_blank" rel="noopener noreferrer" class="btn" style="align-self: center; font-size: 0.9rem; padding: 10px 22px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        View on App Store
+                    </a>
                 </div>
-            </a>
+            </div>
 
-            <a href="https://apps.apple.com/us/app/kodou-memory-grid-game/id6753267966" target="_blank" rel="noopener noreferrer" class="glass-card product-card">
+            <div class="glass-card product-card project-card">
                 <div class="card-content">
-                    <img src="img/Kodou.webp" alt="Kodou Icon" class="app-icon">
+                    <img src="img/kodou-memory-grid-game/400x400bb-75%20(1).webp" alt="Kodou Icon" class="app-icon">
                     <h3 style="margin-top: 0; margin-bottom: 6px;">Kodou</h3>
                     <p style="font-size: 0.95rem; margin-top: 0; color: var(--text-muted);">Memory & Rhythm. Test your reaction speed. Try to get the highest score.</p>
+                    <div class="screenshot-carousel">
+                        <div class="screenshot-track" id="track-kodou">
+                            <img src="img/kodou-memory-grid-game/600x1300bb.webp" alt="Kodou screenshot 1" loading="lazy">
+                            <img src="img/kodou-memory-grid-game/600x1300bb%20(1).webp" alt="Kodou screenshot 2" loading="lazy">
+                            <img src="img/kodou-memory-grid-game/600x1300bb%20(2).webp" alt="Kodou screenshot 3" loading="lazy">
+                        </div>
+                        <button class="screenshot-arrow screenshot-arrow-prev" onclick="scrollScreenshots('track-kodou', -1)" aria-label="Previous screenshot">&#8249;</button>
+                        <button class="screenshot-arrow screenshot-arrow-next" onclick="scrollScreenshots('track-kodou', 1)" aria-label="Next screenshot">&#8250;</button>
+                    </div>
+                    <a href="https://apps.apple.com/us/app/kodou-memory-grid-game/id6753267966" target="_blank" rel="noopener noreferrer" class="btn" style="align-self: center; font-size: 0.9rem; padding: 10px 22px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        View on App Store
+                    </a>
                 </div>
-            </a>
+            </div>
 
-            <a href="https://apps.apple.com/us/app/type-kana/id6574367514" target="_blank" rel="noopener noreferrer" class="glass-card product-card">
+            <div class="glass-card product-card project-card">
                 <div class="card-content">
-                    <img src="img/TypeKana.webp" alt="Type Kana Icon" class="app-icon">
+                    <img src="img/type-kana/400x400bb-75.webp" alt="Type Kana Icon" class="app-icon">
                     <h3 style="margin-top: 0; margin-bottom: 6px;">Type Kana</h3>
                     <p style="font-size: 0.95rem; margin-top: 0; color: var(--text-muted);">Education Utility. Learn the fundamentals of Japanese. Master Hiragana & Katakana.</p>
+                    <div class="screenshot-carousel">
+                        <div class="screenshot-track" id="track-typekana">
+                            <img src="img/type-kana/600x1300bb.webp" alt="Type Kana screenshot 1" loading="lazy">
+                            <img src="img/type-kana/600x1300bb%20(1).webp" alt="Type Kana screenshot 2" loading="lazy">
+                            <img src="img/type-kana/600x1300bb%20(2).webp" alt="Type Kana screenshot 3" loading="lazy">
+                            <img src="img/type-kana/600x1300bb%20(3).webp" alt="Type Kana screenshot 4" loading="lazy">
+                            <img src="img/type-kana/600x1300bb%20(4).webp" alt="Type Kana screenshot 5" loading="lazy">
+                            <img src="img/type-kana/600x1300bb%20(5).webp" alt="Type Kana screenshot 6" loading="lazy">
+                        </div>
+                        <button class="screenshot-arrow screenshot-arrow-prev" onclick="scrollScreenshots('track-typekana', -1)" aria-label="Previous screenshot">&#8249;</button>
+                        <button class="screenshot-arrow screenshot-arrow-next" onclick="scrollScreenshots('track-typekana', 1)" aria-label="Next screenshot">&#8250;</button>
+                    </div>
+                    <a href="https://apps.apple.com/us/app/type-kana/id6574367514" target="_blank" rel="noopener noreferrer" class="btn" style="align-self: center; font-size: 0.9rem; padding: 10px 22px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        View on App Store
+                    </a>
                 </div>
-            </a>
+            </div>
 
-            <a href="https://apps.apple.com/us/app/wordly-puzzle-game-solver/id6740254685" target="_blank" rel="noopener noreferrer" class="glass-card product-card">
+            <div class="glass-card product-card project-card">
                 <div class="card-content">
-                    <img src="img/Wordly.webp" alt="Wordly Icon" class="app-icon">
+                    <img src="img/wordly-puzzle-game-solver/400x400bb-75%20(1).webp" alt="Wordly Icon" class="app-icon">
                     <h3 style="margin-top: 0; margin-bottom: 6px;">Wordly</h3>
                     <p style="font-size: 0.95rem; margin-top: 0; color: var(--text-muted);">Puzzle game. Daily word puzzle and Wordle solver.</p>
+                    <div class="screenshot-carousel">
+                        <div class="screenshot-track" id="track-wordly">
+                            <img src="img/wordly-puzzle-game-solver/600x1300bb.webp" alt="Wordly screenshot 1" loading="lazy">
+                            <img src="img/wordly-puzzle-game-solver/600x1300bb%20(1).webp" alt="Wordly screenshot 2" loading="lazy">
+                            <img src="img/wordly-puzzle-game-solver/600x1300bb%20(2).webp" alt="Wordly screenshot 3" loading="lazy">
+                            <img src="img/wordly-puzzle-game-solver/600x1300bb%20(3).webp" alt="Wordly screenshot 4" loading="lazy">
+                            <img src="img/wordly-puzzle-game-solver/600x1300bb%20(4).webp" alt="Wordly screenshot 5" loading="lazy">
+                            <img src="img/wordly-puzzle-game-solver/600x1300bb%20(5).webp" alt="Wordly screenshot 6" loading="lazy">
+                        </div>
+                        <button class="screenshot-arrow screenshot-arrow-prev" onclick="scrollScreenshots('track-wordly', -1)" aria-label="Previous screenshot">&#8249;</button>
+                        <button class="screenshot-arrow screenshot-arrow-next" onclick="scrollScreenshots('track-wordly', 1)" aria-label="Next screenshot">&#8250;</button>
+                    </div>
+                    <a href="https://apps.apple.com/us/app/wordly-puzzle-game-solver/id6740254685" target="_blank" rel="noopener noreferrer" class="btn" style="align-self: center; font-size: 0.9rem; padding: 10px 22px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        View on App Store
+                    </a>
                 </div>
-            </a>
+            </div>
 
-            <a href="https://apps.apple.com/us/app/idea-vault-notes-journal/id6572281488" target="_blank" rel="noopener noreferrer" class="glass-card product-card">
+            <div class="glass-card product-card project-card">
                 <div class="card-content">
-                    <img src="img/IdeaVault.webp" alt="Idea Vault Icon" class="app-icon">
+                    <img src="img/idea-vault-notes-journal/400x400bb-75.webp" alt="Idea Vault Icon" class="app-icon">
                     <h3 style="margin-top: 0; margin-bottom: 6px;">Idea Vault</h3>
                     <p style="font-size: 0.95rem; margin-top: 0; color: var(--text-muted);">Productivity. Capture ideas instantly. With encryption.</p>
+                    <div class="screenshot-carousel">
+                        <div class="screenshot-track" id="track-ideavault">
+                            <img src="img/idea-vault-notes-journal/600x1300bb.webp" alt="Idea Vault screenshot 1" loading="lazy">
+                            <img src="img/idea-vault-notes-journal/600x1300bb%20(1).webp" alt="Idea Vault screenshot 2" loading="lazy">
+                            <img src="img/idea-vault-notes-journal/600x1300bb%20(2).webp" alt="Idea Vault screenshot 3" loading="lazy">
+                            <img src="img/idea-vault-notes-journal/600x1300bb%20(3).webp" alt="Idea Vault screenshot 4" loading="lazy">
+                            <img src="img/idea-vault-notes-journal/600x1300bb%20(4).webp" alt="Idea Vault screenshot 5" loading="lazy">
+                        </div>
+                        <button class="screenshot-arrow screenshot-arrow-prev" onclick="scrollScreenshots('track-ideavault', -1)" aria-label="Previous screenshot">&#8249;</button>
+                        <button class="screenshot-arrow screenshot-arrow-next" onclick="scrollScreenshots('track-ideavault', 1)" aria-label="Next screenshot">&#8250;</button>
+                    </div>
+                    <a href="https://apps.apple.com/us/app/idea-vault-notes-journal/id6572281488" target="_blank" rel="noopener noreferrer" class="btn" style="align-self: center; font-size: 0.9rem; padding: 10px 22px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        View on App Store
+                    </a>
                 </div>
-            </a>
-            
+            </div>
+
         </div>
     
         <div class="glass-card" style="max-width: 500px; margin: 80px auto 40px; text-align: center;">
@@ -169,5 +261,21 @@
         </div>
     </footer>
 
+    <script>
+    function scrollScreenshots(trackId, dir) {
+        const track = document.getElementById(trackId);
+        const img = track.querySelector('img');
+        const slideWidth = img.getBoundingClientRect().width + 10;
+        const maxScroll = track.scrollWidth - track.clientWidth;
+
+        if (dir > 0 && track.scrollLeft >= maxScroll - 1) {
+            track.scrollLeft = 0;
+        } else if (dir < 0 && track.scrollLeft <= 1) {
+            track.scrollLeft = maxScroll;
+        } else {
+            track.scrollBy({ left: dir * slideWidth, behavior: 'smooth' });
+        }
+    }
+    </script>
 </body>
 </html>
