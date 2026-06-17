@@ -7,15 +7,24 @@
     <meta property="og:title" content="Kevin Struna | iOS Developer">
     <meta property="og:description" content="Kevin Struna is an iOS developer and CS student at Colorado State University building apps with Swift and SwiftUI. Explore his App Store portfolio and open-source projects.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://kevinstruna.dev/img/profile.png">
+    <meta property="og:image" content="https://kevinstruna.dev/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kevin Struna, iOS Developer. Six apps on the App Store, built with Swift and SwiftUI.">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:url" content="https://kevinstruna.dev/">
     <meta property="og:site_name" content="Kevin Struna">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kevin Struna | iOS Developer">
+    <meta name="twitter:description" content="Kevin Struna is an iOS developer and CS student at Colorado State University building apps with Swift and SwiftUI. Explore his App Store portfolio and open-source projects.">
+    <meta name="twitter:image" content="https://kevinstruna.dev/img/og-image.png">
     <title>Kevin Struna | iOS Developer</title>
     <link rel="canonical" href="https://kevinstruna.dev/" />
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="preload" as="image" href="img/profile.png">
-    <link rel="stylesheet" href="style.css">
-    <script src="theme.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script src="js/layout.js"></script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -31,20 +40,19 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Kevin Struna",
+      "url": "https://kevinstruna.dev/"
+    }
+    </script>
 </head>
 
 <body>
 
-    <nav>
-        <a href="index.html" class="active">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="about.html">About</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-        <a href="blog.html">Blog</a>
-        <span class="sep">|</span>
-        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
-    </nav>
+    <div id="site-nav"></div>
 
     <main>
         <section class="hero-section">
@@ -52,7 +60,7 @@
                 <img src="img/profile.png" alt="Kevin Struna" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#e5e5ea';">
             </div>
             <h1>Kevin Struna</h1>
-            <p class="tagline">iOS Developer &amp; CS Student</p>
+            <p class="tagline">iOS developer with <strong>six apps live on the App Store</strong>, built with Swift &amp; SwiftUI while earning my CS degree.</p>
             <div class="hero-socials">
                 <a href="https://github.com/MWM1107" target="_blank" rel="noopener noreferrer" class="social-link">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21C9.5 20.77 9.5 20.14 9.5 19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26C14.5 19.6 14.5 20.68 14.5 21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
@@ -65,8 +73,8 @@
             </div>
         </section>
 
-        <section style="margin-top: 80px;">
-            <div class="section-header" style="text-align: center">
+        <section class="mt-section">
+            <div class="section-header text-center">
                 <h2>Featured Work</h2>
             </div>
             
@@ -74,23 +82,47 @@
                 <a href="https://github.com/MWM1107/KanaCard" target="_blank" rel="noopener noreferrer" class="glass-card product-card">
                     <div class="card-content">
                         <img src="img/KanaCard.png" alt="KanaCard Icon" class="app-icon">
-                        <h3 style="margin-top: 0; margin-bottom: 6px;">KanaCard</h3>
-                        <p style="font-size: 0.95rem; margin-top: 0; color: var(--text-muted); margin-bottom: 20px;">Handcrafted Japanese learning tool built with SwiftUI and custom physics.</p>
-                        <span style="color: var(--ios-blue); font-weight: 600; font-size: 0.9rem;">View Source &rarr;</span>
+                        <h3>KanaCard</h3>
+                        <p>Handcrafted Japanese learning tool built with SwiftUI and custom physics.</p>
+                        <span class="card-link">View Source &rarr;</span>
                     </div>
                 </a>
 
                 <a href="https://apps.apple.com/us/app/rogue-roll-dice-deck-builder/id6757452802" target="_blank" rel="noopener noreferrer" class="glass-card product-card">
                     <div class="card-content">
                         <img src="img/rogue-roll-dice-deck-builder/400x400bb-75.webp" alt="Rogue Roll Icon" class="app-icon">
-                        <h3 style="margin-top: 0; margin-bottom: 6px;">Rogue Roll</h3>
-                        <p style="font-size: 0.95rem; margin-top: 0; color: var(--text-muted); margin-bottom: 20px;">Roguelike dice deckbuilder. Published on the App Store with complex game logic.</p>
-                        <span style="color: var(--ios-blue); font-weight: 600; font-size: 0.9rem;">View on App Store &rarr;</span>
+                        <h3>Rogue Roll</h3>
+                        <p>Roguelike dice deckbuilder. Published on the App Store with complex game logic.</p>
+                        <div class="app-meta">
+                            <span class="app-rating" aria-label="Rated 5 out of 5 stars">
+                                <span class="stars stars--5" aria-hidden="true"></span>
+                                <span class="rating-num">5.0</span>
+                            </span>
+                            <div class="app-platforms"><span class="tech-badge">iOS</span><span class="tech-badge">iPadOS</span></div>
+                        </div>
+                        <span class="card-link">View on App Store &rarr;</span>
+                    </div>
+                </a>
+
+                <a href="https://apps.apple.com/us/app/stock-market-sim/id6511208338" target="_blank" rel="noopener noreferrer" class="glass-card product-card">
+                    <div class="card-content">
+                        <img src="img/stock-market-sim/400x400bb-75%20(1).webp" alt="Stock Market Sim Icon" class="app-icon">
+                        <h3>Stock Market Sim</h3>
+                        <p>Virtual trading sim shipped across iOS, macOS, and visionOS.</p>
+                        <div class="app-meta">
+                            <span class="app-rating" aria-label="Rated 4.3 out of 5 stars">
+                                <span class="stars stars--4-3" aria-hidden="true"></span>
+                                <span class="rating-num">4.3</span>
+                            </span>
+                            <span class="app-downloads">2.36K downloads</span>
+                            <div class="app-platforms"><span class="tech-badge">iOS</span><span class="tech-badge">iPadOS</span><span class="tech-badge">macOS</span><span class="tech-badge">visionOS</span></div>
+                        </div>
+                        <span class="card-link">View on App Store &rarr;</span>
                     </div>
                 </a>
             </div>
 
-            <div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
+            <div class="section-cta">
                 <a href="projects.html" class="btn">
                     View All Projects
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -100,88 +132,93 @@
             </div>
         </section>
         
-        <section style="padding-bottom: 40px; margin-top: 80px;">
-            <div class="section-header" style="display: flex; align-items: center;">
-                <div style="flex: 1;"></div>
-                <h2 style="margin: 0; flex: 0 0 auto;">Full App Catalog</h2>
-                <div style="flex: 1; display: flex; justify-content: flex-end;">
-                    <button id="carousel-pause-btn" onclick="toggleCarousel()" aria-label="Pause auto-scroll" title="Pause auto-scroll" style="background: var(--card-bg); border: 1px solid rgba(0,0,0,0.08); border-radius: 50%; width: 34px; height: 34px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-color); box-shadow: 0 2px 8px var(--shadow-light); transition: box-shadow 0.2s ease;">
+        <section class="catalog-section">
+            <div class="section-header catalog-header">
+                <div class="spacer"></div>
+                <h2>Full App Catalog</h2>
+                <div class="catalog-actions">
+                    <button id="carousel-pause-btn" onclick="toggleCarousel()" aria-label="Pause auto-scroll" title="Pause auto-scroll" class="carousel-pause-btn">
                         <svg id="carousel-btn-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
                     </button>
                 </div>
             </div>             
             <div class="carousel-container">
                 <div class="carousel-track">
-                    <a href="projects.html" class="carousel-card product-card">
+                    <!-- The two sets below must stay identical: the CSS marquee
+                         loops by shifting the track 50% (exactly one set), so any
+                         app added/removed must be changed in BOTH sets. -->
+                    <!-- Primary set (interactive) -->
+                    <a href="https://github.com/MWM1107/KanaCard" target="_blank" rel="noopener noreferrer" class="carousel-card product-card">
                         <img src="img/KanaCard.png" alt="KanaCard" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">KanaCard</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Japanese flash card learning tool.</p>
+                        <h3>KanaCard</h3>
+                        <p>Japanese flash card learning tool.</p>
                     </a>
-                    <a href="projects.html" class="carousel-card product-card">
+                    <a href="https://apps.apple.com/us/app/rogue-roll-dice-deck-builder/id6757452802" target="_blank" rel="noopener noreferrer" class="carousel-card product-card">
                         <img src="img/rogue-roll-dice-deck-builder/400x400bb-75.webp" alt="Rogue Roll" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">Rogue Roll</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Roguelike deckbuilder game.</p>
+                        <h3>Rogue Roll</h3>
+                        <p>Roguelike deckbuilder game.</p>
                     </a>
-                    <a href="projects.html" class="carousel-card product-card">
+                    <a href="https://apps.apple.com/us/app/kodou-memory-grid-game/id6753267966" target="_blank" rel="noopener noreferrer" class="carousel-card product-card">
                         <img src="img/kodou-memory-grid-game/400x400bb-75%20(1).webp" alt="Kodou" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">Kodou</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Rhythm & Memory game.</p>
+                        <h3>Kodou</h3>
+                        <p>Rhythm & Memory game.</p>
                     </a>
-                    <a href="projects.html" class="carousel-card product-card">
+                    <a href="https://apps.apple.com/us/app/type-kana/id6574367514" target="_blank" rel="noopener noreferrer" class="carousel-card product-card">
                         <img src="img/type-kana/400x400bb-75.webp" alt="Type Kana" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">Type Kana</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Master Hiragana and Katakana.</p>
+                        <h3>Type Kana</h3>
+                        <p>Master Hiragana and Katakana.</p>
                     </a>
-                    <a href="projects.html" class="carousel-card product-card">
+                    <a href="https://apps.apple.com/us/app/wordly-puzzle-game-solver/id6740254685" target="_blank" rel="noopener noreferrer" class="carousel-card product-card">
                         <img src="img/wordly-puzzle-game-solver/400x400bb-75%20(1).webp" alt="Wordly" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">Wordly</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Daily word puzzles and Wordle solver.</p>
+                        <h3>Wordly</h3>
+                        <p>Daily word puzzles and Wordle solver.</p>
                     </a>
-                    <a href="projects.html" class="carousel-card product-card">
+                    <a href="https://apps.apple.com/us/app/stock-market-sim/id6511208338" target="_blank" rel="noopener noreferrer" class="carousel-card product-card">
                         <img src="img/stock-market-sim/400x400bb-75%20(1).webp" alt="Stock Sim" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">Stock Market Sim</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Stock market simulation.</p>
+                        <h3>Stock Market Sim</h3>
+                        <p>Stock market simulation.</p>
                     </a>
-                    <a href="projects.html" class="carousel-card product-card">
+                    <a href="https://apps.apple.com/us/app/idea-vault-notes-journal/id6572281488" target="_blank" rel="noopener noreferrer" class="carousel-card product-card">
                         <img src="img/idea-vault-notes-journal/400x400bb-75.webp" alt="Idea Vault" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">Idea Vault</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Capture thoughts.</p>
+                        <h3>Idea Vault</h3>
+                        <p>Capture thoughts.</p>
                     </a>
-                    
-                    <a href="projects.html" class="carousel-card product-card">
-                        <img src="img/KanaCard.png" alt="KanaCard" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">KanaCard</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Japanese flash card learning tool.</p>
+
+                    <!-- Duplicate set (visual loop only; hidden from assistive tech & keyboard) -->
+                    <a href="https://github.com/MWM1107/KanaCard" tabindex="-1" aria-hidden="true" class="carousel-card product-card">
+                        <img src="img/KanaCard.png" alt="" class="app-icon" loading="lazy">
+                        <h3>KanaCard</h3>
+                        <p>Japanese flash card learning tool.</p>
                     </a>
-                    <a href="projects.html" class="carousel-card product-card">
-                        <img src="img/rogue-roll-dice-deck-builder/400x400bb-75.webp" alt="Rogue Roll" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">Rogue Roll</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Roguelike deckbuilder game.</p>
+                    <a href="https://apps.apple.com/us/app/rogue-roll-dice-deck-builder/id6757452802" tabindex="-1" aria-hidden="true" class="carousel-card product-card">
+                        <img src="img/rogue-roll-dice-deck-builder/400x400bb-75.webp" alt="" class="app-icon" loading="lazy">
+                        <h3>Rogue Roll</h3>
+                        <p>Roguelike deckbuilder game.</p>
                     </a>
-                    <a href="projects.html" class="carousel-card product-card">
-                        <img src="img/kodou-memory-grid-game/400x400bb-75%20(1).webp" alt="Kodou" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">Kodou</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Rhythm & Memory game.</p>
+                    <a href="https://apps.apple.com/us/app/kodou-memory-grid-game/id6753267966" tabindex="-1" aria-hidden="true" class="carousel-card product-card">
+                        <img src="img/kodou-memory-grid-game/400x400bb-75%20(1).webp" alt="" class="app-icon" loading="lazy">
+                        <h3>Kodou</h3>
+                        <p>Rhythm & Memory game.</p>
                     </a>
-                     <a href="projects.html" class="carousel-card product-card">
-                        <img src="img/type-kana/400x400bb-75.webp" alt="Type Kana" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">Type Kana</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Master Hiragana and Katakana.</p>
+                    <a href="https://apps.apple.com/us/app/type-kana/id6574367514" tabindex="-1" aria-hidden="true" class="carousel-card product-card">
+                        <img src="img/type-kana/400x400bb-75.webp" alt="" class="app-icon" loading="lazy">
+                        <h3>Type Kana</h3>
+                        <p>Master Hiragana and Katakana.</p>
                     </a>
-                    <a href="projects.html" class="carousel-card product-card">
-                        <img src="img/wordly-puzzle-game-solver/400x400bb-75%20(1).webp" alt="Wordly" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">Wordly</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Daily word puzzles and Wordle solver.</p>
+                    <a href="https://apps.apple.com/us/app/wordly-puzzle-game-solver/id6740254685" tabindex="-1" aria-hidden="true" class="carousel-card product-card">
+                        <img src="img/wordly-puzzle-game-solver/400x400bb-75%20(1).webp" alt="" class="app-icon" loading="lazy">
+                        <h3>Wordly</h3>
+                        <p>Daily word puzzles and Wordle solver.</p>
                     </a>
-                    <a href="projects.html" class="carousel-card product-card">
-                        <img src="img/stock-market-sim/400x400bb-75%20(1).webp" alt="Stock Sim" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">Stock Market Sim</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Stock market simulation.</p>
+                    <a href="https://apps.apple.com/us/app/stock-market-sim/id6511208338" tabindex="-1" aria-hidden="true" class="carousel-card product-card">
+                        <img src="img/stock-market-sim/400x400bb-75%20(1).webp" alt="" class="app-icon" loading="lazy">
+                        <h3>Stock Market Sim</h3>
+                        <p>Stock market simulation.</p>
                     </a>
-                    <a href="projects.html" class="carousel-card product-card">
-                        <img src="img/idea-vault-notes-journal/400x400bb-75.webp" alt="Idea Vault" class="app-icon" loading="lazy">
-                        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1.2rem;">Idea Vault</h3>
-                        <p style="font-size: 0.9rem; margin-top: 0; color: var(--text-muted);">Capture thoughts.</p>
+                    <a href="https://apps.apple.com/us/app/idea-vault-notes-journal/id6572281488" tabindex="-1" aria-hidden="true" class="carousel-card product-card">
+                        <img src="img/idea-vault-notes-journal/400x400bb-75.webp" alt="" class="app-icon" loading="lazy">
+                        <h3>Idea Vault</h3>
+                        <p>Capture thoughts.</p>
                     </a>
                 </div>
             </div>
@@ -189,37 +226,9 @@
 
     </main>
 
-    <footer>
-        <p>&copy; 2026 Kevin Struna. All rights reserved.</p>
-        <div style="margin-top: 15px;">
-            <a href="index.html">Home</a>
-            <span class="sep">|</span>
-            <a href="projects.html">Projects</a>
-            <span class="sep">|</span>
-            <a href="about.html">About</a>
-            <span class="sep">|</span>
-            <a href="resume.html">Resume</a>
-            <span class="sep">|</span>
-            <a href="contact.html">Contact</a>
-            <span class="sep">|</span>
-            <a href="blog.html">Blog</a>
-        </div>
-    </footer>
+    <div id="site-footer"></div>
 
-    <script>
-        let _carouselPaused = false;
-        function toggleCarousel() {
-            const track = document.querySelector('.carousel-track');
-            const btn = document.getElementById('carousel-pause-btn');
-            const icon = document.getElementById('carousel-btn-icon');
-            _carouselPaused = !_carouselPaused;
-            track.style.animationPlayState = _carouselPaused ? 'paused' : 'running';
-            btn.setAttribute('aria-label', _carouselPaused ? 'Resume auto-scroll' : 'Pause auto-scroll');
-            icon.innerHTML = _carouselPaused
-                ? '<polygon points="5 3 19 12 5 21 5 3"/>'
-                : '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
-        }
-    </script>
+    <script src="js/home.js" defer></script>
 
 </body>
 </html>

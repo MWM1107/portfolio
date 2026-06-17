@@ -1,0 +1,31 @@
+/* ==========================================================================
+   UTILITIES: small, reusable layout / spacing / text helpers
+   These replace the repeated inline style="" attributes that used to live in
+   the HTML. Keep this lean: when a pattern belongs to one specific component,
+   reach for a semantic class in components.css / pages.css instead.
+   ========================================================================== */
+
+/* Text */
+.text-center { text-align: center; }
+.text-muted  { color: var(--text-muted); }
+
+/* Inline accent link (e.g. "Find me on LinkedIn", "Read Article →") */
+.inline-link { color: var(--ios-blue); font-weight: 600; font-size: 0.9rem; }
+
+/* Centered reading column; the width comes from a modifier */
+.content-column          { margin-left: auto; margin-right: auto; }
+.content-column--form    { max-width: 600px; }
+.content-column--blog    { max-width: 720px; }
+.content-column--article { max-width: 800px; }
+
+/* Wrapping, centered row of buttons/links */
+.button-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+/* Spacing helpers (the handful of margins that recur across pages) */
+.m-0        { margin: 0; }
+.mt-0       { margin-top: 0; }
+.mt-30      { margin-top: 30px; }
+.mt-section { margin-top: 80px; }    /* gap between major homepage sections */
+.mb-10      { margin-bottom: 10px; }
+.mb-20      { margin-bottom: 20px; }
+.mb-section { margin-bottom: 30px; } /* gap below stacked cards / blocks */

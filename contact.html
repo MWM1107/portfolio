@@ -3,73 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Get in touch with Kevin Struna — iOS developer and CS student available for internships and collaboration opportunities.">
+    <meta name="description" content="Get in touch with Kevin Struna, an iOS developer and CS student available for internships and collaboration opportunities.">
     <meta property="og:title" content="Contact | Kevin Struna">
-    <meta property="og:description" content="Get in touch with Kevin Struna — iOS developer and CS student available for internships and collaboration opportunities.">
+    <meta property="og:description" content="Get in touch with Kevin Struna, an iOS developer and CS student available for internships and collaboration opportunities.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://kevinstruna.dev/img/profile.png">
+    <meta property="og:image" content="https://kevinstruna.dev/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kevin Struna, iOS Developer. Six apps on the App Store, built with Swift and SwiftUI.">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:url" content="https://kevinstruna.dev/contact.html">
     <meta property="og:site_name" content="Kevin Struna">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact | Kevin Struna">
+    <meta name="twitter:description" content="Get in touch with Kevin Struna, an iOS developer and CS student available for internships and collaboration opportunities.">
+    <meta name="twitter:image" content="https://kevinstruna.dev/img/og-image.png">
     <title>Contact | Kevin Struna</title>
     <link rel="canonical" href="https://kevinstruna.dev/contact.html" />
     <link rel="icon" type="image/png" href="img/favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <script src="theme.js"></script>
-    <style>
-        /* Page-Specific Form Styling to match iOS Inputs */
-        .form-group {
-            margin-bottom: 24px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text-color);
-            opacity: 0.8;
-        }
-
-        textarea { resize: vertical; }
-
-        input, textarea {
-            width: 100%;
-            padding: 16px;
-            border-radius: 16px; /* Super rounded iOS style */
-            border: 1px solid rgba(0,0,0,0.1);
-            background-color: rgba(255,255,255,0.6); /* Semi-transparent */
-            font-size: 1rem;
-            font-family: inherit;
-            color: var(--text-color);
-            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-            box-sizing: border-box;
-            -webkit-appearance: none;
-        }
-
-        /* The "Active" State - Apple Blue Glow */
-        input:focus, textarea:focus {
-            outline: none;
-            background-color: white;
-            border-color: var(--ios-blue);
-            box-shadow: 0 0 0 4px rgba(0,122,255,0.15);
-            transform: scale(1.01);
-        }
-
-        /* Dark Mode overrides are handled by style.css !important rules */
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script src="js/layout.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact | Kevin Struna",
+      "url": "https://kevinstruna.dev/contact.html",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Kevin Struna",
+        "url": "https://kevinstruna.dev/",
+        "sameAs": [
+          "https://www.linkedin.com/in/kevin-struna/",
+          "https://github.com/MWM1107"
+        ]
+      }
+    }
+    </script>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="about.html">About</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html" class="active">Contact</a>
-        <a href="blog.html">Blog</a>
-        <span class="sep">|</span>
-        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
-    </nav>
+    <div id="site-nav"></div>
 
     <main>
         <div class="page-hero">
@@ -77,7 +52,7 @@
             <p class="tagline">Have a question or want to work together?</p>
         </div>
     
-        <div style="max-width: 600px; margin: 0 auto;">
+        <div class="content-column content-column--form">
             <form id="contact-form" action="https://formspree.io/f/xvzbegow" method="POST" class="glass-card card-content">                
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -94,85 +69,27 @@
                     <textarea id="message" name="message" rows="6" placeholder="Tell me about your project or opportunity..." required></textarea>
                 </div>
                 
-                <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer; font-size: 1rem; padding: 16px; margin-top: 10px;">
+                <button type="submit" class="btn btn-block">
                     Send Message
                 </button>
             </form>
 
-            <div id="form-success" class="glass-card card-content" style="display: none; text-align: center;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#34c759" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                <h3 style="margin: 0 0 8px;">Message sent!</h3>
-                <p style="color: var(--text-muted); margin: 0;">Thanks for reaching out! I'll get back to you soon.</p>
+            <div id="form-success" class="glass-card card-content text-center" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#34c759" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="success-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <h3 class="success-title">Message sent!</h3>
+                <p class="text-muted m-0">Thanks for reaching out! I'll get back to you soon.</p>
             </div>
 
         </div>
 
-        <p style="text-align: center; color: var(--text-muted); margin-top: 30px; font-size: 0.9rem;">
-            Prefer to connect directly? <a href="https://www.linkedin.com/in/kevin-struna/" target="_blank" rel="noopener noreferrer" style="color: var(--ios-blue); font-weight: 600;">Find me on LinkedIn</a>
+        <p class="contact-alt">
+            Prefer to connect directly? <a href="https://www.linkedin.com/in/kevin-struna/" target="_blank" rel="noopener noreferrer" class="inline-link">Find me on LinkedIn</a>
         </p>
     </main>
 
-    <script>
-        (function() {
-            var form = document.getElementById('contact-form');
-            if (!form) return;
+    <script src="js/contact.js" defer></script>
 
-            function showError(msg) {
-                var btn = form.querySelector('button[type="submit"]');
-                btn.disabled = false;
-                btn.textContent = 'Send Message';
-                var el = form.querySelector('.form-error');
-                if (!el) {
-                    el = document.createElement('p');
-                    el.className = 'form-error';
-                    el.style.cssText = 'color:#ff3b30;font-size:0.9rem;text-align:center;margin:12px 0 0;';
-                    form.appendChild(el);
-                }
-                el.textContent = msg;
-            }
-
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                var btn = form.querySelector('button[type="submit"]');
-                btn.disabled = true;
-                btn.textContent = 'Sending…';
-
-                fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                })
-                .then(function(res) {
-                    if (res.ok) {
-                        form.style.display = 'none';
-                        document.getElementById('form-success').style.display = 'block';
-                    } else {
-                        showError('Something went wrong. Please try again or email me directly.');
-                    }
-                })
-                .catch(function() {
-                    showError('Network error. Please check your connection and try again.');
-                });
-            });
-        })();
-    </script>
-
-    <footer>
-        <p>&copy; 2026 Kevin Struna. All rights reserved.</p>
-        <div style="margin-top: 15px;">
-            <a href="index.html">Home</a>
-            <span class="sep">|</span>
-            <a href="projects.html">Projects</a>
-            <span class="sep">|</span>
-            <a href="about.html">About</a>
-            <span class="sep">|</span>
-            <a href="resume.html">Resume</a>
-            <span class="sep">|</span>
-            <a href="contact.html">Contact</a>
-            <span class="sep">|</span>
-            <a href="blog.html">Blog</a>
-        </div>
-    </footer>
+    <div id="site-footer"></div>
 
 </body>
 </html>

@@ -1,0 +1,78 @@
+/* ==========================================================================
+   RESPONSIVE: mobile adjustments + reduced motion
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; margin-top: 2rem; }
+
+    /* Nav: 44pt tap targets on mobile */
+    nav { padding: 0 0.75rem; }
+    nav a {
+        margin: 0 2px;
+        padding: 0 8px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+    }
+    .theme-toggle-btn {
+        min-width: 44px;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0 2px;
+    }
+
+    /* Section & card spacing */
+    main > section { margin-top: 48px !important; }
+    .section-header { margin-top: 40px; }
+    .card-content { padding: 20px; }
+
+    /* Page title headers */
+    .page-hero { padding: 20px 0 24px !important; }
+
+    /* Homepage hero */
+    .hero-section { padding: 36px 24px !important; }
+    .hero-photo { width: 120px !important; height: 120px !important; margin-bottom: 10px !important; }
+
+    /* About CTA footer */
+    .cta-section { padding: 36px 0 12px !important; }
+
+    /* Projects hero card */
+    .hero-card { padding: 28px; margin-bottom: 32px; }
+    .hero-title h3 { font-size: 2rem; }
+    .hero-icon-large { width: 80px; height: 80px; border-radius: 18px; }
+    .hero-features { margin: 20px 0; gap: 12px; }
+
+    /* Carousel */
+    .carousel-container { padding: 20px 0; }
+
+    /* Screenshot carousel */
+    .screenshot-carousel { margin: 16px -20px 0; }
+    .screenshot-track { padding: 8px 20px; }
+    .screenshot-track img { flex: 0 0 calc((100% - 10px) / 2); }
+    .screenshot-arrow { width: 44px; height: 44px; font-size: 1.1rem; }
+    #carousel-pause-btn { width: 44px !important; height: 44px !important; }
+    footer a { padding: 8px 2px; margin: 0 6px; }
+
+    /* Bento grid */
+    .bento-grid { grid-template-columns: 1fr; }
+    .grid-span-2 { grid-column: span 1; }
+
+    /* Blog */
+    .hero-banner { height: 200px; }
+
+    /* Footer */
+    footer { padding: 36px 20px; }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .carousel-track { animation-play-state: paused; }
+    main > section, .hero-card, .bento-grid, .glass-card { animation: none; }
+}

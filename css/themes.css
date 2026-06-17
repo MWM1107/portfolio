@@ -1,0 +1,64 @@
+/* ==========================================================================
+   THEMES: dark + manual light overrides (set via data-theme by theme.js)
+   ========================================================================== */
+
+/* Dark mode: applied via data-theme="dark", set by toggle or matched to OS preference in theme.js */
+html[data-theme="dark"] {
+    --ios-blue: #0A84FF; /* systemBlue dark variant, crisper on black */
+    --ios-blue-hover: #2b8fff;
+    --bg-color: #000000;
+    --text-color: #f5f5f7;
+    --text-heading: #f5f5f7;
+    --nav-bg: rgba(28, 28, 30, 0.7);
+    --card-bg: rgba(28, 28, 30, 0.6);
+    --card-border: rgba(255, 255, 255, 0.12);
+    --shadow-light: rgba(0, 0, 0, 0.4);
+    --text-muted: #aeaeb2;
+}
+html[data-theme="dark"] body { background-color: #000; }
+html[data-theme="dark"] nav { background: rgba(40, 40, 40, 0.7); border: 1px solid rgba(255, 255, 255, 0.15); }
+html[data-theme="dark"] .glass-card,
+html[data-theme="dark"] .carousel-card { box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+html[data-theme="dark"] .tech-badge { background: #2c2c2e; color: #e5e5e5; }
+html[data-theme="dark"] .section-header,
+html[data-theme="dark"] footer { border-color: rgba(255,255,255,0.15); }
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea { background-color: #1c1c1e !important; border-color: #3a3a3c !important; color: white !important; }
+html[data-theme="dark"] label { color: #d1d1d6 !important; }
+html[data-theme="dark"] .glass-card .card-content > div { border-color: rgba(255, 255, 255, 0.1) !important; }
+html[data-theme="dark"] .screenshot-arrow {
+    background-color: rgba(120,120,128,0.32);
+    border-color: rgba(255,255,255,0.16);
+    color: #f5f5f7;
+    box-shadow:
+        0 4px 16px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+}
+html[data-theme="dark"] .screenshot-arrow:hover { background-color: rgba(120,120,128,0.45); }
+html[data-theme="dark"] .screenshot-track img { background: #1c1c1e; }
+
+/* Manual light mode (force light even on dark systems) */
+html[data-theme="light"] {
+    --ios-blue: #007AFF;
+    --ios-blue-hover: #006fe0;
+    --bg-color: #f5f5f7;
+    --text-color: #5c5c5c;
+    --text-heading: #1d1d1f;
+    --nav-bg: rgba(255, 255, 255, 0.75);
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-border: rgba(255, 255, 255, 0.6);
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.1);
+    --text-muted: #6e6e73;
+}
+html[data-theme="light"] body { background-color: #f5f5f7; }
+html[data-theme="light"] nav { background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(0,0,0,0.08); }
+html[data-theme="light"] .glass-card,
+html[data-theme="light"] .carousel-card { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 12px 24px -4px rgba(0, 0, 0, 0.06); }
+html[data-theme="light"] .tech-badge { background: #e5e5ea; color: #6e6e73; }
+html[data-theme="light"] .section-header,
+html[data-theme="light"] footer { border-color: rgba(0,0,0,0.1); }
+html[data-theme="light"] input,
+html[data-theme="light"] textarea { background-color: white !important; border-color: rgba(0,0,0,0.2) !important; color: #5c5c5c !important; }
+html[data-theme="light"] label { color: #5c5c5c !important; }
+html[data-theme="light"] .glass-card .card-content > div { border-color: rgba(0,0,0,0.08) !important; }

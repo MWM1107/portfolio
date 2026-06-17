@@ -1,0 +1,117 @@
+/* ==========================================================================
+   BASE: variables, reset, animations, typography, focus ring
+   ========================================================================== */
+
+:root {
+    --ios-blue: #007AFF;
+    --ios-blue-hover: #006fe0;
+    --bg-color: #f5f5f7;
+    --text-color: #5c5c5c;
+    --text-heading: #1d1d1f; /* Apple near-black for crisp headlines */
+    --nav-bg: rgba(255, 255, 255, 0.75);
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-border: rgba(255, 255, 255, 0.6);
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.1);
+    --text-muted: #6e6e73;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px; /* clear the sticky nav when jumping to in-page anchors */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animations */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); scale: 0.98; }
+    to { opacity: 1; transform: translateY(0); scale: 1; }
+}
+
+@keyframes scroll {
+    /* The track holds two identical card sets; shifting by exactly half its
+       width loops seamlessly, independent of card count or width. Each card
+       owns its trailing gap via margin-right so -50% lands on a card boundary. */
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+main > section, .hero-card, .bento-grid, .glass-card {
+    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Typography */
+h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    color: var(--text-heading);
+}
+
+h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-heading);
+}
+
+h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-heading);
+}
+
+.tagline {
+    font-size: 1.35rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 0.5rem;
+    letter-spacing: -0.01em;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-header {
+    margin-top: 80px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 15px;
+}
+
+/* Muted one-line subhead under a section heading */
+.section-subhead { color: var(--text-muted); font-size: 0.95rem; margin-top: 5px; }
+
+/* Keyboard focus ring: the box-shadow halo follows each element's own
+   border-radius, so round buttons stay round and cards keep their corners.
+   (Don't set border-radius here, or it reshapes the element on focus.) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+.glass-card:focus-visible,
+.carousel-card:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.4);
+}
+
+/* <main> receives focus when the skip link is used; don't show an outline there */
+main[tabindex]:focus { outline: none; }

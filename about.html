@@ -7,27 +7,48 @@
     <meta property="og:title" content="About Kevin Struna | iOS Developer">
     <meta property="og:description" content="CS student at Colorado State University and self-taught iOS developer. Learn about Kevin Struna's skills in Swift, SwiftUI, and hardware projects.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://kevinstruna.dev/img/profile.png">
+    <meta property="og:image" content="https://kevinstruna.dev/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kevin Struna, iOS Developer. Six apps on the App Store, built with Swift and SwiftUI.">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:url" content="https://kevinstruna.dev/about.html">
     <meta property="og:site_name" content="Kevin Struna">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Kevin Struna | iOS Developer">
+    <meta name="twitter:description" content="CS student at Colorado State University and self-taught iOS developer. Learn about Kevin Struna's skills in Swift, SwiftUI, and hardware projects.">
+    <meta name="twitter:image" content="https://kevinstruna.dev/img/og-image.png">
     <title>About | Kevin Struna</title>
     <link rel="canonical" href="https://kevinstruna.dev/about.html" />
     <link rel="icon" type="image/png" href="img/favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <script src="theme.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script src="js/layout.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "url": "https://kevinstruna.dev/about.html",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Kevin Struna",
+        "url": "https://kevinstruna.dev/",
+        "jobTitle": "iOS Developer",
+        "description": "Computer Science student at Colorado State University and self-taught iOS developer building apps with Swift and SwiftUI.",
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Colorado State University" },
+        "knowsAbout": ["Swift", "SwiftUI", "SwiftData", "iOS development", "macOS development", "Firebase"],
+        "sameAs": [
+          "https://github.com/MWM1107",
+          "https://www.linkedin.com/in/kevin-struna/",
+          "https://apps.apple.com/tr/developer/kevin-struna/id1700293634"
+        ]
+      }
+    }
+    </script>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="about.html" class="active">About</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-        <a href="blog.html">Blog</a>
-        <span class="sep">|</span>
-        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
-    </nav>
+    <div id="site-nav"></div>
 
     <main>
         <div class="page-hero">
@@ -41,11 +62,11 @@
                 <div class="card-icon-wrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                 </div>
-                <h2 style="margin-top: 0; font-size: 1.6rem; margin-bottom: 15px; letter-spacing: -0.02em;">The Developer</h2>
-                <p style="color: var(--text-muted); line-height: 1.7; font-size: 1rem; margin-bottom: 20px;">
+                <h2 class="about-card-title">The Developer</h2>
+                <p class="about-text mb-20">
                     I'm a senior <strong>Computer Science major</strong> at Colorado State University, graduating in Spring 2027. Back-to-back Dean's List semesters, including a 4.0 GPA in Fall 2025.
                 </p>
-                <p style="color: var(--text-muted); line-height: 1.7; font-size: 1rem;">
+                <p class="about-text">
                     I build things two ways: fully from scratch when depth matters (like <em>KanaCard</em> and my <em>Environmental Monitor</em>), and with AI tools when the goal is shipping fast. The first proves I know what I'm doing. The second proves I can get things done. Knowing when to use which is half the job.
                 </p>
             </article>
@@ -54,22 +75,25 @@
                 <div class="card-icon-wrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 </div>
-                <h2 style="margin-top: 0; font-size: 1.6rem; margin-bottom: 15px; letter-spacing: -0.02em;">The Person</h2>
-                <p style="color: var(--text-muted); line-height: 1.7; font-size: 1rem; margin-bottom: 20px;">
+                <h2 class="about-card-title">The Person</h2>
+                <p class="about-text mb-20">
                     When I'm not staring at Xcode, I'm usually out logging miles running. I'm currently training for a 10k! Honestly, grinding through a long run hits exactly the same as trying to figure out a stubborn bug. I've found that you just have to keep pushing until it clicks.
                 </p>
-                <p style="color: var(--text-muted); line-height: 1.7; font-size: 1rem;">
+                <p class="about-text">
                     Off the clock, I'm either learning Japanese, watching anime, reading manga (currently planning a trip for post-grad!), or I'm sitting at the piano singing some old-school crooner stuff. If I've got headphones on, it's usually jazz, j-pop or some 80's new wave hits.
                 </p>
             </article>
 
             <article class="glass-card card-content grid-span-2">
-                 <h2 style="margin-top: 0; font-size: 1.8rem; margin-bottom: 30px; letter-spacing: -0.02em;">Technical Arsenal</h2>
-                 
-                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;">
-                    
+                <div class="card-icon-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="6" height="6"></rect><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="9"></line><line x1="15" y1="3" x2="15" y2="9"></line><line x1="9" y1="21" x2="9" y2="15"></line><line x1="15" y1="21" x2="15" y2="15"></line><line x1="3" y1="9" x2="9" y2="9"></line><line x1="3" y1="15" x2="9" y2="15"></line><line x1="21" y1="9" x2="15" y2="9"></line><line x1="21" y1="15" x2="15" y2="15"></line></svg>
+                </div>
+                 <h2 class="about-card-title about-card-title--lg">Technical Arsenal</h2>
+
+                 <div class="skill-grid">
+
                     <div>
-                        <strong style="display: block; margin-bottom: 15px; color: var(--text-color); font-size: 1.1rem;">Languages</strong>
+                        <strong class="skill-group-label">Languages</strong>
                         <div>
                             <span class="tech-badge">Swift</span>
                             <span class="tech-badge">C</span>
@@ -81,7 +105,7 @@
                     </div>
 
                     <div>
-                        <strong style="display: block; margin-bottom: 15px; color: var(--text-color); font-size: 1.1rem;">Frameworks & OS</strong>
+                        <strong class="skill-group-label">Frameworks & OS</strong>
                         <div>
                             <span class="tech-badge">SwiftUI</span>
                             <span class="tech-badge">SwiftData</span>
@@ -95,7 +119,7 @@
                     </div>
 
                     <div>
-                        <strong style="display: block; margin-bottom: 15px; color: var(--text-color); font-size: 1.1rem;">Tools & Platforms</strong>
+                        <strong class="skill-group-label">Tools & Platforms</strong>
                         <div>
                             <span class="tech-badge">Xcode</span>
                             <span class="tech-badge">Git / GitHub</span>
@@ -114,31 +138,16 @@
         </div>
 
         <div class="cta-section">
-            <h2 style="margin-top: 0; margin-bottom: 10px;">Want to work together?</h2>
-            <p style="color: var(--text-muted); margin-bottom: 30px;">I'm currently looking for internship and co-op opportunities.</p>
-            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <h2 class="mt-0 mb-10">Want to work together?</h2>
+            <p class="text-muted mb-section">I'm currently looking for internship and co-op opportunities.</p>
+            <div class="button-row">
                 <a href="contact.html" class="btn">Get in Touch</a>
-                <a href="resume.html" class="btn" style="background-color: transparent; color: var(--ios-blue); box-shadow: inset 0 0 0 2px var(--ios-blue);">View Resume</a>
+                <a href="resume.html" class="btn btn-outline">View Resume</a>
             </div>
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Kevin Struna. All rights reserved.</p>
-        <div style="margin-top: 15px;">
-            <a href="index.html">Home</a>
-            <span class="sep">|</span>
-            <a href="projects.html">Projects</a>
-            <span class="sep">|</span>
-            <a href="about.html">About</a>
-            <span class="sep">|</span>
-            <a href="resume.html">Resume</a>
-            <span class="sep">|</span>
-            <a href="contact.html">Contact</a>
-            <span class="sep">|</span>
-            <a href="blog.html">Blog</a>
-        </div>
-    </footer>
+    <div id="site-footer"></div>
 
 </body>
 </html>

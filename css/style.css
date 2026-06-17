@@ -1,0 +1,12 @@
+/* ==========================================================================
+   KEVIN STRUNA | PORTFOLIO STYLESHEET (entry point)
+   Logical partials, imported in cascade order. Edit the partials, not this file.
+   ========================================================================== */
+
+@import "base.css";        /* variables, reset, typography, focus ring */
+@import "layout.css";      /* nav, main, footer, hero, site chrome */
+@import "components.css";  /* buttons, cards, badges, carousels */
+@import "pages.css";       /* blog, resume, contact form */
+@import "utilities.css";   /* reusable spacing / layout / text helpers */
+@import "themes.css";      /* dark + light overrides */
+@import "responsive.css";  /* mobile + reduced motion */

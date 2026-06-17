@@ -3,96 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kevin Struna's resume — CS student at Colorado State University with published iOS apps on the App Store. Seeking internship and co-op opportunities.">
+    <meta name="description" content="Kevin Struna's resume. CS student at Colorado State University with published iOS apps on the App Store. Seeking internship and co-op opportunities.">
     <meta property="og:title" content="Resume | Kevin Struna">
-    <meta property="og:description" content="Kevin Struna's resume — CS student at Colorado State University with published iOS apps on the App Store. Seeking internship and co-op opportunities.">
+    <meta property="og:description" content="Kevin Struna's resume. CS student at Colorado State University with published iOS apps on the App Store. Seeking internship and co-op opportunities.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://kevinstruna.dev/img/profile.png">
+    <meta property="og:image" content="https://kevinstruna.dev/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kevin Struna, iOS Developer. Six apps on the App Store, built with Swift and SwiftUI.">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:url" content="https://kevinstruna.dev/resume.html">
     <meta property="og:site_name" content="Kevin Struna">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Resume | Kevin Struna">
+    <meta name="twitter:description" content="Kevin Struna's resume. CS student at Colorado State University with published iOS apps on the App Store. Seeking internship and co-op opportunities.">
+    <meta name="twitter:image" content="https://kevinstruna.dev/img/og-image.png">
     <title>Resume | Kevin Struna</title>
     <link rel="canonical" href="https://kevinstruna.dev/resume.html" />
     <link rel="icon" type="image/png" href="img/favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <script src="theme.js"></script>
-    <style>
-        .resume-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding-bottom: 12px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-        .role-title { font-weight: 700; font-size: 1.15rem; color: var(--text-color); }
-        .company-name { font-weight: 500; color: var(--text-muted); font-size: 1rem; }
-        .date-range { font-size: 0.9rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
-        
-        .resume-list { list-style-type: none; padding: 0; margin: 0; }
-        .resume-list li {
-            position: relative;
-            padding-left: 18px;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .resume-list li::before { 
-            content: "•"; 
-            position: absolute; 
-            left: 0; 
-            color: var(--ios-blue); 
-            font-weight: bold; 
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script src="js/layout.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kevin Struna",
+      "url": "https://kevinstruna.dev/",
+      "jobTitle": "iOS Developer",
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Colorado State University" },
+      "knowsAbout": ["Swift", "SwiftUI", "SwiftData", "Swift Concurrency", "Swift Charts", "C++", "C", "Python", "Java", "Firebase", "Xcode", "Git"],
+      "sameAs": [
+        "https://github.com/MWM1107",
+        "https://www.linkedin.com/in/kevin-struna/",
+        "https://apps.apple.com/tr/developer/kevin-struna/id1700293634"
+      ]
+    }
+    </script>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="about.html">About</a>
-        <a href="resume.html" class="active">Resume</a>
-        <a href="contact.html">Contact</a>
-        <a href="blog.html">Blog</a>
-        <span class="sep">|</span>
-        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
-    </nav>
+    <div id="site-nav"></div>
 
     <main>
         <div class="page-hero">
             <h1>Resume</h1>
             <p class="tagline">Computer Science Student & iOS Developer</p>
             
-            <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <div class="button-row mt-30">
                 <a href="Resume.pdf" class="btn" download>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16L8 12H11V4H13V12H16L12 16ZM4 20V15H6V18H18V15H20V20H4Z"/></svg>
                     Download PDF
                 </a>
                 
-                <a href="https://apps.apple.com/tr/developer/kevin-struna/id1700293634" target="_blank" rel="noopener noreferrer" class="btn" style="background-color: #1c1c1e;">
+                <a href="https://apps.apple.com/tr/developer/kevin-struna/id1700293634" target="_blank" rel="noopener noreferrer" class="btn btn-dark">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                     </svg>
                  App Store
                 </a>
 
-                <a href="https://www.linkedin.com/in/kevin-struna/" target="_blank" rel="noopener noreferrer" class="btn" style="background-color: #0077b5;">
+                <a href="https://www.linkedin.com/in/kevin-struna/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z"/></svg>
                     LinkedIn
                 </a>
 
-                <a href="https://github.com/MWM1107" target="_blank" rel="noopener noreferrer" class="btn" style="background-color: #333;">
+                <a href="https://github.com/MWM1107" target="_blank" rel="noopener noreferrer" class="btn btn-dark">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21C9.5 20.77 9.5 20.14 9.5 19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26C14.5 19.6 14.5 20.68 14.5 21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
                     GitHub
                 </a>
             </div>
         </div>
 
-        <div class="glass-card card-content" style="margin-bottom: 30px;">
-            <h2 style="margin-top: 0; font-size: 1.5rem; margin-bottom: 20px; border-left: 4px solid var(--ios-blue); padding-left: 15px;">Education</h2>
+        <div class="glass-card card-content resume-card">
+            <h2 class="resume-section-title">Education</h2>
             <div>
                 <div class="resume-header">
                     <div>
@@ -108,14 +92,14 @@
             </div>
         </div>
 
-        <div class="glass-card card-content" style="margin-bottom: 30px;">
-            <h2 style="margin-top: 0; font-size: 1.5rem; margin-bottom: 30px; border-left: 4px solid var(--ios-blue); padding-left: 15px;">Projects</h2>
-            
-            <div style="margin-bottom: 30px;">
+        <div class="glass-card card-content resume-card">
+            <h2 class="resume-section-title">Projects</h2>
+
+            <div class="resume-entry">
                 <div class="resume-header">
                     <div>
                         <div class="role-title">UV Environmental Monitor</div>
-                        <div class="company-name">CS 370 — Team Project (3 members)</div>
+                        <div class="company-name">CS 370: Team Project (3 members)</div>
                     </div>
                     <div class="date-range"><time datetime="2026">2026</time></div>
                 </div>
@@ -125,7 +109,7 @@
                 </ul>
             </div>
 
-            <div style="margin-bottom: 30px;">
+            <div class="resume-entry">
                 <div class="resume-header">
                     <div class="role-title">KanaCard (Japanese Learning App)</div>
                     <div class="date-range"><time datetime="2025">2025</time> – <time datetime="2026">2026</time></div>
@@ -150,9 +134,9 @@
             </div>
         </div>
 
-        <div class="glass-card card-content" style="margin-bottom: 30px;">
-            <h2 style="margin-top: 0; font-size: 1.5rem; margin-bottom: 20px; border-left: 4px solid var(--ios-blue); padding-left: 15px;">Technical Skills</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+        <div class="glass-card card-content resume-card">
+            <h2 class="resume-section-title">Technical Skills</h2>
+            <div class="badge-wrap">
                 <span class="tech-badge">Swift</span>
                 <span class="tech-badge">SwiftUI</span>
                 <span class="tech-badge">C++</span>
@@ -176,10 +160,10 @@
             </div>
         </div>
 
-        <div class="glass-card card-content" style="margin-bottom: 50px;">
-            <h2 style="margin-top: 0; font-size: 1.5rem; margin-bottom: 30px; border-left: 4px solid var(--ios-blue); padding-left: 15px;">Experience</h2>
-            
-            <div style="margin-bottom: 40px;">
+        <div class="glass-card card-content resume-card">
+            <h2 class="resume-section-title">Experience</h2>
+
+            <div class="resume-entry">
                 <div class="resume-header">
                     <div>
                         <div class="role-title">Ramp Agent</div>
@@ -208,12 +192,12 @@
             </div>
         </div>
 
-        <div style="text-align: center;">
-            <p style="color: var(--text-muted); margin-bottom: 20px; font-weight: 500;">Document Preview</p>
-            <div class="glass-card" style="padding: 10px; height: 800px;">
-                <object data="Resume.pdf" type="application/pdf" width="100%" height="100%" style="border-radius: 12px; border: none;">
-                    <div class="pdf-fallback" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-                        <p style="margin-bottom: 15px; color: var(--text-color); font-size: 1.1rem;">Unable to display PDF directly?</p>
+        <div class="text-center">
+            <p class="pdf-preview-label">Document Preview</p>
+            <div class="glass-card pdf-preview">
+                <object data="Resume.pdf" type="application/pdf" width="100%" height="100%" class="pdf-frame">
+                    <div class="pdf-fallback">
+                        <p>Unable to display PDF directly?</p>
                         <a href="Resume.pdf" class="btn" download>Download PDF</a>
                     </div>
                 </object>
@@ -222,36 +206,7 @@
 
     </main>
 
-    <footer>
-        <p>&copy; 2026 Kevin Struna. All rights reserved.</p>
-        <div style="margin-top: 15px;">
-            <a href="index.html">Home</a>
-            <span class="sep">|</span>
-            <a href="projects.html">Projects</a>
-            <span class="sep">|</span>
-            <a href="about.html">About</a>
-            <span class="sep">|</span>
-            <a href="resume.html">Resume</a>
-            <span class="sep">|</span>
-            <a href="contact.html">Contact</a>
-            <span class="sep">|</span>
-            <a href="blog.html">Blog</a>
-        </div>
-    </footer>
+    <div id="site-footer"></div>
 
-    <button id="back-to-top" aria-label="Back to top" title="Back to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </button>
-    <script>
-        (function() {
-            var btn = document.getElementById('back-to-top');
-            window.addEventListener('scroll', function() {
-                btn.classList.toggle('visible', window.scrollY > 300);
-            }, { passive: true });
-            btn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        })();
-    </script>
 </body>
 </html>

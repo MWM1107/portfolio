@@ -3,76 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kevin Struna's blog — thoughts on iOS development, Swift, SwiftUI, and the Apple ecosystem.">
+    <meta name="description" content="Kevin Struna's blog. Thoughts on iOS development, Swift, SwiftUI, and the Apple ecosystem.">
     <meta property="og:title" content="Blog | Kevin Struna">
-    <meta property="og:description" content="Kevin Struna's blog — thoughts on iOS development, Swift, SwiftUI, and the Apple ecosystem.">
+    <meta property="og:description" content="Kevin Struna's blog. Thoughts on iOS development, Swift, SwiftUI, and the Apple ecosystem.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://kevinstruna.dev/img/xcc-hero-light_2x.png">
     <meta property="og:url" content="https://kevinstruna.dev/blog.html">
     <meta property="og:site_name" content="Kevin Struna">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog | Kevin Struna">
+    <meta name="twitter:description" content="Kevin Struna's blog. Thoughts on iOS development, Swift, SwiftUI, and the Apple ecosystem.">
+    <meta name="twitter:image" content="https://kevinstruna.dev/img/xcc-hero-light_2x.png">
     <title>Blog | Kevin Struna</title>
     <link rel="canonical" href="https://kevinstruna.dev/blog.html" />
     <link rel="icon" type="image/png" href="img/favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <script src="theme.js"></script>
-    <style>
-        .post-card {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-            overflow: hidden; /* Keeps the top corners rounded for the image */
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+    <script src="js/layout.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Kevin Struna's Blog",
+      "url": "https://kevinstruna.dev/blog.html",
+      "description": "Thoughts on iOS development, Swift, SwiftUI, and the Apple ecosystem.",
+      "author": { "@type": "Person", "name": "Kevin Struna", "url": "https://kevinstruna.dev/" },
+      "blogPost": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Why Apple Should Open the Door for Students and Indie Developers",
+          "url": "https://kevinstruna.dev/apple-developer-fee.html",
+          "datePublished": "2026-04-29",
+          "author": { "@type": "Person", "name": "Kevin Struna", "url": "https://kevinstruna.dev/" }
         }
-
-        .post-card .card-content {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .post-meta {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            letter-spacing: 0.02em;
-            margin: 0;
-        }
-
-        .post-title {
-            font-size: 1.7rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        .post-excerpt {
-            font-size: 1rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin: 0;
-        }
-        
-        .blog-thumbnail {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--card-border);
-            display: block;
-        }
-    </style>
+      ]
+    }
+    </script>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="about.html">About</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-        <a href="blog.html" class="active">Blog</a>
-        <span class="sep">|</span>
-        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
-    </nav>
+    <div id="site-nav"></div>
 
     <main>
         <div class="page-hero">
@@ -80,45 +50,30 @@
             <p class="tagline">Thoughts on development, design, and the Apple ecosystem.</p>
         </div>
 
-        <div style="max-width: 720px; margin: 0 auto;">
+        <div class="content-column content-column--blog">
 
-            <a href="apple-developer-fee.html" class="glass-card post-card" style="transition: transform 0.2s ease, box-shadow 0.2s ease;">
+            <a href="apple-developer-fee.html" class="glass-card post-card">
                 <img src="img/xcc-hero-light_2x.png" alt="Xcode 16 interface on a Mac" class="blog-thumbnail">
                 <div class="card-content">
                     <h2 class="post-title">Why Apple Should Open the Door for Students and Indie Developers</h2>
                     <p class="post-meta"><time datetime="2026-04-29">April 29, 2026</time></p>
                     <p class="post-excerpt">Apple's $99/year developer fee and high commission fees are often the only things standing between a student with a great idea and a real app on the App Store. This post makes the case that removing that barrier would benefit Apple, developers, and users alike.</p>
                     
-                    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 10px;">
-                        <span style="color: var(--ios-blue); font-weight: 600; font-size: 0.9rem;">Read Article &rarr;</span>
-                        <span style="font-size: 0.65rem; color: var(--text-muted); opacity: 0.6;">Image © 2026 Apple Inc.</span>
+                    <div class="post-card-footer">
+                        <span class="inline-link">Read Article &rarr;</span>
+                        <span class="image-credit">Image © 2026 Apple Inc.</span>
                     </div>
                 </div>
             </a>
 
-            <div style="text-align: center; margin-top: 32px; margin-bottom: 8px;">
-                <span style="display: inline-block; padding: 8px 20px; border-radius: 100px; background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-muted); font-size: 0.85rem; font-weight: 500;">More posts coming soon</span>
+            <div class="coming-soon">
+                <span class="pill">More posts coming soon</span>
             </div>
 
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Kevin Struna. All rights reserved.</p>
-        <div style="margin-top: 15px;">
-            <a href="index.html">Home</a>
-            <span class="sep">|</span>
-            <a href="projects.html">Projects</a>
-            <span class="sep">|</span>
-            <a href="about.html">About</a>
-            <span class="sep">|</span>
-            <a href="resume.html">Resume</a>
-            <span class="sep">|</span>
-            <a href="contact.html">Contact</a>
-            <span class="sep">|</span>
-            <a href="blog.html">Blog</a>
-        </div>
-    </footer>
+    <div id="site-footer"></div>
 
 </body>
 </html>
