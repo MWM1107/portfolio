@@ -209,12 +209,22 @@
 }
 
 .product-card .card-content { display: flex; flex-direction: column; height: 100%; }
-.product-card p { flex-grow: 1; }
 .product-card h3 { margin-top: 0; margin-bottom: 6px; }
-.product-card p { margin-top: 0; color: var(--text-muted); font-size: 0.95rem; }
+.product-card p { margin: 0; color: var(--text-muted); font-size: 0.95rem; }
 
-/* "View on App Store / View Source" inline link on product cards */
-.card-link { color: var(--ios-blue); font-weight: 600; font-size: 0.9rem; }
+/* "View on App Store / View Source" inline link on product cards.
+   margin-top:auto pins the link to the bottom of the flex column so the
+   icon + title + meta stay grouped at the top (instead of the description
+   stretching and pushing the rating down), and the link never crowds the
+   chips above it. */
+.card-link {
+    color: var(--ios-blue);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: auto;
+    padding-top: 18px;
+}
+.product-card:hover .card-link { color: var(--ios-blue-hover); }
 
 /* Centered call-to-action under a section (e.g. "View All Projects") */
 .section-cta { text-align: center; margin: 40px 0; }
@@ -226,19 +236,33 @@
 .catalog-header .spacer { flex: 1; }
 .catalog-header .catalog-actions { flex: 1; display: flex; justify-content: flex-end; }
 
-.carousel-pause-btn {
-    background: var(--card-bg);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 50%;
-    width: 34px;
-    height: 34px;
-    cursor: pointer;
+/* Circular icon buttons for the carousel controls (catalog pause +
+   screenshot prev/next). One shared frosted skin built from theme tokens so
+   both controls match each other and adapt to light/dark with no per-theme
+   overrides. Hover mirrors the main .btn language: scale up + grow shadow. */
+.carousel-pause-btn,
+.screenshot-arrow {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 1;
     color: var(--text-color);
-    box-shadow: 0 2px 8px var(--shadow-light);
-    transition: box-shadow 0.2s ease;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    box-shadow: 0 4px 14px var(--shadow-medium);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.carousel-pause-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px var(--shadow-medium);
 }
 
 /* App Carousel */
@@ -299,35 +323,19 @@
     display: block;
 }
 
+/* Position-only: the arrows ride on top of the screenshot track, vertically
+   centred. translateY(-50%) is preserved in the hover transform below. */
 .screenshot-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(255,255,255,0.45);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(255,255,255,0.4);
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    cursor: pointer;
     font-size: 1rem;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow:
-        0 4px 16px rgba(0,0,0,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.6);
     z-index: 2;
-    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    color: #1c1c1e;
-    line-height: 1;
 }
 
 .screenshot-arrow:hover {
-    background-color: rgba(255,255,255,0.75);
     transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px var(--shadow-medium);
 }
 
 .screenshot-arrow-prev { left: 10px; }
@@ -345,14 +353,21 @@
 .app-meta {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin-top: 14px;
+    gap: 6px;
+    margin-top: 12px;
 }
 .app-rating { display: inline-flex; align-items: center; gap: 8px; }
 .app-rating .rating-num { color: var(--text-color); font-weight: 700; font-size: 0.9rem; }
 .app-downloads { color: var(--text-muted); font-size: 0.85rem; }
-/* Platform chips reuse .tech-badge for visual parity with the resume skills */
-.app-platforms { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+/* Platform chips reuse .tech-badge for visual parity with the resume skills.
+   The chip rows space themselves with gap, so the legacy per-badge margins
+   on .tech-badge are zeroed here (and in .badge-wrap) to avoid double gaps. */
+.app-platforms { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+/* When platforms are the only meta row (e.g. KanaCard, no rating above),
+   drop the extra top margin so they sit where the rating sits elsewhere. */
+.app-meta > .app-platforms:first-child { margin-top: 0; }
+.app-platforms .tech-badge,
+.badge-wrap .tech-badge { margin: 0; }
 
 /* Star bar: a grey row of stars with a gold overlay clipped to the rating.
    --fill is rating/5 as a percentage (4.3 -> 86%, 5.0 -> 100%). */
@@ -361,8 +376,9 @@
     position: relative;
     display: inline-block;
     color: #d2d2d7;
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1;
+    letter-spacing: 2px;
 }
 .stars::before { content: "\2605\2605\2605\2605\2605"; }
 .stars::after {
@@ -373,6 +389,7 @@
     width: var(--fill);
     overflow: hidden;
     color: #ff9f0a;
+    text-shadow: 0 1px 3px rgba(255, 159, 10, 0.35);
 }
 .stars--5   { --fill: 100%; }
 .stars--4-3 { --fill: 86%; }

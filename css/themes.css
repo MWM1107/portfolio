@@ -26,15 +26,6 @@ html[data-theme="dark"] input,
 html[data-theme="dark"] textarea { background-color: #1c1c1e !important; border-color: #3a3a3c !important; color: white !important; }
 html[data-theme="dark"] label { color: #d1d1d6 !important; }
 html[data-theme="dark"] .glass-card .card-content > div { border-color: rgba(255, 255, 255, 0.1) !important; }
-html[data-theme="dark"] .screenshot-arrow {
-    background-color: rgba(120,120,128,0.32);
-    border-color: rgba(255,255,255,0.16);
-    color: #f5f5f7;
-    box-shadow:
-        0 4px 16px rgba(0,0,0,0.4),
-        inset 0 1px 0 rgba(255,255,255,0.08);
-}
-html[data-theme="dark"] .screenshot-arrow:hover { background-color: rgba(120,120,128,0.45); }
 html[data-theme="dark"] .screenshot-track img { background: #1c1c1e; }
 
 /* Manual light mode (force light even on dark systems) */

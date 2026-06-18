@@ -9,7 +9,8 @@
         ['about.html', 'About'],
         ['resume.html', 'Resume'],
         ['contact.html', 'Contact'],
-        ['blog.html', 'Blog']
+        ['blog.html', 'Blog'],
+        ['uses.html', 'Uses']
     ];
 
     // Pages that should highlight a nav item other than themselves.
