@@ -255,21 +255,9 @@ input:focus, textarea:focus {
     font-size: 0.9rem;
 }
 
-/* --- Resume: card rhythm + PDF preview --- */
+/* --- Resume: card rhythm --- */
 .resume-card  { margin-bottom: 30px; }
 .resume-entry { margin-bottom: 30px; }
-
-.pdf-preview-label { color: var(--text-muted); margin-bottom: 20px; font-weight: 500; }
-.pdf-preview { padding: 10px; height: 800px; }
-.pdf-frame { border-radius: 12px; border: none; }
-.pdf-fallback {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-.pdf-fallback p { margin-bottom: 15px; color: var(--text-color); font-size: 1.1rem; }
 
 /* --- About: card titles, body copy, skills grid --- */
 .about-card-title {

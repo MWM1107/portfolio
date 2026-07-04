@@ -11,14 +11,13 @@ are antialiased.
 Run from the repo root:  python tools/make_og.py
 Requires Pillow (PIL).
 """
-import glob
+import sys
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
 
 W, H = 1200, 630
 SS = 3                      # supersample factor for antialiasing
 WW, WH = W * SS, H * SS
 PAD_L, PAD_T = 72, 66
-FONTS = "C:/Windows/Fonts/"
 
 ICON_DIRS = [
     "rogue-roll-dice-deck-builder",
@@ -35,8 +34,17 @@ def s(v):
     return round(v * SS)
 
 
-def font(name, size):
-    return ImageFont.truetype(FONTS + name, s(size))
+def font(weight, size):
+    """Load a font by weight ('bold' or 'semibold'), per-platform.
+
+    On macOS uses the San Francisco variable font (closest to the site's
+    -apple-system stack); on Windows falls back to Segoe UI."""
+    if sys.platform == "darwin":
+        f = ImageFont.truetype("/System/Library/Fonts/SFNS.ttf", s(size))
+        f.set_variation_by_name("Bold" if weight == "bold" else "Semibold")
+        return f
+    name = "segoeuib.ttf" if weight == "bold" else "seguisb.ttf"
+    return ImageFont.truetype("C:/Windows/Fonts/" + name, s(size))
 
 
 def gradient_bg():
@@ -98,25 +106,22 @@ def main():
     # --- Name / title ---
     draw = ImageDraw.Draw(img)
     tx = px + photo_d + s(40)
-    draw.text((tx, py + s(18)), "Kevin Struna", font=font("segoeuib.ttf", 82), fill=(29, 29, 31))
-    draw.text((tx, py + s(116)), "iOS Developer", font=font("seguisb.ttf", 38), fill=(0, 122, 255))
+    draw.text((tx, py + s(18)), "Kevin Struna", font=font("bold", 82), fill=(29, 29, 31))
+    draw.text((tx, py + s(116)), "Software Engineer", font=font("semibold", 38), fill=(0, 122, 255))
 
     # --- URL, top-right ---
-    draw.text((WW - s(PAD_L), s(64)), "kevinstruna.dev", font=font("seguisb.ttf", 26),
+    draw.text((WW - s(PAD_L), s(64)), "kevinstruna.dev", font=font("semibold", 26),
               fill=(134, 134, 139), anchor="ra")
 
     # --- Tagline ---
     draw.text((s(PAD_L), s(372)), "Six apps on the App Store. Built with Swift & SwiftUI.",
-              font=font("seguisb.ttf", 36), fill=(58, 58, 60))
+              font=font("semibold", 36), fill=(58, 58, 60))
 
     # --- App icon row ---
     size, gap, radius = s(108), s(22), s(25)
     y = WH - s(PAD_T) - size + s(6)
     for i, d in enumerate(ICON_DIRS):
-        matches = glob.glob(f"img/{d}/400x400bb-75*.webp")
-        if not matches:
-            raise SystemExit(f"icon not found for {d}")
-        ic = ImageOps.fit(Image.open(matches[0]).convert("RGBA"), (size, size), Image.LANCZOS)
+        ic = ImageOps.fit(Image.open(f"img/{d}/icon.webp").convert("RGBA"), (size, size), Image.LANCZOS)
         x = s(PAD_L) + i * (size + gap)
         img = shadow(img, (x, y, x + size, y + size), radius, s(14), 55, s(12))
         img.paste(ic, (x, y), rounded_mask((size, size), radius))
