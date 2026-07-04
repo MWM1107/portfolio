@@ -27,7 +27,10 @@ NAV_LINKS = [
 ]
 
 # Pages that should highlight a nav item other than themselves.
-ACTIVE_ALIASES = {"apple-developer-fee.html": "blog.html"}
+ACTIVE_ALIASES = {
+    "apple-developer-fee.html": "blog.html",
+    "kanacard.html": "projects.html",
+}
 
 GITHUB_URL = "https://github.com/MWM1107"
 LINKEDIN_URL = "https://www.linkedin.com/in/kevin-struna/"

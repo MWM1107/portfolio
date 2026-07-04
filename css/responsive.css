@@ -44,6 +44,7 @@
 
     /* Projects hero card */
     .hero-card { padding: 28px; margin-bottom: 32px; }
+    .hero-title h1,
     .hero-title h3 { font-size: 2rem; }
     .hero-icon-large { width: 80px; height: 80px; border-radius: 18px; }
     .hero-features { margin: 20px 0; gap: 12px; }

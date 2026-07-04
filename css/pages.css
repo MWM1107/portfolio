@@ -1,6 +1,33 @@
 /* ==========================================================================
-   PAGE-SPECIFIC: blog article, blog listing, resume, contact form
+   PAGE-SPECIFIC: blog article, blog listing, resume, contact form, case study
    ========================================================================== */
+
+/* --- Case study: code excerpts + prose rhythm --- */
+.case-card { margin-bottom: 30px; }
+
+.code-block {
+    background: #1d1d1f;
+    color: #e5e5ea;
+    border-radius: 16px;
+    padding: 20px 24px;
+    overflow-x: auto;
+    margin: 20px 0 8px;
+}
+
+.code-block code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    white-space: pre;
+}
+
+.code-caption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0 0 20px 4px;
+}
+
+.case-text { line-height: 1.7; margin-bottom: 15px; }
 
 /* --- Blog article --- */
 .back-link {
