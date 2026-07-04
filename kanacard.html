@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Case study: how Kevin Struna built KanaCard, a Japanese flashcard app, entirely by hand in SwiftUI — SM-2 spaced repetition, SwiftData persistence, and custom gesture physics.">
+    <meta name="description" content="Case study: how Kevin Struna built KanaCard, a Japanese flashcard app, entirely by hand in SwiftUI: SM-2 spaced repetition, SwiftData persistence, and custom gesture physics.">
     <meta property="og:title" content="KanaCard Case Study | Kevin Struna">
-    <meta property="og:description" content="How I built a Japanese flashcard app entirely by hand in SwiftUI — SM-2 spaced repetition, SwiftData persistence, and custom gesture physics.">
+    <meta property="og:description" content="How I built a Japanese flashcard app entirely by hand in SwiftUI: SM-2 spaced repetition, SwiftData persistence, and custom gesture physics.">
     <meta property="og:type" content="article">
     <meta property="og:image" content="https://kevinstruna.dev/img/og-image.png">
     <meta property="og:image:width" content="1200">
@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Kevin Struna">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="KanaCard Case Study | Kevin Struna">
-    <meta name="twitter:description" content="How I built a Japanese flashcard app entirely by hand in SwiftUI — SM-2 spaced repetition, SwiftData persistence, and custom gesture physics.">
+    <meta name="twitter:description" content="How I built a Japanese flashcard app entirely by hand in SwiftUI: SM-2 spaced repetition, SwiftData persistence, and custom gesture physics.">
     <meta name="twitter:image" content="https://kevinstruna.dev/img/og-image.png">
     <title>KanaCard Case Study | Kevin Struna</title>
     <link rel="canonical" href="https://kevinstruna.dev/kanacard.html" />
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <p class="hero-lead">
-                A Japanese flashcard app with real spaced repetition, built <strong>entirely by hand — no AI-generated code</strong>. This page walks through how it actually works: the scheduling algorithm, the architecture, and the gesture physics, with the real code.
+                A Japanese flashcard app with real spaced repetition, built <strong>entirely by hand, with no AI-generated code</strong>. This page walks through how it actually works: the scheduling algorithm, the architecture, and the gesture physics, with the real code.
             </p>
             <a href="https://github.com/MWM1107/KanaCard" target="_blank" rel="noopener noreferrer" class="btn btn-light">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21C9.5 20.77 9.5 20.14 9.5 19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26C14.5 19.6 14.5 20.68 14.5 21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
@@ -88,10 +88,10 @@
         <div class="glass-card card-content case-card">
             <h2 class="mt-0">Why I built it</h2>
             <p class="case-text">
-                I'm learning Japanese, and the first wall every learner hits is memorizing two full syllabaries — hiragana and katakana, 208 characters once you count the voiced, semi-voiced, and contracted variants. Plenty of flashcard apps exist. I wanted two things they didn't give me: a review schedule backed by an actual spaced-repetition algorithm rather than "shuffle and repeat," and cards that feel like physical objects instead of buttons.
+                I'm learning Japanese, and the first wall every learner hits is memorizing two full syllabaries: hiragana and katakana, 208 characters once you count the voiced, semi-voiced, and contracted variants. Plenty of flashcard apps exist. I wanted two things they didn't give me: a review schedule backed by an actual spaced-repetition algorithm rather than "shuffle and repeat," and cards that feel like physical objects instead of buttons.
             </p>
             <p class="case-text">
-                There was a second reason. Most of my shipped apps were built fast with AI tools in the loop. KanaCard is the opposite experiment: every line written by hand, as proof to myself — and to anyone reading the code — that I can design and build a complete app from a blank Xcode project.
+                There was a second reason. Most of my shipped apps were built fast with AI tools in the loop. KanaCard is the opposite experiment: every line written by hand, as proof to myself (and to anyone reading the code) that I can design and build a complete app from a blank Xcode project.
             </p>
         </div>
 
@@ -113,9 +113,9 @@ class Kana: Identifiable, Comparable {
     var easeFactor: Double    // growth multiplier, starts at 2.5
     var repetitions: Int      // consecutive correct answers
 }</code></div>
-            <p class="code-caption">Kana.swift — the model owns its own scheduling state, so persistence is free with SwiftData.</p>
+            <p class="code-caption">Kana.swift: the model owns its own scheduling state, so persistence is free with SwiftData.</p>
             <p class="case-text">
-                The decision I like most: <strong>the review queue isn't a separate data structure — it's a filter.</strong> A card is "due" when its <code>dueDate</code> has passed, so the active deck is just a computed property over the fetched cards. Rating a card pushes its due date into the future, and it falls out of the queue on the next read. No queue bookkeeping, nothing to get out of sync:
+                The decision I like most: <strong>the review queue isn't a separate data structure, it's a filter.</strong> A card is "due" when its <code>dueDate</code> has passed, so the active deck is just a computed property over the fetched cards. Rating a card pushes its due date into the future, and it falls out of the queue on the next read. No queue bookkeeping, nothing to get out of sync:
             </p>
             <div class="code-block"><code>var filteredKana: [Kana] {
     // ... script-type and variant filters build `allowed` ...
@@ -123,7 +123,7 @@ class Kana: Identifiable, Comparable {
         allowed.contains(kana.variant) &amp;&amp; kana.dueDate &lt;= Date()
     }
 }</code></div>
-            <p class="code-caption">KanaViewModel.swift — the daily review queue is a computed property, not a managed collection.</p>
+            <p class="code-caption">KanaViewModel.swift: the daily review queue is a computed property, not a managed collection.</p>
         </div>
 
         <div class="glass-card card-content case-card">
@@ -165,16 +165,16 @@ class Kana: Identifiable, Comparable {
     try? modelContext?.save()
     nextCard()
 }</code></div>
-            <p class="code-caption">KanaViewModel.swift — the full rating pipeline, lightly condensed. A card counts as "mastered" once its interval crosses 21 days.</p>
+            <p class="code-caption">KanaViewModel.swift: the full rating pipeline, lightly condensed. A card counts as "mastered" once its interval crosses 21 days.</p>
             <p class="case-text">
-                The same scheduling state feeds a Swift Charts dashboard: a seven-day forecast of upcoming reviews (computed by bucketing due dates per calendar day), mastery breakdowns split by script, and a rating-history chart — all derived from the cards themselves, with no separate analytics store.
+                The same scheduling state feeds a Swift Charts dashboard: a seven-day forecast of upcoming reviews (computed by bucketing due dates per calendar day), mastery breakdowns split by script, and a rating-history chart, all derived from the cards themselves, with no separate analytics store.
             </p>
         </div>
 
         <div class="glass-card card-content case-card">
             <h2 class="mt-0">Making cards feel physical</h2>
             <p class="case-text">
-                The card is the whole UI, so it had to feel right. Three pieces work together. First, the flip is a real 3D rotation — <code>rotation3DEffect</code> around the y-axis, with the romaji face pre-rotated 180° so text reads correctly on the far side. Second, dragging uses an interactive spring, and the release handler decides the card's fate: past a 50-point threshold it gets flung off-screen (an animated offset to ±1000) and the deck advances in the animation's <code>completion</code> block; under the threshold it springs back to center:
+                The card is the whole UI, so it had to feel right. Three pieces work together. First, the flip is a real 3D rotation: <code>rotation3DEffect</code> around the y-axis, with the romaji face pre-rotated 180° so text reads correctly on the far side. Second, dragging uses an interactive spring, and the release handler decides the card's fate: past a 50-point threshold it gets flung off-screen (an animated offset to ±1000) and the deck advances in the animation's <code>completion</code> block; under the threshold it springs back to center:
             </p>
             <div class="code-block"><code>DragGesture(minimumDistance: 15)
     .onChanged { value in
@@ -194,14 +194,14 @@ class Kana: Identifiable, Comparable {
             dragDisplacement = .zero
         }
     }</code></div>
-            <p class="code-caption">CardView.swift — fling past the threshold and the deck advances in the animation's completion; otherwise the spring pulls the card home.</p>
+            <p class="code-caption">CardView.swift: fling past the threshold and the deck advances in the animation's completion; otherwise the spring pulls the card home.</p>
             <p class="case-text">
-                Third, the physics extras that sell it: the card tilts as you drag (<code>rotationEffect</code> of one degree per ten points of displacement), and the drop shadow is computed from the drag vector and flip angle, so light appears to come from a fixed point above the card — the shadow slides opposite your finger and tightens mid-flip when the card is edge-on:
+                Third, the physics extras that sell it: the card tilts as you drag (<code>rotationEffect</code> of one degree per ten points of displacement), and the drop shadow is computed from the drag vector and flip angle, so light appears to come from a fixed point above the card. The shadow slides opposite your finger and tightens mid-flip when the card is edge-on:
             </p>
             <div class="code-block"><code>let shadowX = -dragDisplacement.width / 10.0
 let shadowY = -dragDisplacement.height / 10.0
 let shadowAmount = 5.0 + 15.0 * (1.0 - abs(90 - angle) / 90.0)</code></div>
-            <p class="code-caption">CardView.swift — the shadow moves against the drag and collapses as the card turns edge-on, faking a fixed overhead light.</p>
+            <p class="code-caption">CardView.swift: the shadow moves against the drag and collapses as the card turns edge-on, faking a fixed overhead light.</p>
         </div>
 
         <div class="glass-card card-content case-card">
@@ -210,7 +210,7 @@ let shadowAmount = 5.0 + 15.0 * (1.0 - abs(90 - angle) / 90.0)</code></div>
                 An honest list, because a case study that pretends everything works is just marketing:
             </p>
             <ul class="resume-list">
-                <li>The glass card background has a specular <code>RadialGradient</code> highlight designed to track your finger — but it currently holds its own drag state that never updates, so the highlight sits centered. The fix is sharing the drag displacement through the view model instead of duplicating <code>@State</code>.</li>
+                <li>The glass card background has a specular <code>RadialGradient</code> highlight designed to track your finger, but it currently holds its own drag state that never updates, so the highlight sits centered. The fix is sharing the drag displacement through the view model instead of duplicating <code>@State</code>.</li>
                 <li>The SM-2 math is pure logic begging for unit tests, and the test target is still the Xcode template. Extracting the scheduler out of the view model into its own testable type is the next refactor.</li>
                 <li>Review history is derived from current card state, which means the stats can't show trends over time. A proper review-log model would fix that.</li>
             </ul>
@@ -219,7 +219,7 @@ let shadowAmount = 5.0 + 15.0 * (1.0 - abs(90 - angle) / 90.0)</code></div>
         <div class="glass-card code-cta">
             <div class="card-content">
                 <h3 class="mt-0 mb-10">Read the code yourself</h3>
-                <p>Every line of KanaCard is on GitHub — models, view model, gesture work, and all.</p>
+                <p>Every line of KanaCard is on GitHub: models, view model, gesture work, and all.</p>
                 <a href="https://github.com/MWM1107/KanaCard" target="_blank" rel="noopener noreferrer" class="btn btn-dark">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21C9.5 20.77 9.5 20.14 9.5 19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26C14.5 19.6 14.5 20.68 14.5 21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
                     KanaCard on GitHub
