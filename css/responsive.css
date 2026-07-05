@@ -81,4 +81,5 @@
     html { scroll-behavior: auto; }
     .carousel-track { animation-play-state: paused; }
     main > section, .hero-card, .bento-grid, .glass-card { animation: none; }
+    .pill-dot { animation: none; }
 }

@@ -394,16 +394,31 @@ input:focus, textarea:focus {
     margin-top: 10px;
 }
 .image-credit { font-size: 0.65rem; color: var(--text-muted); opacity: 0.6; }
-.coming-soon { text-align: center; margin-top: 32px; margin-bottom: 8px; }
+.coming-soon { text-align: center; margin-top: 40px; margin-bottom: 8px; }
+/* Accent tint (rather than the neutral card-bg used elsewhere) so this
+   reads as a live status, not a faded placeholder. */
 .pill {
-    display: inline-block;
-    padding: 8px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
     border-radius: 100px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    font-weight: 500;
+    background: rgba(0, 122, 255, 0.12);
+    border: 1px solid rgba(0, 122, 255, 0.25);
+    color: var(--ios-blue);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.pill-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ios-blue);
+    animation: pill-pulse 1.8s ease-in-out infinite;
+}
+@keyframes pill-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
 }
 
 /* --- Blog article header --- */
