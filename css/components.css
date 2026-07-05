@@ -211,7 +211,10 @@
 
 .product-card .card-content { display: flex; flex-direction: column; height: 100%; }
 .product-card h3 { margin-top: 0; margin-bottom: 6px; }
-.product-card p { margin: 0; color: var(--text-muted); font-size: 0.95rem; }
+/* min-height reserves two lines regardless of how much a given app's
+   description actually wraps, so cards with a one-line blurb don't end
+   up shorter than a neighbor whose blurb wraps to two. */
+.product-card p { margin: 0; color: var(--text-muted); font-size: 0.95rem; min-height: 2.85rem; }
 
 /* "View on App Store / View Source" inline link on product cards.
    margin-top:auto pins the link to the bottom of the flex column so the
@@ -342,8 +345,10 @@
 .screenshot-arrow-prev { left: 10px; }
 .screenshot-arrow-next { right: 10px; }
 
-.project-card p { flex-grow: 0; }
-.project-card .card-content { height: auto; }
+/* Shipped-product cards use the same stretched-height layout as any other
+   product card (see .product-card .card-content above) so every card in
+   a row matches height regardless of description length or whether an
+   app has a downloads figure. */
 
 /* "Deep Dive into the Code" GitHub call-to-action card */
 .code-cta { max-width: 500px; margin: 80px auto 40px; text-align: center; }
@@ -360,6 +365,11 @@
 .app-rating { display: inline-flex; align-items: center; gap: 8px; }
 .app-rating .rating-num { color: var(--text-color); font-weight: 700; font-size: 0.9rem; }
 .app-downloads { color: var(--text-muted); font-size: 0.85rem; }
+/* Reserves the same line height as a real rating/downloads row without
+   showing or announcing anything, so cards for apps without a public
+   rating or a downloads figure still match the height of cards that
+   have one. */
+.is-placeholder { visibility: hidden; }
 /* Platform chips reuse .tech-badge for visual parity with the resume skills.
    The chip rows space themselves with gap, so the legacy per-badge margins
    on .tech-badge are zeroed here (and in .badge-wrap) to avoid double gaps. */

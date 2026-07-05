@@ -38,10 +38,15 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
-/* Inline demo video on a product card (e.g. Rogue Roll on the homepage) */
+/* Inline demo video on a product card (e.g. Rogue Roll on the homepage).
+   Recordings are captured portrait on-device, so a fixed height + cover
+   crop keeps the card from being dictated by the video's full vertical
+   length; see uniform-height notes on .product-card p / .app-meta below. */
 .card-video {
     display: block;
     width: 100%;
+    height: 200px;
+    object-fit: cover;
     border-radius: 16px;
     margin: 4px 0 16px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.12);
