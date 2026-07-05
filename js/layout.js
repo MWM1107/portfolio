@@ -39,3 +39,20 @@
         init();
     }
 })();
+
+// Demo videos (homepage Rogue Roll card, KanaCard case study) toggle
+// play/pause on click instead of just sitting there autoplaying with no
+// visible affordance. On the homepage the video also sits inside a card
+// that otherwise links out to the App Store, so this stops the click
+// before it reaches the enclosing <a>.
+window.toggleCardVideo = function (event, wrap) {
+    event.preventDefault();
+    event.stopPropagation();
+    var video = wrap.querySelector('video');
+    if (!video) return;
+    if (video.paused) {
+        video.play();
+    } else {
+        video.pause();
+    }
+};

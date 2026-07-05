@@ -46,14 +46,21 @@
 
 .case-text { line-height: 1.7; margin-bottom: 15px; }
 
-.demo-video {
-    display: block;
-    width: 100%;
+/* Case-study demo video. The wrap owns layout/framing and the click
+   handler; .video-cta (defined below, shared with the homepage card
+   video) signals it's playable so a viewer who catches it mid-pause
+   doesn't mistake it for a static screenshot. */
+.demo-video-wrap {
+    position: relative;
     max-width: 340px;
     margin: 0 auto;
     border-radius: 28px;
+    overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    cursor: pointer;
 }
+
+.demo-video { display: block; width: 100%; }
 
 /* Inline demo video on a product card (e.g. Rogue Roll on the homepage).
    flex: 1 1 auto lets the video claim whatever slack space the featured
