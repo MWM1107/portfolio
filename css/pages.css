@@ -1,6 +1,23 @@
 /* ==========================================================================
-   PAGE-SPECIFIC: blog article, blog listing, resume, contact form, case study
+   PAGE-SPECIFIC: blog article, blog listing, resume, contact form, case
+   study, homepage Featured Work grid
    ========================================================================== */
+
+/* --- Homepage: Featured Work asymmetric grid ---
+   Three cards: two stack in the first column, the video card spans both
+   rows in the second column so the demo gets real vertical presence
+   instead of being squeezed into a same-height row with the others.
+   grid-auto-flow's default packing does the column assignment for us:
+   card 1 fills col1/row1, the row-span-2 video card claims col2 (both
+   rows), card 3 falls into the only cell left, col1/row2. */
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.featured-video-card { grid-row: span 2; }
 
 /* --- Case study: code excerpts + prose rhythm --- */
 .case-card { margin-bottom: 30px; }
@@ -39,18 +56,55 @@
 }
 
 /* Inline demo video on a product card (e.g. Rogue Roll on the homepage).
-   Recordings are captured portrait on-device, so a fixed height + cover
-   crop keeps the card from being dictated by the video's full vertical
-   length; see uniform-height notes on .product-card p / .app-meta below. */
+   flex: 1 1 auto lets the video claim whatever slack space the featured
+   grid's row-stretch hands its card, rather than a hand-picked pixel
+   height that would only look right at one viewport width; min-height
+   keeps it from collapsing when there's no extra space to absorb (e.g.
+   the single-column mobile layout). The video is absolutely positioned
+   to fill the wrap so growth doesn't distort its cropped aspect ratio. */
+.card-video-wrap {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 180px;
+    margin: 4px 0 16px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    cursor: pointer;
+}
+
 .card-video {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
-    border-radius: 16px;
-    margin: 4px 0 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
+
+/* Small overlay pill so a demo video reads as playable content instead
+   of a static screenshot. pointer-events: none lets clicks fall through
+   to the wrap's own handler regardless of where on the badge they land. */
+.video-cta {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 99px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    pointer-events: none;
+}
+.video-cta svg { flex-shrink: 0; }
 
 /* --- Blog article --- */
 .back-link {

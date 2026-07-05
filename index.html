@@ -82,7 +82,7 @@
                 <h2>Featured Work</h2>
             </div>
             
-            <div class="bento-grid">
+            <div class="featured-grid">
                 <a href="kanacard.html" class="glass-card product-card">
                     <div class="card-content">
                         <img src="img/KanaCard.webp" alt="KanaCard Icon" class="app-icon">
@@ -100,14 +100,20 @@
                     </div>
                 </a>
 
-                <a href="https://apps.apple.com/us/app/rogue-roll-dice-deck-builder/id6757452802" target="_blank" rel="noopener noreferrer" class="glass-card product-card">
+                <a href="https://apps.apple.com/us/app/rogue-roll-dice-deck-builder/id6757452802" target="_blank" rel="noopener noreferrer" class="glass-card product-card featured-video-card">
                     <div class="card-content">
                         <img src="img/rogue-roll-dice-deck-builder/icon.webp" alt="Rogue Roll Icon" class="app-icon">
                         <h3>Rogue Roll</h3>
                         <p>Roguelike dice deckbuilder. Published on the App Store with complex game logic.</p>
-                        <video class="card-video" autoplay loop muted playsinline preload="metadata" poster="img/rogue-roll-demo-poster.jpg" aria-label="Screen recording of a Rogue Roll round in progress">
-                            <source src="img/rogue-roll-demo.mp4" type="video/mp4">
-                        </video>
+                        <div class="card-video-wrap" onclick="toggleCardVideo(event, this)">
+                            <video class="card-video" autoplay loop muted playsinline preload="metadata" poster="img/rogue-roll-demo-poster.jpg" aria-label="Screen recording of a Rogue Roll round in progress">
+                                <source src="img/rogue-roll-demo.mp4" type="video/mp4">
+                            </video>
+                            <span class="video-cta" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                Watch Demo
+                            </span>
+                        </div>
                         <div class="app-meta">
                             <span class="app-rating" aria-label="Rated 5 out of 5 stars">
                                 <span class="stars stars--5" aria-hidden="true"></span>

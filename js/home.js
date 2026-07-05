@@ -13,3 +13,19 @@
             : '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
     };
 })();
+
+// Homepage: the Rogue Roll demo video sits inside a card that otherwise
+// links out to the App Store. Clicking the video itself should toggle
+// playback, not hijack navigation, so stop the click before it reaches
+// the enclosing <a>.
+window.toggleCardVideo = function (event, wrap) {
+    event.preventDefault();
+    event.stopPropagation();
+    var video = wrap.querySelector('video');
+    if (!video) return;
+    if (video.paused) {
+        video.play();
+    } else {
+        video.pause();
+    }
+};

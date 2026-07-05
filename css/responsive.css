@@ -64,6 +64,11 @@
     .bento-grid { grid-template-columns: 1fr; }
     .grid-span-2 { grid-column: span 1; }
 
+    /* Featured Work grid: single column, natural DOM order, no rowspan */
+    .featured-grid { grid-template-columns: 1fr; }
+    .featured-video-card { grid-row: auto; }
+    .card-video-wrap { min-height: 220px; }
+
     /* Blog */
     .hero-banner { height: 200px; }
 
