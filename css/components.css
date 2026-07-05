@@ -314,8 +314,7 @@
 
 .screenshot-track::-webkit-scrollbar { display: none; }
 
-.screenshot-track img,
-.screenshot-track video {
+.screenshot-track img {
     flex: 0 0 calc((100% - 20px) / 3);
     min-width: 0;
     height: auto;

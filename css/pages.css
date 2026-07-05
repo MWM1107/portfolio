@@ -38,6 +38,15 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
+/* Inline demo video on a product card (e.g. Rogue Roll on the homepage) */
+.card-video {
+    display: block;
+    width: 100%;
+    border-radius: 16px;
+    margin: 4px 0 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
 /* --- Blog article --- */
 .back-link {
     color: var(--ios-blue);
