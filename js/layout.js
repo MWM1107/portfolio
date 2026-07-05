@@ -40,11 +40,9 @@
     }
 })();
 
-// Demo videos (homepage Rogue Roll card, KanaCard case study) toggle
-// play/pause on click instead of just sitting there autoplaying with no
-// visible affordance. On the homepage the video also sits inside a card
-// that otherwise links out to the App Store, so this stops the click
-// before it reaches the enclosing <a>.
+// Demo video that doesn't sit inside a cropped card preview (e.g. the
+// KanaCard case study): clicking just toggles play/pause, since the
+// full picture is already visible at its natural aspect ratio.
 window.toggleCardVideo = function (event, wrap) {
     event.preventDefault();
     event.stopPropagation();
@@ -56,3 +54,53 @@ window.toggleCardVideo = function (event, wrap) {
         video.pause();
     }
 };
+
+// Full-video lightbox: for card previews that crop a portrait recording
+// to fit a grid cell (e.g. the homepage Rogue Roll card), clicking opens
+// an overlay with the uncropped video at its natural aspect ratio. The
+// overlay is a fixed-position layer built once and reused, so opening it
+// never touches the surrounding grid's layout or the other cards' size.
+(function () {
+    var modal, modalVideo;
+
+    function build() {
+        if (modal) return;
+        modal = document.createElement('div');
+        modal.className = 'video-modal';
+        modal.innerHTML =
+            '<button type="button" class="video-modal-close" aria-label="Close video">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>' +
+            '</button>' +
+            '<video class="video-modal-video" controls loop playsinline></video>';
+        modal.addEventListener('click', function (event) {
+            if (event.target === modal) close();
+        });
+        modal.querySelector('.video-modal-close').addEventListener('click', close);
+        document.body.appendChild(modal);
+        modalVideo = modal.querySelector('video');
+    }
+
+    function close() {
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        document.body.classList.remove('video-modal-open');
+        modalVideo.pause();
+    }
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && modal && modal.classList.contains('is-open')) close();
+    });
+
+    window.openVideoModal = function (event, src, label, poster) {
+        event.preventDefault();
+        event.stopPropagation();
+        build();
+        modalVideo.src = src;
+        modalVideo.poster = poster || '';
+        modalVideo.setAttribute('aria-label', label || 'Demo video');
+        modal.classList.add('is-open');
+        document.body.classList.add('video-modal-open');
+        modalVideo.currentTime = 0;
+        modalVideo.play();
+    };
+})();
