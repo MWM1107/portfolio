@@ -19,9 +19,23 @@
         });
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', addBackToTop);
-    } else {
+    // Autoplaying demo videos should hold still for reduced-motion users.
+    function respectReducedMotion() {
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        document.querySelectorAll('video[autoplay]').forEach(function (v) {
+            v.removeAttribute('autoplay');
+            v.pause();
+        });
+    }
+
+    function init() {
         addBackToTop();
+        respectReducedMotion();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
 })();

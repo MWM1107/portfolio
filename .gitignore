@@ -1,6 +1,9 @@
 # Claude Code local settings
 .claude/
 
+# Raw screen recordings (compressed .mp4 versions are committed instead)
+img/*.mov
+
 # macOS
 .DS_Store
 
