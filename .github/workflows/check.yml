@@ -1,0 +1,21 @@
+name: Site checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Link, asset, and structured-data integrity
+        run: python3 tools/check_links.py
+
+      - name: Generated chrome and stats match the committed HTML
+        run: |
+          python3 tools/sync_chrome.py
+          python3 tools/sync_stats.py
+          git diff --exit-code

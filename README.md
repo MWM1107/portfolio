@@ -31,7 +31,26 @@ python3 tools/sync_chrome.py
 ```
 
 Don't hand-edit the markup between the `chrome:` comment markers in the HTML
-files; the next sync overwrites it.
+files; the next sync overwrites it. The script also stamps every local
+css/js URL with a short content hash (`?v=...`), so a changed asset always
+busts Cloudflare's four-hour browser cache.
+
+**`tools/sync_stats.py`**: the App Store ratings and download counts shown
+on the index and projects cards live in one `STATS` dict here. Edit the
+numbers, then:
+
+```sh
+python3 tools/sync_stats.py
+```
+
+**`tools/sync_sitemap.py`**: regenerates `sitemap.xml` with `lastmod` dates
+taken from each page's git history. Run it after content changes, in the
+same commit.
+
+**`tools/check_links.py`**: static integrity checks: broken refs, orphaned
+images, JSON-LD validity, duplicate ids, sitemap coverage. CI runs it on
+every push, plus a drift check that the generated chrome and stats match
+the committed HTML (`.github/workflows/check.yml`).
 
 **`tools/make_og.py`**: regenerates the social share card
 (`img/og-image.png`). Requires Pillow:

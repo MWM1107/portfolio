@@ -7,9 +7,9 @@
         var maxScroll = track.scrollWidth - track.clientWidth;
 
         if (dir > 0 && track.scrollLeft >= maxScroll - 1) {
-            track.scrollLeft = 0;
+            track.scrollTo({ left: 0, behavior: 'smooth' });
         } else if (dir < 0 && track.scrollLeft <= 1) {
-            track.scrollLeft = maxScroll;
+            track.scrollTo({ left: maxScroll, behavior: 'smooth' });
         } else {
             track.scrollBy({ left: dir * slideWidth, behavior: 'smooth' });
         }

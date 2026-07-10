@@ -11,10 +11,15 @@ re-run from the repo root:
     python3 tools/sync_chrome.py
 
 It rewrites the blocks between the chrome markers in each *.html file
-(idempotent; safe to run repeatedly). layout.js keeps only the behavior
-that genuinely needs JS (back-to-top button, video lightbox).
+(idempotent; safe to run repeatedly), then stamps every local css/js URL
+with a short content hash (?v=...) so a changed asset always gets a fresh
+URL. Cloudflare fronts the site with a 4-hour browser cache, and without
+the stamp a visitor can hold yesterday's stylesheet against today's HTML.
+layout.js keeps only the behavior that genuinely needs JS (back-to-top
+button, video lightbox).
 """
 import glob
+import hashlib
 import os
 import re
 
@@ -113,6 +118,25 @@ def footer_html(prefix):
     )
 
 
+# Any local stylesheet/script reference, with or without an existing stamp.
+ASSET_REF = re.compile(r'((?:href|src)=")(/?)((?:css|js)/[A-Za-z0-9_.-]+)(?:\?v=[0-9a-f]{8})?(")')
+
+
+def asset_version(path):
+    with open(path, "rb") as f:
+        return hashlib.md5(f.read()).hexdigest()[:8]
+
+
+def stamp_assets(html):
+    """Append ?v=<content hash> to every local css/js URL (idempotent)."""
+    return ASSET_REF.sub(
+        lambda m: "{0}{1}{2}?v={3}{4}".format(
+            m.group(1), m.group(2), m.group(3), asset_version(m.group(3)), m.group(4)
+        ),
+        html,
+    )
+
+
 def replace_block(html, start, end, block, legacy_placeholder=None):
     """Insert the generated block, replacing either the legacy JS-mount
     placeholder (first migration) or a previously generated block (re-runs)."""
@@ -143,6 +167,8 @@ def main():
         if 'class="skip-link"' not in html:
             html = html.replace("<body>", "<body>\n\n    " + SKIP_LINK, 1)
         html = html.replace("<main>", '<main id="main-content" tabindex="-1">', 1)
+
+        html = stamp_assets(html)
 
         with open(path, "w", encoding="utf-8") as f:
             f.write(html)

@@ -346,6 +346,9 @@ label {
 
 textarea { resize: vertical; }
 
+/* Formspree honeypot field; humans never see or tab to it */
+.gotcha-field { display: none; }
+
 input, textarea {
     width: 100%;
     padding: 16px;
