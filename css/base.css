@@ -5,6 +5,7 @@
 :root {
     --ios-blue: #007AFF;
     --ios-blue-hover: #006fe0;
+    --link-blue: #0066cc; /* apple.com's link blue: #007AFF fails AA as text on light */
     --bg-color: #f5f5f7;
     --text-color: #5c5c5c;
     --text-heading: #1d1d1f; /* Apple near-black for crisp headlines */

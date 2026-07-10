@@ -56,7 +56,7 @@ nav a {
 }
 
 nav a:hover, nav a.active {
-    color: var(--ios-blue);
+    color: var(--link-blue);
 }
 
 main {
@@ -78,7 +78,7 @@ footer {
 }
 
 footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; transition: color 0.2s;}
-footer a:hover { color: var(--ios-blue); text-decoration: none; }
+footer a:hover { color: var(--link-blue); text-decoration: none; }
 
 .footer-links { margin-top: 15px; }
 
@@ -102,7 +102,7 @@ footer a:hover { color: var(--ios-blue); text-decoration: none; }
 }
 
 .footer-socials a:hover {
-    color: var(--ios-blue);
+    color: var(--link-blue);
     transform: translateY(-2px);
 }
 
@@ -225,7 +225,7 @@ footer a:hover { color: var(--ios-blue); text-decoration: none; }
     line-height: 1;
 }
 
-.theme-toggle-btn:hover { color: var(--ios-blue); opacity: 1; }
+.theme-toggle-btn:hover { color: var(--link-blue); opacity: 1; }
 
 /* Back-to-top button (injected on every page by layout.js) */
 #back-to-top {
@@ -259,6 +259,6 @@ footer a:hover { color: var(--ios-blue); text-decoration: none; }
 }
 
 #back-to-top:hover {
-    color: var(--ios-blue);
+    color: var(--link-blue);
     box-shadow: 0 8px 24px var(--shadow-medium);
 }

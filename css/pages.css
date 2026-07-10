@@ -128,7 +128,7 @@
 
 /* --- Blog article --- */
 .back-link {
-    color: var(--ios-blue);
+    color: var(--link-blue);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
@@ -192,7 +192,7 @@
 }
 
 .article-link {
-    color: var(--ios-blue);
+    color: var(--link-blue);
     text-decoration: none;
     border-bottom: 1px solid currentColor;
     transition: opacity 0.2s ease;
@@ -331,13 +331,13 @@
     margin-bottom: 24px;
 }
 
+/* Full-opacity labels: the old 0.8 fade dropped them below AA contrast */
 label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
     font-size: 0.95rem;
     color: var(--text-color);
-    opacity: 0.8;
 }
 
 /* Leading icon next to each contact-form label */
@@ -416,7 +416,7 @@ input:focus, textarea:focus {
     align-items: flex-end;
     margin-top: 10px;
 }
-.image-credit { font-size: 0.65rem; color: var(--text-muted); opacity: 0.6; }
+.image-credit { font-size: 0.65rem; color: var(--text-muted); }
 .coming-soon { text-align: center; margin-top: 40px; margin-bottom: 8px; }
 /* Accent tint (rather than the neutral card-bg used elsewhere) so this
    reads as a live status, not a faded placeholder. */
@@ -428,7 +428,7 @@ input:focus, textarea:focus {
     border-radius: 100px;
     background: rgba(0, 122, 255, 0.12);
     border: 1px solid rgba(0, 122, 255, 0.25);
-    color: var(--ios-blue);
+    color: #0055aa; /* --link-blue only hits 4.4:1 on this tinted bg; this clears 6:1 */
     font-size: 0.9rem;
     font-weight: 600;
 }

@@ -6,6 +6,7 @@
 html[data-theme="dark"] {
     --ios-blue: #0A84FF; /* systemBlue dark variant, crisper on black */
     --ios-blue-hover: #2b8fff;
+    --link-blue: #0A84FF; /* plenty of contrast on black; no darker variant needed */
     --bg-color: #000000;
     --text-color: #f5f5f7;
     --text-heading: #f5f5f7;
@@ -27,11 +28,13 @@ html[data-theme="dark"] textarea { background-color: #1c1c1e !important; border-
 html[data-theme="dark"] label { color: #d1d1d6 !important; }
 html[data-theme="dark"] .glass-card .card-content > div { border-color: rgba(255, 255, 255, 0.1) !important; }
 html[data-theme="dark"] .screenshot-track img { background: #1c1c1e; }
+html[data-theme="dark"] .pill { color: var(--link-blue); } /* bright blue reads fine on the dark tint */
 
 /* Manual light mode (force light even on dark systems) */
 html[data-theme="light"] {
     --ios-blue: #007AFF;
     --ios-blue-hover: #006fe0;
+    --link-blue: #0066cc;
     --bg-color: #f5f5f7;
     --text-color: #5c5c5c;
     --text-heading: #1d1d1f;
@@ -46,7 +49,7 @@ html[data-theme="light"] body { background-color: #f5f5f7; }
 html[data-theme="light"] nav { background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(0,0,0,0.08); }
 html[data-theme="light"] .glass-card,
 html[data-theme="light"] .carousel-card { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 12px 24px -4px rgba(0, 0, 0, 0.06); }
-html[data-theme="light"] .tech-badge { background: #e5e5ea; color: #6e6e73; }
+html[data-theme="light"] .tech-badge { background: #e5e5ea; color: #5d5d62; }
 html[data-theme="light"] .section-header,
 html[data-theme="light"] footer { border-color: rgba(0,0,0,0.1); }
 html[data-theme="light"] input,

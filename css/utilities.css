@@ -10,7 +10,7 @@
 .text-muted  { color: var(--text-muted); }
 
 /* Inline accent link (e.g. "Find me on LinkedIn", "Read Article →") */
-.inline-link { color: var(--ios-blue); font-weight: 600; font-size: 0.9rem; }
+.inline-link { color: var(--link-blue); font-weight: 600; font-size: 0.9rem; }
 
 /* Centered reading column; the width comes from a modifier */
 .content-column          { margin-left: auto; margin-right: auto; }
