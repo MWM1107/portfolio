@@ -61,12 +61,14 @@ window.toggleCardVideo = function (event, wrap) {
 // overlay is a fixed-position layer built once and reused, so opening it
 // never touches the surrounding grid's layout or the other cards' size.
 (function () {
-    var modal, modalVideo;
+    var modal, modalVideo, opener;
 
     function build() {
         if (modal) return;
         modal = document.createElement('div');
         modal.className = 'video-modal';
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-modal', 'true');
         modal.innerHTML =
             '<button type="button" class="video-modal-close" aria-label="Close video">' +
             '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>' +
@@ -74,6 +76,21 @@ window.toggleCardVideo = function (event, wrap) {
             '<video class="video-modal-video" controls loop playsinline></video>';
         modal.addEventListener('click', function (event) {
             if (event.target === modal) close();
+        });
+        // aria-modal promises focus stays inside; keep Tab cycling between
+        // the close button and the video's native controls.
+        modal.addEventListener('keydown', function (event) {
+            if (event.key !== 'Tab') return;
+            var focusables = modal.querySelectorAll('button, video');
+            var first = focusables[0];
+            var last = focusables[focusables.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
         });
         modal.querySelector('.video-modal-close').addEventListener('click', close);
         document.body.appendChild(modal);
@@ -85,6 +102,9 @@ window.toggleCardVideo = function (event, wrap) {
         modal.classList.remove('is-open');
         document.body.classList.remove('video-modal-open');
         modalVideo.pause();
+        // Hand focus back to the button that launched the lightbox.
+        if (opener && document.contains(opener)) opener.focus();
+        opener = null;
     }
 
     document.addEventListener('keydown', function (event) {
@@ -95,12 +115,15 @@ window.toggleCardVideo = function (event, wrap) {
         event.preventDefault();
         event.stopPropagation();
         build();
+        opener = event.currentTarget || document.activeElement;
         modalVideo.src = src;
         modalVideo.poster = poster || '';
         modalVideo.setAttribute('aria-label', label || 'Demo video');
+        modal.setAttribute('aria-label', label || 'Demo video');
         modal.classList.add('is-open');
         document.body.classList.add('video-modal-open');
         modalVideo.currentTime = 0;
         modalVideo.play();
+        modal.querySelector('.video-modal-close').focus();
     };
 })();

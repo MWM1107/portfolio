@@ -23,19 +23,32 @@ function updateThemeIcon() {
     btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
 }
 
+// The two media-scoped <meta name="theme-color"> tags follow the OS on their
+// own; this re-points both at the active theme so the mobile address bar
+// also tracks a manual toggle that overrides the OS preference.
+function updateThemeColor() {
+    var color = isDarkMode() ? '#000000' : '#f5f5f7';
+    document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) {
+        m.setAttribute('content', color);
+    });
+}
+
 function toggleTheme() {
     var newTheme = isDarkMode() ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateThemeIcon();
+    updateThemeColor();
 }
 
 document.addEventListener('DOMContentLoaded', updateThemeIcon);
+updateThemeColor(); // the theme-color metas are parsed before this script (see chrome:head order)
 
 // Keep data-theme in sync if the OS preference changes and no manual override is saved
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
     if (!localStorage.getItem('theme')) {
         document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
         updateThemeIcon();
+        updateThemeColor();
     }
 });

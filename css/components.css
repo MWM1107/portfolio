@@ -202,6 +202,7 @@
 .grid-span-2 { grid-column: span 2; }
 
 .product-card {
+    position: relative; /* containing block for .card-link--overlay's stretched hit area */
     text-decoration: none;
     color: inherit;
     display: flex;
@@ -225,10 +226,17 @@
     color: var(--ios-blue);
     font-weight: 600;
     font-size: 0.9rem;
+    text-decoration: none; /* .card-link is sometimes a real <a>, not a span */
     margin-top: auto;
     padding-top: 18px;
 }
 .product-card:hover .card-link { color: var(--ios-blue-hover); }
+
+/* Stretched-link variant: when a product card holds a second control (the
+   featured video button), the card itself is a <div> and this real <a>
+   covers it via ::after. Controls that must stay clickable stack above the
+   overlay with their own z-index (see .card-video-wrap). */
+.card-link--overlay::after { content: ""; position: absolute; inset: 0; }
 
 /* Centered call-to-action under a section (e.g. "View All Projects") */
 .section-cta { text-align: center; margin: 40px 0; }

@@ -44,19 +44,19 @@ nav {
 }
 nav::-webkit-scrollbar { display: none; }
 
+/* No opacity fade on resting links: at 0.8 they fell below WCAG AA contrast
+   on the light background. Hover/active recolor instead. */
 nav a {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
     font-size: 0.9rem;
     margin: 0 12px;
-    transition: color 0.2s ease, opacity 0.2s ease;
-    opacity: 0.8;
+    transition: color 0.2s ease;
 }
 
 nav a:hover, nav a.active {
     color: var(--ios-blue);
-    opacity: 1;
 }
 
 main {
