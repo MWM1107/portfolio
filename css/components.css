@@ -116,6 +116,11 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.12);
 }
 
+/* Tilt-enabled cards (layout.js initTilt) track the cursor with an inline
+   transform, so their transform transition must be short: the default 0.4s
+   float would trail the pointer like rubber. */
+.glass-card[data-tilt] { transition: transform 0.18s ease-out, box-shadow 0.4s ease; }
+
 .card-content { padding: 35px; }
 
 /* Assets & Badges */
@@ -194,7 +199,10 @@
 /* Bento Grid */
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    /* 400px min (not 320): at main's 1200px width a 320px min would fit a
+       third column, which turns the About page's 2-up + full-width-span
+       layout into a grid with a hole. 400 keeps every page at 2-up. */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 24px;
     margin-top: 20px;
 }

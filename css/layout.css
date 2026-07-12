@@ -15,8 +15,10 @@
     font-weight: 600;
     font-size: 0.9rem;
     text-decoration: none;
+    /* -220%, not -150%: the resting spot must also clear the 14px shadow
+       blur, which at -150% still bled a few pixels into the viewport. */
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-    transform: translateY(-150%);
+    transform: translateY(-220%);
     transition: transform 0.2s ease;
 }
 .skip-link:focus {
@@ -25,13 +27,16 @@
 }
 
 nav {
+    display: flex;
+    align-items: center;
     background: var(--nav-bg);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     backdrop-filter: blur(20px) saturate(180%);
     width: fit-content;
     max-width: calc(100% - 32px);
     margin: 20px auto 10px;
-    padding: 0.75rem 1.5rem;
+    /* 6px + 44px links + 6px = the same 56px pill height as the mobile bar */
+    padding: 6px 1.5rem;
     border-radius: 100px;
     border: 1px solid rgba(0,0,0,0.08);
     box-shadow: 0 8px 30px rgba(0,0,0,0.12);
@@ -39,29 +44,66 @@ nav {
     top: 20px;
     z-index: 1000;
     text-align: center;
+    /* Safety valve for the narrow-desktop band just above the mobile
+       breakpoint, where all seven links only just fit. */
     overflow-x: auto;
     scrollbar-width: none;
 }
 nav::-webkit-scrollbar { display: none; }
 
+/* Desktop: the links behave as if they were direct children of <nav>
+   (display: contents removes the wrapper's box), and the mobile menu
+   button doesn't exist. responsive.css flips both for small screens. */
+.nav-links { display: contents; }
+.nav-menu-btn { display: none; }
+
 /* No opacity fade on resting links: at 0.8 they fell below WCAG AA contrast
    on the light background. Hover/active recolor instead. */
 nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
     font-size: 0.9rem;
     margin: 0 12px;
     transition: color 0.2s ease;
+    white-space: nowrap;
 }
 
 nav a:hover, nav a.active {
     color: var(--link-blue);
 }
 
+/* Hamburger-to-X icon for the mobile menu button: two bars that fold into
+   a cross when the nav carries .is-open. Pure transform, no reflow. */
+.nav-menu-icon {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 16px;
+}
+.nav-menu-icon span {
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+nav.is-open .nav-menu-icon span:first-child { transform: translateY(3.5px) rotate(45deg); }
+nav.is-open .nav-menu-icon span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+
+/* Page scroll is locked while the mobile menu sheet is open */
+body.nav-open { overflow: hidden; }
+
 main {
     flex: 1;
-    max-width: 1000px;
+    /* 1200px, up from 1000: at 1000 the content only used ~69% of a 1440
+       display and read as a narrow centered strip. Text-heavy layouts
+       (blog articles) keep their own tighter caps for line length. */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     width: 100%;
@@ -137,16 +179,39 @@ footer a:hover { color: var(--link-blue); text-decoration: none; }
     padding: 48px 40px;
     max-width: 100%;
     margin: 20px auto 0;
+    position: relative;
+    border-radius: 24px;
+    /* The children rest on real z-planes (see --rest-z below) and home.js
+       tilts the whole card toward the pointer; preserve-3d is what lets
+       those planes shear apart in the projection. The glass skin lives on
+       ::before because backdrop-filter directly on this element would
+       force transform-style back to flat and kill the depth. */
+    transform-style: preserve-3d;
+    transition: transform 0.18s ease-out;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
     background: var(--card-bg);
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
-    border-radius: 24px;
     border: 1px solid var(--card-border);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 12px 24px -4px rgba(0, 0, 0, 0.06);
+    /* Sit just behind the z=0 content plane so the 3D painting order
+       always keeps the skin at the back. */
+    transform: translateZ(-1px);
 }
 
 /* A quiet bit of pride: hover my name and it blooms into a rainbow.
-   Pure CSS, no trigger to find. prefers-reduced-motion stops the shimmer. */
+   Pure CSS, no trigger to find. The shimmer lives in the entrance's
+   no-preference block below, composed WITH hero-rise: if the hover rule
+   declared `animation: pride-shimmer` alone it would knock hero-rise out
+   of the animation list, and un-hovering would re-add it, replaying the
+   entrance (the name visibly bounced). Under reduced motion only this
+   rule applies, so hovering shows the gradient statically. */
 .hero-section h1 {
     cursor: default;
     background-image: linear-gradient(90deg,
@@ -160,24 +225,69 @@ footer a:hover { color: var(--link-blue); text-decoration: none; }
 }
 .hero-section h1:hover {
     -webkit-text-fill-color: transparent;
-    animation: pride-shimmer 6s linear infinite;
 }
 @keyframes pride-shimmer {
     to { background-position: 200% 0; }
 }
-@media (prefers-reduced-motion: reduce) {
-    .hero-section h1:hover { animation: none; }
-}
 
 .hero-photo {
-    width: 160px;
-    height: 160px;
+    width: 220px;
+    height: 220px;
     background-color: #f0f0f5;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-    margin-bottom: 12px;
+    margin-bottom: 24px;
+    /* No transition on transform here: home.js drives a per-frame parallax
+       transform on scroll, and a transition would make it rubber-band. */
+}
+
+/* Deliberate vertical rhythm: 24 / 10 / 24. The h1 margin reset matters
+   most; the browser's default 0.67em top margin (~38px at this size) was
+   what made the photo look like it had extra padding under it. */
+.hero-section h1 { margin: 0; }
+.hero-section .tagline { margin-top: 10px; margin-bottom: 0; }
+.hero-section .hero-socials { margin-top: 24px; }
+
+/* Hero depth. Two custom properties per layer feed one shared keyframe:
+   --rise-z is where the entrance starts (photo deepest, top to bottom far
+   to close) and --rest-z is where the layer permanently LIVES. The resting
+   depths are what make the pointer tilt read as 3D: when home.js rotates
+   the card, planes at different z shear apart in the projection. Anything
+   else that writes transform on a layer (the scroll parallax in home.js)
+   must therefore include the layer's translateZ(var(--rest-z)).
+   `backwards` (not `both`) fill matters: once the entrance ends the
+   keyframe must release `transform` back to the resting rule / parallax. */
+.hero-section { perspective: 1000px; }
+@media (prefers-reduced-motion: no-preference) {
+    .hero-photo,
+    .hero-section h1,
+    .hero-section .tagline,
+    .hero-section .hero-socials {
+        transform: translateZ(var(--rest-z));
+        animation: hero-rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+    }
+    /* Every resting depth must stay in FRONT of the glass skin's -1px
+       plane: anything behind it renders through the ::before's
+       backdrop-filter and blurs (the photo did, at an earlier -40px). So
+       the far layer (photo) sits on the surface and the near layers rise
+       toward the viewer. */
+    .hero-photo { --rise-z: -350px; --rest-z: 0px; }
+    .hero-section h1 { --rise-z: -240px; --rest-z: 40px; animation-delay: 0.1s; }
+    .hero-section .tagline { --rise-z: -140px; --rest-z: 75px; animation-delay: 0.2s; }
+    .hero-section .hero-socials { --rise-z: -60px; --rest-z: 110px; animation-delay: 0.3s; }
+    /* Pride shimmer on hover, composed with (never replacing) hero-rise;
+       hero-rise's timing here must stay identical to the rule above or
+       the browser treats it as a new animation and restarts it. */
+    .hero-section h1:hover {
+        animation:
+            hero-rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s backwards,
+            pride-shimmer 6s linear infinite;
+    }
+}
+@keyframes hero-rise {
+    from { opacity: 0; transform: translateY(14px) translateZ(var(--rise-z, -140px)); }
+    to { opacity: 1; transform: translateY(0) translateZ(var(--rest-z, 0px)); }
 }
 
 .hero-photo img {

@@ -37,11 +37,6 @@ body {
 }
 
 /* Animations */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); scale: 0.98; }
-    to { opacity: 1; transform: translateY(0); scale: 1; }
-}
-
 @keyframes scroll {
     /* The track holds two identical card sets; shifting by exactly half its
        width loops seamlessly, independent of card count or width. Each card
@@ -50,8 +45,22 @@ body {
     to { transform: translateX(-50%); }
 }
 
-main > section, .hero-card, .bento-grid, .glass-card {
-    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+/* Scroll reveal: elements start nudged down and transparent, then rise into
+   place when they enter the viewport (an IntersectionObserver in layout.js
+   adds .in-view; grid children get staggered). This selector list must stay
+   in sync with REVEAL_SELECTOR / STAGGER_SELECTOR in layout.js, or an
+   element would be hidden here that the observer never reveals. The state
+   is triple-gated: html.js so nothing hides without JS, reduced-motion off,
+   and the transition itself lives in layout.js as an inline style so card
+   hover transitions come back untouched once the reveal finishes. */
+@media (prefers-reduced-motion: no-preference) {
+    html.js :is(.page-hero, .section-header, .hero-card, .glass-card,
+        .section-cta, .cta-section, .code-cta, .carousel-container,
+        .coming-soon, .article-backbar, .article-wrap,
+        .featured-grid > *, .bento-grid > *):not(.in-view) {
+        opacity: 0;
+        transform: translateY(24px);
+    }
 }
 
 /* Typography */

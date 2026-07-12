@@ -93,9 +93,20 @@ def nav_html(page, prefix):
         )
         for href, label in NAV_LINKS
     )
+    # The menu button only exists visually on mobile, where the pill morphs
+    # into a dropdown card (see layout.js toggleNavMenu). On desktop the
+    # button is display:none and .nav-links is display:contents, so the
+    # links lay out exactly as if they were direct children of <nav>.
+    # Without JS the mobile menu can't open, so the collapsed state is
+    # gated on the html.js class that theme.js sets: no JS, no collapse.
     return (
         '<nav aria-label="Primary navigation">'
-        + links
+        + '<button id="nav-menu-btn" class="nav-menu-btn" onclick="toggleNavMenu()"'
+        + ' aria-expanded="false" aria-controls="nav-links">'
+        + '<span class="nav-menu-icon" aria-hidden="true"><span></span><span></span></span>'
+        + '<span id="nav-menu-label">Menu</span>'
+        + "</button>"
+        + '<div class="nav-links" id="nav-links">' + links + "</div>"
         + '<span class="sep">|</span>'
         + '<button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle dark mode"></button>'
         + "</nav>"

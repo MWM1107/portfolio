@@ -6,17 +6,44 @@
     h1 { font-size: 2rem; }
     h2 { font-size: 1.6rem; margin-top: 2rem; }
 
-    /* Nav: 44pt tap targets on mobile */
-    nav { padding: 0 0.75rem; }
-    nav a {
-        margin: 0 2px;
-        padding: 0 8px;
-        font-size: 0.9rem;
-        white-space: nowrap;
+    /* --- Morphing pill nav ---
+       Closed: a full-width pill with the Menu button on the left and the
+       theme toggle on the right. Open (nav.is-open, set by toggleNavMenu in
+       layout.js): the pill morphs into a dropdown card; .nav-links wraps to
+       its own full-width row (order: 10 + flex-wrap) and slides open via
+       max-height, and the links stagger in. Collapsing only happens under
+       html.js, so a visitor without JS still gets every link. */
+    nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: calc(100% - 32px);
+        box-sizing: border-box;
+        padding: 6px 14px;
+        margin: 12px auto 10px;
+        top: 12px;
+        border-radius: 27px; /* half the closed pill's ~54px height, so the morph starts as a true pill */
+        transition: border-radius 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+        overflow: visible; /* the desktop overflow-x safety valve would clip the dropdown */
+    }
+    nav.is-open { border-radius: 24px; }
+    nav .sep { display: none; }
+
+    .nav-menu-btn {
         display: inline-flex;
         align-items: center;
+        gap: 9px;
         min-height: 44px;
+        padding: 0 6px;
+        margin: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-color);
     }
+
     .theme-toggle-btn {
         min-width: 44px;
         min-height: 44px;
@@ -24,7 +51,53 @@
         align-items: center;
         justify-content: center;
         padding: 0;
-        margin: 0 2px;
+        margin: 0;
+    }
+
+    .nav-links {
+        display: block;
+        order: 10;
+        width: 100%;
+        max-height: none; /* no-JS default: links simply stack, always visible */
+        overflow-x: hidden;
+        overflow-y: auto; /* short landscape viewports can scroll the open menu */
+    }
+    html.js .nav-links {
+        max-height: 0;
+        visibility: hidden;
+        transition: max-height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s linear 0.35s;
+    }
+    html.js nav.is-open .nav-links {
+        max-height: 70vh;
+        visibility: visible;
+        transition: max-height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s;
+    }
+
+    nav a {
+        display: flex;
+        align-items: center;
+        min-height: 48px;
+        margin: 0;
+        padding: 2px 6px;
+        font-size: 1.05rem;
+        border-top: 1px solid rgba(128, 128, 128, 0.18);
+    }
+    .nav-links a:first-child { margin-top: 8px; }
+
+    /* Staggered slide-in for the open menu's links */
+    @media (prefers-reduced-motion: no-preference) {
+        html.js .nav-links a {
+            opacity: 0;
+            transform: translateY(-6px);
+            transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        html.js nav.is-open .nav-links a { opacity: 1; transform: none; }
+        html.js nav.is-open .nav-links a:nth-child(2) { transition-delay: 0.04s; }
+        html.js nav.is-open .nav-links a:nth-child(3) { transition-delay: 0.08s; }
+        html.js nav.is-open .nav-links a:nth-child(4) { transition-delay: 0.12s; }
+        html.js nav.is-open .nav-links a:nth-child(5) { transition-delay: 0.16s; }
+        html.js nav.is-open .nav-links a:nth-child(6) { transition-delay: 0.2s; }
+        html.js nav.is-open .nav-links a:nth-child(7) { transition-delay: 0.24s; }
     }
 
     /* Section & card spacing */
@@ -37,7 +110,7 @@
 
     /* Homepage hero */
     .hero-section { padding: 36px 24px !important; }
-    .hero-photo { width: 120px !important; height: 120px !important; margin-bottom: 10px !important; }
+    .hero-photo { width: 150px !important; height: 150px !important; margin-bottom: 10px !important; }
 
     /* About CTA footer */
     .cta-section { padding: 36px 0 12px !important; }
@@ -76,10 +149,12 @@
     footer { padding: 36px 20px; }
 }
 
-/* Reduced Motion */
+/* Reduced Motion. The scroll reveals, hero depth entrance, and nav-link
+   stagger are all authored inside prefers-reduced-motion: no-preference
+   blocks, so they never run here; the parallax and card tilt bail out in
+   JS (home.js, layout.js). This block only stops the always-running bits. */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .carousel-track { animation-play-state: paused; }
-    main > section, .hero-card, .bento-grid, .glass-card { animation: none; }
     .pill-dot { animation: none; }
 }

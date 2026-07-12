@@ -14,6 +14,7 @@ html[data-theme="dark"] {
     --card-bg: rgba(28, 28, 30, 0.6);
     --card-border: rgba(255, 255, 255, 0.12);
     --shadow-light: rgba(0, 0, 0, 0.4);
+    --shadow-medium: rgba(0, 0, 0, 0.55); /* was silently inheriting the light theme's 0.1 */
     --text-muted: #aeaeb2;
 }
 html[data-theme="dark"] body { background-color: #000; }
