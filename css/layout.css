@@ -124,6 +124,10 @@ footer a:hover { color: var(--link-blue); text-decoration: none; }
 
 .footer-links { margin-top: 15px; }
 
+/* Second footer row: the app-facing utility pages (Apps, Support, Privacy).
+   Tighter spacing so it reads as a subordinate row of the links above. */
+.footer-links--apps { margin-top: 8px; }
+
 .sep { opacity: 0.3; margin: 0 5px; }
 
 /* Footer social icons */

@@ -199,6 +199,14 @@
 }
 .article-link:hover { opacity: 0.7; }
 
+/* Section headings inside long-form legal text (privacy.html); scaled down
+   from the 2.2rem page-level h2 so they read as parts of one document. */
+.article-body h2 {
+    font-size: 1.4rem;
+    letter-spacing: -0.01em;
+    margin: 2.4rem 0 0.8rem;
+}
+
 .article-chart {
     width: 100%;
     height: auto;

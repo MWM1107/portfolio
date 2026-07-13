@@ -23,7 +23,10 @@ PAGES = [
     ("contact.html", "0.7"),
     ("blog.html", "0.7"),
     ("apple-developer-fee.html", "0.6"),
+    ("apps.html", "0.6"),
     ("uses.html", "0.5"),
+    ("support.html", "0.4"),
+    ("privacy.html", "0.3"),
 ]
 
 
