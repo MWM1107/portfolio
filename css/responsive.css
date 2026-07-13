@@ -147,6 +147,9 @@
 
     /* Footer */
     footer { padding: 36px 20px; }
+    /* The link rows wrap on narrow screens; drop the | separators so a
+       wrapped line never starts or ends with a dangling pipe. */
+    footer .sep { display: none; }
 }
 
 /* Reduced Motion. The scroll reveals, hero depth entrance, and nav-link

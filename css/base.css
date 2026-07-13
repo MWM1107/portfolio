@@ -20,6 +20,12 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 90px; /* clear the sticky nav when jumping to in-page anchors */
+    /* Page scrolling is vertical only; any accidentally-too-wide element
+       gets clipped instead of creating sideways pan (mobile browsers grow
+       the layout viewport when content overflows, which made the whole
+       page wiggle left-right). `clip`, not `hidden`: hidden would turn
+       this into a scroll container and break the sticky nav. */
+    overflow-x: clip;
 }
 
 body {

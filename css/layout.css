@@ -122,7 +122,16 @@ footer {
 footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; transition: color 0.2s;}
 footer a:hover { color: var(--link-blue); text-decoration: none; }
 
-.footer-links { margin-top: 15px; }
+/* Flex, not text-align: the generated footer HTML has no whitespace between
+   links, so as inline content the row is one unbreakable line that forced
+   horizontal overflow on phones. flex-wrap gives it real break points. */
+.footer-links {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 
 /* Second footer row: the app-facing utility pages (Apps, Support, Privacy).
    Tighter spacing so it reads as a subordinate row of the links above. */
