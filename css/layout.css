@@ -95,8 +95,14 @@ nav a:hover, nav a.active {
 nav.is-open .nav-menu-icon span:first-child { transform: translateY(3.5px) rotate(45deg); }
 nav.is-open .nav-menu-icon span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
 
-/* Page scroll is locked while the mobile menu sheet is open */
-body.nav-open { overflow: hidden; }
+/* Page scroll is locked while the mobile menu sheet is open. The lock
+   lives on <html>, not <body>: html carries overflow-x: clip, so a body
+   overflow would no longer propagate to the viewport; it would instead
+   make body itself a clip container, which both breaks the lock and
+   re-anchors the sticky nav to the top of the document (the menu opened
+   off-screen when scrolled down). Same story for .video-modal-open in
+   components.css. */
+html.nav-open { overflow-y: hidden; }
 
 main {
     flex: 1;
@@ -113,38 +119,63 @@ main {
 footer {
     background-color: var(--bg-color);
     border-top: 1px solid rgba(0,0,0,0.1);
-    padding: 60px 20px;
-    text-align: center;
+    padding: 48px 20px 28px;
     font-size: 0.85rem;
     color: var(--text-muted);
 }
 
-footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; transition: color 0.2s;}
+footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
 footer a:hover { color: var(--link-blue); text-decoration: none; }
 
-/* Flex, not text-align: the generated footer HTML has no whitespace between
-   links, so as inline content the row is one unbreakable line that forced
-   horizontal overflow on phones. flex-wrap gives it real break points. */
-.footer-links {
-    margin-top: 15px;
-    display: flex;
-    flex-wrap: wrap;
+/* Brand block plus Site and Apps link columns, centered as a group with
+   even gaps (auto columns + justify-content, not a 1fr track: that dumped
+   all the leftover width into one big gap after the brand). On mobile the
+   link columns sit side by side under the brand block (responsive.css). */
+.footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
     justify-content: center;
-    align-items: center;
+    gap: 32px clamp(48px, 9vw, 130px);
+    align-items: start;
 }
 
-/* Second footer row: the app-facing utility pages (Apps, Support, Privacy).
-   Tighter spacing so it reads as a subordinate row of the links above. */
-.footer-links--apps { margin-top: 8px; }
+.footer-name {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-heading);
+}
+
+.footer-tagline {
+    margin: 6px 0 0;
+    max-width: 280px;
+    line-height: 1.5;
+}
+
+.footer-heading {
+    margin: 0 0 8px;
+    font-size: 0.85rem; /* rein in the global h3 scale */
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--text-heading);
+}
+
+.footer-col { display: flex; flex-direction: column; align-items: flex-start; }
+.footer-col a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+}
 
 .sep { opacity: 0.3; margin: 0 5px; }
 
 /* Footer social icons */
 .footer-socials {
     display: flex;
-    justify-content: center;
     gap: 22px;
-    margin-bottom: 20px;
+    margin-top: 18px;
 }
 
 .footer-socials a {
@@ -159,6 +190,14 @@ footer a:hover { color: var(--link-blue); text-decoration: none; }
 .footer-socials a:hover {
     color: var(--link-blue);
     transform: translateY(-2px);
+}
+
+.footer-copyright {
+    max-width: 1200px;
+    margin: 36px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 .page-hero {
@@ -184,6 +223,9 @@ footer a:hover { color: var(--link-blue); text-decoration: none; }
     line-height: 1.6;
 }
 
+/* The homepage hero is a plain glass card: the .glass-card class in the
+   markup provides the skin, hover lift, scroll reveal, and (via data-tilt)
+   the shared pointer tilt. Only the layout lives here. */
 .hero-section {
     display: flex;
     flex-direction: column;
@@ -192,39 +234,12 @@ footer a:hover { color: var(--link-blue); text-decoration: none; }
     padding: 48px 40px;
     max-width: 100%;
     margin: 20px auto 0;
-    position: relative;
-    border-radius: 24px;
-    /* The children rest on real z-planes (see --rest-z below) and home.js
-       tilts the whole card toward the pointer; preserve-3d is what lets
-       those planes shear apart in the projection. The glass skin lives on
-       ::before because backdrop-filter directly on this element would
-       force transform-style back to flat and kill the depth. */
-    transform-style: preserve-3d;
-    transition: transform 0.18s ease-out;
-}
-
-.hero-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 24px;
-    background: var(--card-bg);
-    backdrop-filter: blur(25px) saturate(180%);
-    -webkit-backdrop-filter: blur(25px) saturate(180%);
-    border: 1px solid var(--card-border);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 12px 24px -4px rgba(0, 0, 0, 0.06);
-    /* Sit just behind the z=0 content plane so the 3D painting order
-       always keeps the skin at the back. */
-    transform: translateZ(-1px);
 }
 
 /* A quiet bit of pride: hover my name and it blooms into a rainbow.
-   Pure CSS, no trigger to find. The shimmer lives in the entrance's
-   no-preference block below, composed WITH hero-rise: if the hover rule
-   declared `animation: pride-shimmer` alone it would knock hero-rise out
-   of the animation list, and un-hovering would re-add it, replaying the
-   entrance (the name visibly bounced). Under reduced motion only this
-   rule applies, so hovering shows the gradient statically. */
+   Pure CSS, no trigger to find. The shimmer only animates under
+   no-preference below; with reduced motion, hovering shows the gradient
+   statically via the fill-color transition here. */
 .hero-section h1 {
     cursor: default;
     background-image: linear-gradient(90deg,
@@ -251,8 +266,6 @@ footer a:hover { color: var(--link-blue); text-decoration: none; }
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     margin-bottom: 24px;
-    /* No transition on transform here: home.js drives a per-frame parallax
-       transform on scroll, and a transition would make it rubber-band. */
 }
 
 /* Deliberate vertical rhythm: 24 / 10 / 24. The h1 margin reset matters
@@ -262,45 +275,8 @@ footer a:hover { color: var(--link-blue); text-decoration: none; }
 .hero-section .tagline { margin-top: 10px; margin-bottom: 0; }
 .hero-section .hero-socials { margin-top: 24px; }
 
-/* Hero depth. Two custom properties per layer feed one shared keyframe:
-   --rise-z is where the entrance starts (photo deepest, top to bottom far
-   to close) and --rest-z is where the layer permanently LIVES. The resting
-   depths are what make the pointer tilt read as 3D: when home.js rotates
-   the card, planes at different z shear apart in the projection. Anything
-   else that writes transform on a layer (the scroll parallax in home.js)
-   must therefore include the layer's translateZ(var(--rest-z)).
-   `backwards` (not `both`) fill matters: once the entrance ends the
-   keyframe must release `transform` back to the resting rule / parallax. */
-.hero-section { perspective: 1000px; }
 @media (prefers-reduced-motion: no-preference) {
-    .hero-photo,
-    .hero-section h1,
-    .hero-section .tagline,
-    .hero-section .hero-socials {
-        transform: translateZ(var(--rest-z));
-        animation: hero-rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
-    }
-    /* Every resting depth must stay in FRONT of the glass skin's -1px
-       plane: anything behind it renders through the ::before's
-       backdrop-filter and blurs (the photo did, at an earlier -40px). So
-       the far layer (photo) sits on the surface and the near layers rise
-       toward the viewer. */
-    .hero-photo { --rise-z: -350px; --rest-z: 0px; }
-    .hero-section h1 { --rise-z: -240px; --rest-z: 40px; animation-delay: 0.1s; }
-    .hero-section .tagline { --rise-z: -140px; --rest-z: 75px; animation-delay: 0.2s; }
-    .hero-section .hero-socials { --rise-z: -60px; --rest-z: 110px; animation-delay: 0.3s; }
-    /* Pride shimmer on hover, composed with (never replacing) hero-rise;
-       hero-rise's timing here must stay identical to the rule above or
-       the browser treats it as a new animation and restarts it. */
-    .hero-section h1:hover {
-        animation:
-            hero-rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s backwards,
-            pride-shimmer 6s linear infinite;
-    }
-}
-@keyframes hero-rise {
-    from { opacity: 0; transform: translateY(14px) translateZ(var(--rise-z, -140px)); }
-    to { opacity: 1; transform: translateY(0) translateZ(var(--rest-z, 0px)); }
+    .hero-section h1:hover { animation: pride-shimmer 6s linear infinite; }
 }
 
 .hero-photo img {

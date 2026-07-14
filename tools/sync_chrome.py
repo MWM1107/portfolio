@@ -39,9 +39,10 @@ ACTIVE_ALIASES = {
     "apps.html": "projects.html",
 }
 
-# The footer carries two rows: every site page (including Uses, which is
-# footer-only personality content), then the app-facing utility pages that
-# App Store listings, AdMob, and app users need to reach from anywhere.
+# The footer carries two link columns: every site page (including Uses,
+# which is footer-only personality content), then the app-facing utility
+# pages that App Store listings, AdMob, and app users need to reach from
+# anywhere.
 FOOTER_SITE_LINKS = NAV_LINKS + [("uses.html", "Uses")]
 FOOTER_APP_LINKS = [
     ("apps.html", "Apps"),
@@ -126,22 +127,40 @@ def nav_html(page, prefix):
 
 
 def footer_html(prefix):
-    def link_row(links, extra_class=""):
-        row = '<span class="sep">|</span>'.join(
-            '<a href="{0}{1}">{2}</a>'.format(prefix, href, label) for href, label in links
+    """Brand block (name, tagline, social icons) plus Site and Apps link
+    columns, with the copyright on its own ruled-off line. The columns
+    collapse to a centered stack on mobile (responsive.css)."""
+    def links(items):
+        return "".join(
+            '<a href="{0}{1}">{2}</a>'.format(prefix, href, label) for href, label in items
         )
-        return '<div class="footer-links{0}">{1}</div>'.format(extra_class, row)
+
+    def col(label, items):
+        # role="navigation" on a div, not <nav>: the pill nav's styling
+        # targets the bare nav element selector site-wide.
+        return (
+            '<div class="footer-col" role="navigation" aria-label="{0} links">'.format(label)
+            + '<h3 class="footer-heading">{0}</h3>'.format(label)
+            + links(items)
+            + "</div>"
+        )
 
     return (
         "<footer>"
+        + '<div class="footer-grid">'
+        + '<div class="footer-brand">'
+        + '<p class="footer-name">Kevin Struna</p>'
+        + '<p class="footer-tagline">Software engineer building Swift &amp; SwiftUI apps for Apple platforms.</p>'
         + '<div class="footer-socials">'
         + '<a href="{0}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">{1}</a>'.format(GITHUB_URL, GITHUB_SVG)
         + '<a href="{0}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">{1}</a>'.format(LINKEDIN_URL, LINKEDIN_SVG)
         + '<a href="{0}" target="_blank" rel="noopener noreferrer" aria-label="App Store">{1}</a>'.format(APPSTORE_URL, APPSTORE_SVG)
         + "</div>"
-        + "<p>&copy; 2026 Kevin Struna. All rights reserved.</p>"
-        + link_row(FOOTER_SITE_LINKS)
-        + link_row(FOOTER_APP_LINKS, " footer-links--apps")
+        + "</div>"
+        + col("Site", FOOTER_SITE_LINKS)
+        + col("Apps", FOOTER_APP_LINKS)
+        + "</div>"
+        + '<p class="footer-copyright">&copy; 2026 Kevin Struna. All rights reserved.</p>'
         + "</footer>"
     )
 

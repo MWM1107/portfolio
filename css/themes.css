@@ -19,11 +19,17 @@ html[data-theme="dark"] {
 }
 html[data-theme="dark"] body { background-color: #000; }
 html[data-theme="dark"] nav { background: rgba(40, 40, 40, 0.7); border: 1px solid rgba(255, 255, 255, 0.15); }
+/* .nav-links is the mobile floating menu card (responsive.css); on desktop
+   it is display: contents, so this has no effect there. Near-opaque, unlike
+   the pill: Chromium won't blur a backdrop nested inside the nav's own
+   backdrop-filter, so page content would read straight through glass. */
+html[data-theme="dark"] nav .nav-links { background: rgba(36, 36, 38, 0.97); border: 1px solid rgba(255, 255, 255, 0.15); }
 html[data-theme="dark"] .glass-card,
 html[data-theme="dark"] .carousel-card { box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 html[data-theme="dark"] .tech-badge { background: #2c2c2e; color: #e5e5e5; }
 html[data-theme="dark"] .section-header,
-html[data-theme="dark"] footer { border-color: rgba(255,255,255,0.15); }
+html[data-theme="dark"] footer,
+html[data-theme="dark"] .footer-copyright { border-color: rgba(255,255,255,0.15); }
 html[data-theme="dark"] input,
 html[data-theme="dark"] textarea { background-color: #1c1c1e !important; border-color: #3a3a3c !important; color: white !important; }
 html[data-theme="dark"] label { color: #d1d1d6 !important; }
@@ -48,11 +54,13 @@ html[data-theme="light"] {
 }
 html[data-theme="light"] body { background-color: #f5f5f7; }
 html[data-theme="light"] nav { background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(0,0,0,0.08); }
+html[data-theme="light"] nav .nav-links { background: rgba(252, 252, 253, 0.97); border: 1px solid rgba(0,0,0,0.08); }
 html[data-theme="light"] .glass-card,
 html[data-theme="light"] .carousel-card { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 12px 24px -4px rgba(0, 0, 0, 0.06); }
 html[data-theme="light"] .tech-badge { background: #e5e5ea; color: #5d5d62; }
 html[data-theme="light"] .section-header,
-html[data-theme="light"] footer { border-color: rgba(0,0,0,0.1); }
+html[data-theme="light"] footer,
+html[data-theme="light"] .footer-copyright { border-color: rgba(0,0,0,0.1); }
 html[data-theme="light"] input,
 html[data-theme="light"] textarea { background-color: white !important; border-color: rgba(0,0,0,0.2) !important; color: #5c5c5c !important; }
 html[data-theme="light"] label { color: #5c5c5c !important; }

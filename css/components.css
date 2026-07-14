@@ -464,5 +464,6 @@
 }
 .video-modal-close:hover { background: rgba(255, 255, 255, 0.25); }
 
-/* Lock background scroll while the lightbox is open */
-body.video-modal-open { overflow: hidden; }
+/* Lock background scroll while the lightbox is open. On <html>, not
+   <body>: see the html.nav-open comment in layout.css. */
+html.video-modal-open { overflow-y: hidden; }

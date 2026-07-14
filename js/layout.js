@@ -17,7 +17,7 @@
 
         function setOpen(open) {
             nav.classList.toggle('is-open', open);
-            document.body.classList.toggle('nav-open', open);
+            document.documentElement.classList.toggle('nav-open', open);
             btn.setAttribute('aria-expanded', String(open));
             if (label) label.textContent = open ? 'Close' : 'Menu';
         }
@@ -105,10 +105,14 @@
         });
     }
 
-    // Pointer tilt: [data-tilt] cards rotate a few degrees toward the
-    // cursor (hover-capable, fine-pointer devices only). The inline
-    // transform overrides the CSS hover lift while the pointer is over
-    // the card and is cleared on leave, handing back to the stylesheet.
+    // Pointer tilt: [data-tilt] cards face the cursor (hover-capable,
+    // fine-pointer devices only): the edge under the pointer lifts toward
+    // the viewer, so the card's face turns to follow the mouse. Signs
+    // matter here: rotateX(+) brings the BOTTOM edge forward and
+    // rotateY(+) pushes the RIGHT edge back, hence +dy and -dx. The
+    // inline transform overrides the CSS hover lift while the pointer is
+    // over the card and is cleared on leave, handing back to the
+    // stylesheet.
     function initTilt() {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -126,8 +130,8 @@
                     var dy = (lastEvent.clientY - rect.top) / rect.height - 0.5;
                     card.style.transform =
                         'perspective(900px) translateY(-6px)' +
-                        ' rotateX(' + (-dy * MAX_DEG).toFixed(2) + 'deg)' +
-                        ' rotateY(' + (dx * MAX_DEG).toFixed(2) + 'deg)';
+                        ' rotateX(' + (dy * MAX_DEG).toFixed(2) + 'deg)' +
+                        ' rotateY(' + (-dx * MAX_DEG).toFixed(2) + 'deg)';
                 });
             });
             card.addEventListener('pointerleave', function () {
@@ -236,7 +240,7 @@ window.toggleCardVideo = function (event, wrap) {
     function close() {
         if (!modal) return;
         modal.classList.remove('is-open');
-        document.body.classList.remove('video-modal-open');
+        document.documentElement.classList.remove('video-modal-open');
         modalVideo.pause();
         // Hand focus back to the button that launched the lightbox.
         if (opener && document.contains(opener)) opener.focus();
@@ -257,7 +261,7 @@ window.toggleCardVideo = function (event, wrap) {
         modalVideo.setAttribute('aria-label', label || 'Demo video');
         modal.setAttribute('aria-label', label || 'Demo video');
         modal.classList.add('is-open');
-        document.body.classList.add('video-modal-open');
+        document.documentElement.classList.add('video-modal-open');
         modalVideo.currentTime = 0;
         modalVideo.play();
         modal.querySelector('.video-modal-close').focus();

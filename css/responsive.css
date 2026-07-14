@@ -6,13 +6,16 @@
     h1 { font-size: 2rem; }
     h2 { font-size: 1.6rem; margin-top: 2rem; }
 
-    /* --- Morphing pill nav ---
+    /* --- Pill nav with floating menu card ---
        Closed: a full-width pill with the Menu button on the left and the
        theme toggle on the right. Open (nav.is-open, set by toggleNavMenu in
-       layout.js): the pill morphs into a dropdown card; .nav-links wraps to
-       its own full-width row (order: 10 + flex-wrap) and slides open via
-       max-height, and the links stagger in. Collapsing only happens under
-       html.js, so a visitor without JS still gets every link. */
+       layout.js): a glass card slides open BELOW the pill and the links
+       stagger in. Under html.js the card is position: absolute, so opening
+       it never changes the document's height; an earlier in-flow version
+       grew the sticky nav's flow box at the top of the document, which
+       shifted the whole page and scroll-anchored it around when the menu
+       was opened mid-scroll. Without JS the links fall back to an in-flow
+       stack inside the pill (order: 10 + flex-wrap), always visible. */
     nav {
         flex-wrap: wrap;
         justify-content: space-between;
@@ -63,6 +66,23 @@
         overflow-y: auto; /* short landscape viewports can scroll the open menu */
     }
     html.js .nav-links {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        width: auto;
+        box-sizing: border-box;
+        padding: 4px 14px 10px;
+        /* Near-opaque (the themes.css nav .nav-links rules always win over
+           this fallback): Chromium won't blur a backdrop nested inside the
+           nav's own backdrop-filter, so a glassy 0.75 alpha left the page
+           content readable straight through the open menu. */
+        background: rgba(252, 252, 253, 0.97);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 24px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         max-height: 0;
         visibility: hidden;
         transition: max-height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s linear 0.35s;
@@ -72,6 +92,9 @@
         visibility: visible;
         transition: max-height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s;
     }
+    /* Inside the floating card the first link needs no separator line or
+       offset; both exist for the no-JS in-pill stack. */
+    html.js .nav-links a:first-child { border-top: none; margin-top: 0; }
 
     nav a {
         display: flex;
@@ -131,7 +154,6 @@
     .screenshot-track img { flex: 0 0 calc((100% - 10px) / 2); }
     .screenshot-arrow { width: 44px; height: 44px; font-size: 1.1rem; }
     #carousel-pause-btn { width: 44px !important; height: 44px !important; }
-    footer a { padding: 8px 2px; margin: 0 6px; }
 
     /* Bento grid */
     .bento-grid { grid-template-columns: 1fr; }
@@ -145,11 +167,23 @@
     /* Blog */
     .hero-banner { height: 200px; }
 
-    /* Footer */
-    footer { padding: 36px 20px; }
-    /* The link rows wrap on narrow screens; drop the | separators so a
-       wrapped line never starts or ends with a dangling pipe. */
-    footer .sep { display: none; }
+    /* Footer: brand block centered on top, then the Site and Apps link
+       columns side by side (a single stacked column ran far too long). */
+    footer { padding: 36px 20px 24px; }
+    .footer-grid {
+        grid-template-columns: auto auto;
+        justify-content: center;
+        column-gap: 56px;
+        row-gap: 24px;
+        text-align: center;
+    }
+    .footer-brand { grid-column: 1 / -1; }
+    .footer-tagline { margin-left: auto; margin-right: auto; }
+    .footer-socials { justify-content: center; }
+    .footer-col { align-items: center; }
+    .footer-col a { min-height: 40px; } /* comfortable tap targets */
+    .footer-heading { margin-bottom: 2px; }
+    .footer-copyright { margin-top: 28px; }
 }
 
 /* Reduced Motion. The scroll reveals, hero depth entrance, and nav-link
