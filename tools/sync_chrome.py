@@ -171,7 +171,8 @@ ASSET_REF = re.compile(r'((?:href|src)=")(/?)((?:css|js)/[A-Za-z0-9_.-]+)(?:\?v=
 
 def asset_version(path):
     with open(path, "rb") as f:
-        return hashlib.md5(f.read()).hexdigest()[:8]
+        content = f.read().replace(b"\r\n", b"\n")
+        return hashlib.md5(content).hexdigest()[:8]
 
 
 def stamp_assets(html):
