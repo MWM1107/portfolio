@@ -500,6 +500,11 @@ input:focus, textarea:focus {
 .playground-editor {
     display: flex;
     flex-direction: column;
+    /* Grid items default to min-width: auto, so the unwrapped code lines in
+       .playground-code would otherwise force this track wider than the grid
+       actually has room for; .playground-window's overflow: hidden would
+       then silently clip the overflow instead of it being scrollable. */
+    min-width: 0;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     background: var(--pg-editor);
 }
@@ -597,6 +602,7 @@ input:focus, textarea:focus {
     align-items: center;
     justify-content: center;
     background: radial-gradient(circle at center, rgba(0, 122, 255, 0.15), transparent 70%);
+    min-width: 0;
 }
 
 .simulator-device {

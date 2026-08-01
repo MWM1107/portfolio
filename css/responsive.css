@@ -18,7 +18,13 @@
        stack inside the pill (order: 10 + flex-wrap), always visible. */
     nav {
         flex-wrap: wrap;
-        justify-content: space-between;
+        /* Not space-between: with .nav-links taken out of flow (absolute,
+           under html.js) or wrapped to its own row (no-JS, order: 10), the
+           menu button, theme toggle, and ⌘K trigger become three flat flex
+           items, and space-between spreads all three evenly across the pill
+           instead of grouping the trailing two. The toggle's auto margin
+           below groups it with ⌘K on the right instead. */
+        justify-content: flex-start;
         width: calc(100% - 32px);
         box-sizing: border-box;
         padding: 6px 14px;
@@ -54,7 +60,12 @@
         align-items: center;
         justify-content: center;
         padding: 0;
-        margin: 0;
+        margin: 0 0 0 auto;
+    }
+
+    .cmd-k-trigger {
+        min-width: 44px;
+        min-height: 44px;
     }
 
     .nav-links {
