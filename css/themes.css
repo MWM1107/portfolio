@@ -16,6 +16,8 @@ html[data-theme="dark"] {
     --shadow-light: rgba(0, 0, 0, 0.4);
     --shadow-medium: rgba(0, 0, 0, 0.55); /* was silently inheriting the light theme's 0.1 */
     --text-muted: #aeaeb2;
+    --mesh-orb-1: rgba(10, 132, 255, 0.18);
+    --mesh-orb-2: rgba(191, 90, 242, 0.15);
 }
 html[data-theme="dark"] body { background-color: #000; }
 html[data-theme="dark"] nav { background: rgba(40, 40, 40, 0.7); border: 1px solid rgba(255, 255, 255, 0.15); }

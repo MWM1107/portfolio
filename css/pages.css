@@ -462,3 +462,370 @@ input:focus, textarea:focus {
     line-height: 1.2;
     letter-spacing: -0.02em;
 }
+
+/* Interactive Swift Playground Component (Homepage) */
+.playground-section {
+    margin-top: 60px;
+}
+
+/* Playground editor colour tokens — always dark regardless of page theme
+   (code editors are conventionally dark; override here if you ever want light) */
+:root {
+    --pg-bg:        #1e1e24;
+    --pg-editor:    #18181c;
+    --pg-header:    #121215;
+    --pg-tabs:      #151518;
+    --pg-tab-sel:   #24242c;
+    --pg-border:    rgba(255, 255, 255, 0.08);
+    --pg-text:      #e5e5ea;
+    --pg-muted:     #8e8e93;
+    --pg-active:    #64d2ff;
+    --sim-green:    #30d158;
+    --sim-red:      #ff453a;
+    --sim-purple:   #bf5af2;
+    --sim-yellow:   #ffd60a;
+}
+
+.playground-window {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    background: var(--pg-bg);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    min-height: 380px;
+}
+
+.playground-editor {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--pg-editor);
+}
+
+.playground-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    background: var(--pg-header);
+    border-bottom: 1px solid var(--pg-border);
+}
+
+.playground-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.playground-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.dot-red { background: #ff5f56; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #27c93f; }
+
+.playground-title {
+    font-size: 0.82rem;
+    color: var(--pg-muted);
+    font-family: ui-monospace, SFMono-Regular, monospace;
+}
+
+.playground-project-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--pg-active);
+    background: rgba(100, 210, 255, 0.12);
+    border: 1px solid rgba(100, 210, 255, 0.25);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.playground-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 8px 12px;
+    background: var(--pg-tabs);
+    border-bottom: 1px solid var(--pg-border);
+    overflow-x: auto;
+}
+
+.playground-tab {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--pg-muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.playground-tab.is-active {
+    background: var(--pg-tab-sel);
+    color: var(--pg-active);
+}
+
+.playground-code {
+    padding: 20px;
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--pg-text);
+    overflow-x: auto;
+    flex: 1;
+}
+
+.kw-keyword { color: #ff7b72; font-weight: 600; }
+.kw-type { color: #79c0ff; }
+.kw-func { color: #d2a8ff; }
+.kw-string { color: #a5d6ff; }
+.kw-comment { color: #8b949e; font-style: italic; }
+
+.playground-canvas {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(0, 122, 255, 0.15), transparent 70%);
+}
+
+.simulator-device {
+    background: #000;
+    border-radius: 36px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    color: #fff;
+}
+
+.simulator-notch {
+    width: 90px;
+    height: 18px;
+    background: #000;
+    border-radius: 0 0 12px 12px;
+    margin: -20px auto 16px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-top: none;
+}
+
+/* Live-sim preview widgets — shared building blocks for the five playground
+   tabs (dice, kana, stock chart, wordly grid, kodou grid). Structural/static
+   styling lives here; only genuinely per-instance values (a random color, a
+   stagger delay, an SVG path) stay inline in js/home.js. */
+.sim-caption {
+    font-size: 0.85rem;
+    color: var(--pg-muted);
+    min-height: 1.2em;
+    margin-top: 8px;
+}
+
+.sim-action-btn {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    padding: 6px 14px;
+}
+
+@keyframes sim-fade-up {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Rogue Roll dice */
+.sim-dice-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+
+.sim-die {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    background: var(--die-color, #48484a);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08), 0 0 14px 0 var(--die-glow, transparent);
+    animation: sim-die-roll 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+@keyframes sim-die-roll {
+    0% { transform: rotate(0deg) scale(0.6); opacity: 0; }
+    60% { transform: rotate(-12deg) scale(1.08); opacity: 1; }
+    100% { transform: rotate(0deg) scale(1); }
+}
+
+/* Type Kana */
+.sim-kana-char {
+    font-size: 3.5rem;
+    margin: 12px 0;
+    display: inline-block;
+    animation: sim-flip-in 0.4s ease;
+}
+
+@keyframes sim-flip-in {
+    from { transform: rotateX(90deg); opacity: 0; }
+    to { transform: rotateX(0deg); opacity: 1; }
+}
+
+.sim-kana-input {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--pg-text);
+    font-size: 0.9rem;
+    width: 130px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.sim-kana-input.is-correct { border-color: var(--sim-green); background: rgba(48, 209, 88, 0.12); }
+.sim-kana-input.is-incorrect { border-color: var(--sim-red); background: rgba(255, 69, 58, 0.12); }
+
+/* Stock Market Sim */
+.sim-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 12px 0 2px;
+}
+
+.sim-change {
+    font-size: 0.85rem;
+    color: var(--pg-muted);
+}
+
+.sim-chart-wrap {
+    margin: 14px auto 4px;
+    width: 160px;
+}
+
+.sim-chart-wrap svg { overflow: visible; }
+
+.sim-chart-line {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sim-chart-dot-pulse {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: sim-dot-pulse 1.6s ease-out infinite;
+}
+
+@keyframes sim-dot-pulse {
+    0% { transform: scale(1); opacity: 0.55; }
+    100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* Wordly */
+.sim-wordly-grid {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    margin: 8px 0;
+}
+
+.sim-wordly-tile {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+    opacity: 0;
+    animation: sim-tile-reveal 0.35s ease forwards;
+}
+
+@keyframes sim-tile-reveal {
+    from { opacity: 0; transform: scale(0.6) rotateX(60deg); }
+    to { opacity: 1; transform: scale(1) rotateX(0deg); }
+}
+
+/* Kodou */
+.sim-kodou-wrap {
+    position: relative;
+    width: 172px;
+    margin: 10px auto 0;
+}
+
+.sim-kodou-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 40px);
+    gap: 4px;
+    position: relative;
+    z-index: 1;
+}
+
+.sim-kodou-tile {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    animation: sim-fade-up 0.3s ease forwards;
+}
+
+.sim-kodou-tile.is-chained {
+    background: var(--sim-purple);
+    box-shadow: 0 0 12px rgba(191, 90, 242, 0.6);
+}
+
+.sim-kodou-lines {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.sim-kodou-lines path {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 3px rgba(191, 90, 242, 0.9));
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: sim-line-draw 0.5s ease forwards 0.3s;
+}
+
+@keyframes sim-line-draw {
+    to { stroke-dashoffset: 0; }
+}
+
+@media (max-width: 768px) {
+    .playground-window {
+        grid-template-columns: 1fr;
+    }
+}

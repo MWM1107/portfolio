@@ -267,3 +267,223 @@ window.toggleCardVideo = function (event, wrap) {
         modal.querySelector('.video-modal-close').focus();
     };
 })();
+
+// Command Palette (Cmd + K) implementation
+(function () {
+    var palette, input, list, selectedIndex = 0, items = [];
+
+    var SEARCH_DATA = [
+        { title: 'Home', category: 'Page', url: 'index.html', icon: '🏠' },
+        { title: 'Projects', category: 'Page', url: 'projects.html', icon: '🚀' },
+        { title: 'Apps Catalog', category: 'Page', url: 'apps.html', icon: '📱' },
+        { title: 'About Me', category: 'Page', url: 'about.html', icon: '👤' },
+        { title: 'Resume', category: 'Page', url: 'resume.html', icon: '📄' },
+        { title: 'Blog', category: 'Page', url: 'blog.html', icon: '✍️' },
+        { title: 'Contact', category: 'Page', url: 'contact.html', icon: '✉️' },
+        { title: 'Uses & Gear', category: 'Page', url: 'uses.html', icon: '💻' },
+        { title: 'KanaCard', category: 'App', url: 'kanacard.html', icon: '🎴' },
+        { title: 'Rogue Roll', category: 'App', url: 'https://apps.apple.com/us/app/rogue-roll-dice-deck-builder/id6757452802', target: '_blank', icon: '🎲' },
+        { title: 'Stock Market Sim', category: 'App', url: 'https://apps.apple.com/us/app/stock-market-sim/id6511208338', target: '_blank', icon: '📈' },
+        { title: 'Kodou', category: 'App', url: 'https://apps.apple.com/us/app/kodou-memory-grid-game/id6753267966', target: '_blank', icon: '🎵' },
+        { title: 'Type Kana', category: 'App', url: 'https://apps.apple.com/us/app/type-kana/id6574367514', target: '_blank', icon: '⌨️' },
+        { title: 'Wordly', category: 'App', url: 'https://apps.apple.com/us/app/wordly-puzzle-game-solver/id6740254685', target: '_blank', icon: '🧩' },
+        { title: 'Idea Vault', category: 'App', url: 'https://apps.apple.com/us/app/idea-vault-notes-journal/id6572281488', target: '_blank', icon: '💡' },
+        { title: 'Toggle Light / Dark Mode', category: 'Action', action: function () { toggleTheme(); }, icon: '🌓' },
+        { title: 'Download Resume (PDF)', category: 'Action', url: 'Resume.pdf', target: '_blank', icon: '📥' }
+    ];
+
+    function buildPalette() {
+        if (palette) return;
+        palette = document.createElement('div');
+        palette.className = 'cmd-palette';
+        palette.setAttribute('role', 'dialog');
+        palette.setAttribute('aria-modal', 'true');
+        palette.setAttribute('aria-label', 'Command Palette');
+
+        palette.innerHTML =
+            '<div class="cmd-palette-card">' +
+            '  <div class="cmd-palette-input-wrap">' +
+            '    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>' +
+            '    <input type="text" class="cmd-palette-input" placeholder="Type a command or search pages & apps..." aria-label="Search command palette" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="cmd-palette-listbox" aria-activedescendant="">' +
+            '  </div>' +
+            '  <ul class="cmd-palette-list" id="cmd-palette-listbox" role="listbox"></ul>' +
+            '  <div class="cmd-palette-footer">' +
+            '    <span>Search portfolio &amp; apps</span>' +
+            '    <div class="cmd-palette-keys">' +
+            '      <span><span class="cmd-key">↑</span> <span class="cmd-key">↓</span> Navigate</span>' +
+            '      <span><span class="cmd-key">↵</span> Select</span>' +
+            '      <span><span class="cmd-key">ESC</span> Close</span>' +
+            '    </div>' +
+            '  </div>' +
+            '</div>';
+
+        document.body.appendChild(palette);
+        input = palette.querySelector('.cmd-palette-input');
+        list = palette.querySelector('.cmd-palette-list');
+
+        palette.addEventListener('click', function (e) {
+            if (e.target === palette) closeCmdPalette();
+        });
+
+        input.addEventListener('input', function () { renderList(input.value); });
+
+        palette.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeCmdPalette();
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                setSelection(selectedIndex + 1);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                setSelection(selectedIndex - 1);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                executeSelected();
+            } else if (e.key === 'Tab') {
+                // The input is the only focusable element in the dialog; block
+                // Tab so focus can't leak past the backdrop to the page behind.
+                e.preventDefault();
+            }
+        });
+    }
+
+    function renderList(query) {
+        var q = (query || '').toLowerCase().trim();
+        items = SEARCH_DATA.filter(function (item) {
+            return !q || item.title.toLowerCase().indexOf(q) !== -1 || item.category.toLowerCase().indexOf(q) !== -1;
+        });
+
+        list.innerHTML = '';
+        if (items.length === 0) {
+            list.innerHTML = '<li style="padding: 20px; text-align: center; color: var(--text-muted);">No matching commands or pages found</li>';
+            input.setAttribute('aria-activedescendant', '');
+            return;
+        }
+
+        items.forEach(function (item, index) {
+            var li = document.createElement('li');
+            li.id = 'cmd-palette-option-' + index;
+            li.setAttribute('role', 'option');
+            li.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+            li.className = 'cmd-palette-item' + (index === 0 ? ' is-selected' : '');
+            li.innerHTML =
+                '<div class="cmd-palette-item-left">' +
+                '  <span>' + item.icon + '</span>' +
+                '  <span>' + item.title + '</span>' +
+                '</div>' +
+                '<span class="cmd-palette-item-category">' + item.category + '</span>';
+
+            li.addEventListener('click', function () {
+                selectedIndex = index;
+                executeSelected();
+            });
+            list.appendChild(li);
+        });
+        selectedIndex = 0;
+        input.setAttribute('aria-activedescendant', 'cmd-palette-option-0');
+    }
+
+    function setSelection(index) {
+        var childNodes = list.querySelectorAll('.cmd-palette-item');
+        if (!childNodes.length) return;
+        if (index < 0) index = childNodes.length - 1;
+        if (index >= childNodes.length) index = 0;
+
+        if (childNodes[selectedIndex]) {
+            childNodes[selectedIndex].classList.remove('is-selected');
+            childNodes[selectedIndex].setAttribute('aria-selected', 'false');
+        }
+        selectedIndex = index;
+        if (childNodes[selectedIndex]) {
+            childNodes[selectedIndex].classList.add('is-selected');
+            childNodes[selectedIndex].setAttribute('aria-selected', 'true');
+            childNodes[selectedIndex].scrollIntoView({ block: 'nearest' });
+            input.setAttribute('aria-activedescendant', childNodes[selectedIndex].id);
+        }
+    }
+
+    function executeSelected() {
+        var item = items[selectedIndex];
+        if (!item) return;
+        closeCmdPalette();
+        if (item.action) {
+            item.action();
+        } else if (item.url) {
+            if (item.target === '_blank') {
+                window.open(item.url, '_blank', 'noopener,noreferrer');
+            } else {
+                window.location.href = item.url;
+            }
+        }
+    }
+
+    window.toggleCmdPalette = function () {
+        buildPalette();
+        var open = !palette.classList.contains('is-open');
+        if (open) {
+            palette.classList.add('is-open');
+            input.setAttribute('aria-expanded', 'true');
+            renderList('');
+            input.value = '';
+            setTimeout(function () { input.focus(); }, 50);
+        } else {
+            closeCmdPalette();
+        }
+    };
+
+    function closeCmdPalette() {
+        if (palette) palette.classList.remove('is-open');
+        if (input) input.setAttribute('aria-expanded', 'false');
+        var trigger = document.getElementById('cmd-k-btn');
+        if (trigger) trigger.focus();
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            window.toggleCmdPalette();
+        }
+    });
+})();
+
+// Animated Numbers Ticker for App Metrics
+(function () {
+    function animateCounters() {
+        var elements = document.querySelectorAll('.app-downloads, .rating-num');
+        if (!('IntersectionObserver' in window)) return;
+
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    observer.unobserve(entry.target);
+                    var el = entry.target;
+                    var text = el.textContent;
+                    var match = text.match(/([0-9.]+)/);
+                    if (!match) return;
+                    var targetNum = parseFloat(match[1]);
+                    if (isNaN(targetNum)) return;
+                    var duration = 1000;
+                    var startTime = null;
+
+                    function step(timestamp) {
+                        if (!startTime) startTime = timestamp;
+                        var progress = Math.min((timestamp - startTime) / duration, 1);
+                        var decimalPlaces = (match[1].indexOf('.') !== -1) ? match[1].split('.')[1].length : 0;
+                        var current = (progress * targetNum).toFixed(decimalPlaces);
+                        el.textContent = text.replace(match[1], current);
+                        if (progress < 1) requestAnimationFrame(step);
+                    }
+                    requestAnimationFrame(step);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        elements.forEach(function (el) { observer.observe(el); });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', animateCounters);
+    } else {
+        animateCounters();
+    }
+})();

@@ -15,6 +15,8 @@
     --shadow-light: rgba(0, 0, 0, 0.05);
     --shadow-medium: rgba(0, 0, 0, 0.1);
     --text-muted: #6e6e73;
+    --mesh-orb-1: rgba(0, 122, 255, 0.12);
+    --mesh-orb-2: rgba(175, 82, 222, 0.08);
 }
 
 html {

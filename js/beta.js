@@ -13,36 +13,44 @@ let turnstileWidgetId = null;
 function openBetaModal(appId) {
     currentBetaApp = appId;
     const modal = document.getElementById('beta-modal');
+    if (!modal) return;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
 
     // Reset or render Turnstile
     const turnstileContainer = document.getElementById('turnstile-container');
-    if (turnstileWidgetId !== null) {
-        // Reset the widget if it was already rendered
-        turnstile.reset(turnstileWidgetId);
+    if (typeof turnstile !== 'undefined' && turnstileContainer) {
+        if (turnstileWidgetId !== null) {
+            // Reset the widget if it was already rendered
+            turnstile.reset(turnstileWidgetId);
+        } else {
+            // Render Turnstile widget for the first time
+            turnstileWidgetId = turnstile.render(turnstileContainer, {
+                sitekey: '0x4AAAAAAEBJcFPB6QoWdFzg',
+                callback: function(token) {
+                    onTurnstileSuccess(token);
+                }
+            });
+        }
     } else {
-        // Render Turnstile widget for the first time
-        turnstileWidgetId = turnstile.render(turnstileContainer, {
-            sitekey: '0x4AAAAAAEBJcFPB6QoWdFzg',
-            callback: function(token) {
-                onTurnstileSuccess(token);
-            }
-        });
+        // If Turnstile is blocked or unavailable, proceed directly to destination
+        onTurnstileSuccess(null);
     }
 }
 
 function closeBetaModal() {
     const modal = document.getElementById('beta-modal');
-    modal.classList.remove('active');
+    if (modal) {
+        modal.classList.remove('active');
+    }
     document.body.style.overflow = '';
     currentBetaApp = null;
     
     // Reset modal content
     const modalContent = document.getElementById('beta-modal-content');
-    modalContent.style.display = 'block';
+    if (modalContent) modalContent.style.display = 'block';
     const successMsg = document.getElementById('beta-success-msg');
-    successMsg.style.display = 'none';
+    if (successMsg) successMsg.style.display = 'none';
 }
 
 function onTurnstileSuccess(token) {

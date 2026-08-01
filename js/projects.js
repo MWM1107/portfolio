@@ -2,7 +2,9 @@
 (function () {
     window.scrollScreenshots = function (trackId, dir) {
         var track = document.getElementById(trackId);
+        if (!track) return;
         var img = track.querySelector('img');
+        if (!img) return;
         var slideWidth = img.getBoundingClientRect().width + 10;
         var maxScroll = track.scrollWidth - track.clientWidth;
 
